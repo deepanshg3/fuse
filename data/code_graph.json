@@ -4005,6 +4005,72 @@
       "relation": "contains"
     },
     {
+      "source": "file:__init__.py",
+      "target": "file:json/__init__.py",
+      "relation": "imports",
+      "statement": "from . import json as json"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask as Flask"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:blueprints.py",
+      "relation": "imports",
+      "statement": "from .blueprints import Blueprint as Blueprint"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:config.py",
+      "relation": "imports",
+      "statement": "from .config import Config as Config"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from .ctx import after_this_request as after_this_request"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app as current_app"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import abort as abort"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import appcontext_popped as appcontext_popped"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from .templating import render_template as render_template"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request as Request"
+    },
+    {
+      "source": "file:__main__.py",
+      "target": "file:cli.py",
+      "relation": "imports",
+      "statement": "from .cli import main"
+    },
+    {
       "source": "file:app.py",
       "target": "symbol:app.py:_make_timedelta:74",
       "relation": "contains"
@@ -4201,9 +4267,75 @@
     },
     {
       "source": "file:app.py",
+      "target": "file:cli.py",
+      "relation": "imports",
+      "statement": "from . import cli"
+    },
+    {
+      "source": "file:app.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import typing as ft"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from .ctx import AppContext"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import _CollectErrors"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .sansio.app import App"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SecureCookieSessionInterface"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import appcontext_tearing_down"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from .templating import Environment"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:testing.py",
+      "relation": "imports",
+      "statement": "from .testing import FlaskClient"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:debughelpers.py",
+      "relation": "imports",
+      "statement": "from .debughelpers import FormDataRoutingRedirect"
     },
     {
       "source": "symbol:app.py:Flask:110",
@@ -4477,9 +4609,39 @@
     },
     {
       "source": "file:blueprints.py",
-      "target": "file:typing.py",
+      "target": "file:cli.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .cli import AppGroup"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import send_from_directory"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:sansio/blueprints.py",
+      "relation": "imports",
+      "statement": "from .sansio.blueprints import Blueprint as SansioBlueprint"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .sansio.scaffold import _sentinel"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Response"
     },
     {
       "source": "symbol:blueprints.py:Blueprint:18",
@@ -4713,9 +4875,21 @@
     },
     {
       "source": "file:cli.py",
-      "target": "file:typing.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .globals import current_app"
+    },
+    {
+      "source": "file:cli.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import get_debug_flag"
+    },
+    {
+      "source": "file:cli.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
     },
     {
       "source": "symbol:cli.py:find_best_app:41",
@@ -4959,15 +5133,9 @@
     },
     {
       "source": "file:config.py",
-      "target": "file:json/__init__.py",
+      "target": "file:sansio/app.py",
       "relation": "imports",
-      "statement": "import json"
-    },
-    {
-      "source": "file:config.py",
-      "target": "file:typing.py",
-      "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .sansio.app import App"
     },
     {
       "source": "symbol:config.py:ConfigAttribute:20",
@@ -5208,7 +5376,43 @@
       "source": "file:ctx.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import typing as ft"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import _CollectErrors"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import appcontext_popped"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SessionMixin"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:ctx.py:_AppCtxGlobals:30",
@@ -5372,9 +5576,33 @@
     },
     {
       "source": "file:debughelpers.py",
-      "target": "file:typing.py",
+      "target": "file:blueprints.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .blueprints import Blueprint"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .sansio.app import App"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .sansio.scaffold import Scaffold"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:debughelpers.py:DebugFilesKeyError:23",
@@ -5443,9 +5671,27 @@
     },
     {
       "source": "file:globals.py",
-      "target": "file:typing.py",
+      "target": "file:app.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .app import Flask"
+    },
+    {
+      "source": "file:globals.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from .ctx import _AppCtxGlobals"
+    },
+    {
+      "source": "file:globals.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SessionMixin"
+    },
+    {
+      "source": "file:globals.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:globals.py:ProxyMixin:17",
@@ -5589,9 +5835,21 @@
     },
     {
       "source": "file:helpers.py",
-      "target": "file:typing.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:helpers.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import message_flashed"
+    },
+    {
+      "source": "file:helpers.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Response"
     },
     {
       "source": "symbol:helpers.py:stream_with_context:63",
@@ -5660,15 +5918,21 @@
     },
     {
       "source": "file:json/__init__.py",
-      "target": "file:json/__init__.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import json as _json"
+      "statement": "from ..globals import current_app"
     },
     {
       "source": "file:json/__init__.py",
-      "target": "file:typing.py",
+      "target": "file:json/provider.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .provider import _default"
+    },
+    {
+      "source": "file:json/__init__.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from ..wrappers import Response"
     },
     {
       "source": "file:json/provider.py",
@@ -5737,15 +6001,9 @@
     },
     {
       "source": "file:json/provider.py",
-      "target": "file:json/__init__.py",
+      "target": "file:sansio/app.py",
       "relation": "imports",
-      "statement": "import json"
-    },
-    {
-      "source": "file:json/provider.py",
-      "target": "file:typing.py",
-      "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from ..sansio.app import App"
     },
     {
       "source": "symbol:json/provider.py:JSONProvider:19",
@@ -6024,9 +6282,9 @@
     },
     {
       "source": "file:json/tag.py",
-      "target": "file:typing.py",
+      "target": "file:json/__init__.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from ..json import dumps"
     },
     {
       "source": "symbol:json/tag.py:JSONTag:60",
@@ -6265,15 +6523,15 @@
     },
     {
       "source": "file:logging.py",
-      "target": "file:logging.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import logging"
+      "statement": "from .globals import request"
     },
     {
       "source": "file:logging.py",
-      "target": "file:typing.py",
+      "target": "file:sansio/app.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .sansio.app import App"
     },
     {
       "source": "symbol:logging.py:create_logger:58",
@@ -6467,15 +6725,63 @@
     },
     {
       "source": "file:sansio/app.py",
-      "target": "file:logging.py",
+      "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import logging"
+      "statement": "from .. import typing as ft"
     },
     {
       "source": "file:sansio/app.py",
-      "target": "file:typing.py",
+      "target": "file:config.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from ..config import Config"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from ..ctx import _AppCtxGlobals"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from ..helpers import _split_blueprint_path"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:json/provider.py",
+      "relation": "imports",
+      "statement": "from ..json.provider import DefaultJSONProvider"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:logging.py",
+      "relation": "imports",
+      "statement": "from ..logging import create_logger"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from ..templating import DispatchingJinjaLoader"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .scaffold import _endpoint_from_view_func"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:testing.py",
+      "relation": "imports",
+      "statement": "from ..testing import FlaskClient"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:sansio/blueprints.py",
+      "relation": "imports",
+      "statement": "from .blueprints import Blueprint"
     },
     {
       "source": "symbol:sansio/app.py:App:59",
@@ -6851,7 +7157,19 @@
       "source": "file:sansio/blueprints.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .. import typing as ft"
+    },
+    {
+      "source": "file:sansio/blueprints.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .scaffold import _endpoint_from_view_func"
+    },
+    {
+      "source": "file:sansio/blueprints.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .app import App"
     },
     {
       "source": "symbol:sansio/blueprints.py:BlueprintSetupState:34",
@@ -7187,7 +7505,19 @@
       "source": "file:sansio/scaffold.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .. import typing as ft"
+    },
+    {
+      "source": "file:sansio/scaffold.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from ..helpers import get_root_path"
+    },
+    {
+      "source": "file:sansio/scaffold.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from ..templating import _default_template_ctx_processor"
     },
     {
       "source": "symbol:sansio/scaffold.py:Scaffold:52",
@@ -7471,9 +7801,21 @@
     },
     {
       "source": "file:sessions.py",
-      "target": "file:typing.py",
+      "target": "file:json/tag.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .json.tag import TaggedJSONSerializer"
+    },
+    {
+      "source": "file:sessions.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
+    },
+    {
+      "source": "file:sessions.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:sessions.py:SessionMixin:24",
@@ -7672,9 +8014,45 @@
     },
     {
       "source": "file:templating.py",
-      "target": "file:typing.py",
+      "target": "file:ctx.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .ctx import AppContext"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import app_ctx"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import stream_with_context"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import before_render_template"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .sansio.app import App"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .sansio.scaffold import Scaffold"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:debughelpers.py",
+      "relation": "imports",
+      "statement": "from .debughelpers import explain_template_loading_attempts"
     },
     {
       "source": "symbol:templating.py:Environment:36",
@@ -7818,9 +8196,21 @@
     },
     {
       "source": "file:testing.py",
-      "target": "file:typing.py",
+      "target": "file:cli.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .cli import ScriptInfo"
+    },
+    {
+      "source": "file:testing.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SessionMixin"
+    },
+    {
+      "source": "file:testing.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
     },
     {
       "source": "symbol:testing.py:EnvironBuilder:27",
@@ -7903,12 +8293,6 @@
       "relation": "calls"
     },
     {
-      "source": "file:typing.py",
-      "target": "file:typing.py",
-      "relation": "imports",
-      "statement": "import typing as t"
-    },
-    {
       "source": "file:views.py",
       "target": "symbol:views.py:View:16",
       "relation": "contains"
@@ -7942,7 +8326,13 @@
       "source": "file:views.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import typing as ft"
+    },
+    {
+      "source": "file:views.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app"
     },
     {
       "source": "symbol:views.py:View:16",
@@ -8041,9 +8431,27 @@
     },
     {
       "source": "file:wrappers.py",
-      "target": "file:typing.py",
+      "target": "file:json/__init__.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import json"
+    },
+    {
+      "source": "file:wrappers.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app"
+    },
+    {
+      "source": "file:wrappers.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import _split_blueprint_path"
+    },
+    {
+      "source": "file:wrappers.py",
+      "target": "file:debughelpers.py",
+      "relation": "imports",
+      "statement": "from .debughelpers import attach_enctype_error_multidict"
     },
     {
       "source": "symbol:wrappers.py:Request:18",

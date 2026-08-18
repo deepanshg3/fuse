@@ -3,17 +3,20 @@
     {
       "id": "module:flask",
       "type": "module",
-      "name": "flask"
+      "name": "flask",
+      "description": "The Flask framework provides a comprehensive WSGI-based toolkit for building web applications, featuring modular routing, session management, template rendering, request-response handling, configuration management, and integrated command-line utilities for development and testing."
     },
     {
       "id": "module:json",
       "type": "module",
-      "name": "json"
+      "name": "json",
+      "description": "This module provides a robust framework for JSON serialization and deserialization, including extensible support for custom Python types and integrated HTTP response handling within the application."
     },
     {
       "id": "module:sansio",
       "type": "module",
-      "name": "sansio"
+      "name": "sansio",
+      "description": "This module provides a framework-agnostic foundation for building modular web applications through core routing, configuration, and request-handling mechanisms, complemented by blueprints for organizing reusable components and application state."
     },
     {
       "id": "file:__init__.py",
@@ -21,7 +24,7 @@
       "name": "__init__.py",
       "path": "__init__.py",
       "module": "flask",
-      "description": "Exposes core Flask framework components, utilities, globals, and signals as the primary public API entry point for the application."
+      "description": "Exposes core Flask framework components, utilities, signals, and wrappers for public API access."
     },
     {
       "id": "file:__main__.py",
@@ -29,7 +32,7 @@
       "name": "__main__.py",
       "path": "__main__.py",
       "module": "flask",
-      "description": "Serves as the package entry point to execute the Flask command-line interface."
+      "description": "This script serves as the package entry point, invoking the Flask CLI main function to execute command-line operations."
     },
     {
       "id": "file:app.py",
@@ -37,7 +40,7 @@
       "name": "app.py",
       "path": "app.py",
       "module": "flask",
-      "description": "Defines the core Flask WSGI application class, managing routing, request lifecycle, template rendering, and application configuration."
+      "description": "Defines the core Flask WSGI application class, handling request dispatching, configuration, routing, context management, and error handling for web applications."
     },
     {
       "id": "symbol:app.py:_make_timedelta:74",
@@ -46,7 +49,8 @@
       "file": "app.py",
       "line": 74,
       "end_line": 78,
-      "parent": ""
+      "parent": "",
+      "description": "Converts an integer or existing timedelta object into a standardized timedelta representation."
     },
     {
       "id": "symbol:app.py:remove_ctx:86",
@@ -55,7 +59,8 @@
       "file": "app.py",
       "line": 86,
       "end_line": 93,
-      "parent": ""
+      "parent": "",
+      "description": "Wraps a method to remove the application context from its arguments for backward compatibility."
     },
     {
       "id": "symbol:app.py:add_ctx:98",
@@ -64,7 +69,8 @@
       "file": "app.py",
       "line": 98,
       "end_line": 107,
-      "parent": ""
+      "parent": "",
+      "description": "Wraps a method to inject the current application context into its arguments for backward compatibility."
     },
     {
       "id": "symbol:app.py:Flask:110",
@@ -74,7 +80,7 @@
       "line": 110,
       "end_line": 1628,
       "parent": "",
-      "description": "Implements the central WSGI application object for registry of routes, configurations, and request handling."
+      "description": "The central WSGI application object acting as a registry for views, rules, and configuration."
     },
     {
       "id": "symbol:app.py:__init_subclass__:255",
@@ -83,7 +89,8 @@
       "file": "app.py",
       "line": 255,
       "end_line": 309,
-      "parent": "Flask"
+      "parent": "Flask",
+      "description": "Detects deprecated method signatures in subclasses and updates them to support context injection."
     },
     {
       "id": "symbol:app.py:__init__:311",
@@ -93,7 +100,7 @@
       "line": 311,
       "end_line": 364,
       "parent": "Flask",
-      "description": "Initializes the application with package information and default configurations."
+      "description": "Initializes the application instance with its package name and directory configuration paths."
     },
     {
       "id": "symbol:app.py:get_send_file_max_age:366",
@@ -103,7 +110,7 @@
       "line": 366,
       "end_line": 391,
       "parent": "Flask",
-      "description": "Calculates the cache expiration time for static files."
+      "description": "Determines the cache duration for static files based on configuration settings."
     },
     {
       "id": "symbol:app.py:send_static_file:393",
@@ -113,7 +120,7 @@
       "line": 393,
       "end_line": 413,
       "parent": "Flask",
-      "description": "Serves files from the configured static directory."
+      "description": "Serves a file from the configured static directory to the client."
     },
     {
       "id": "symbol:app.py:open_resource:415",
@@ -123,7 +130,7 @@
       "line": 415,
       "end_line": 446,
       "parent": "Flask",
-      "description": "Opens a file relative to the application root directory for reading."
+      "description": "Opens a resource file from the application root directory for reading."
     },
     {
       "id": "symbol:app.py:open_instance_resource:448",
@@ -133,7 +140,7 @@
       "line": 448,
       "end_line": 468,
       "parent": "Flask",
-      "description": "Opens a file relative to the instance directory for reading or writing."
+      "description": "Opens a resource file from the application instance directory for reading or writing."
     },
     {
       "id": "symbol:app.py:create_jinja_environment:470",
@@ -143,7 +150,7 @@
       "line": 470,
       "end_line": 508,
       "parent": "Flask",
-      "description": "Constructs and configures the template rendering environment."
+      "description": "Constructs the template rendering environment with configured globals and filters."
     },
     {
       "id": "symbol:app.py:create_url_adapter:510",
@@ -153,7 +160,7 @@
       "line": 510,
       "end_line": 561,
       "parent": "Flask",
-      "description": "Generates a URL adapter for binding requests or building URLs."
+      "description": "Generates a URL adapter to bind requests to internal URL rules and maps."
     },
     {
       "id": "symbol:app.py:raise_routing_exception:563",
@@ -163,7 +170,7 @@
       "line": 563,
       "end_line": 589,
       "parent": "Flask",
-      "description": "Intercepts and handles routing-related redirections."
+      "description": "Handles internal routing exceptions by potentially redirecting or returning errors."
     },
     {
       "id": "symbol:app.py:update_template_context:591",
@@ -173,7 +180,7 @@
       "line": 591,
       "end_line": 619,
       "parent": "Flask",
-      "description": "Injects request-specific variables into the template rendering context."
+      "description": "Injects common request-level variables and processor data into the template rendering context."
     },
     {
       "id": "symbol:app.py:make_shell_context:621",
@@ -183,7 +190,7 @@
       "line": 621,
       "end_line": 631,
       "parent": "Flask",
-      "description": "Returns a dictionary of objects available in the interactive shell."
+      "description": "Collects variables and objects available for interactive shell sessions."
     },
     {
       "id": "symbol:app.py:run:633",
@@ -193,7 +200,7 @@
       "line": 633,
       "end_line": 756,
       "parent": "Flask",
-      "description": "Starts the local development server for the application."
+      "description": "Starts the development server to host the application locally."
     },
     {
       "id": "symbol:app.py:test_client:758",
@@ -203,7 +210,7 @@
       "line": 758,
       "end_line": 814,
       "parent": "Flask",
-      "description": "Provides a test client for executing requests without a running server."
+      "description": "Creates a client to facilitate unit testing of the application routes."
     },
     {
       "id": "symbol:app.py:test_cli_runner:816",
@@ -213,7 +220,7 @@
       "line": 816,
       "end_line": 831,
       "parent": "Flask",
-      "description": "Provides a CLI runner to test command-line interface commands."
+      "description": "Creates a runner to test the application's command line interface commands."
     },
     {
       "id": "symbol:app.py:handle_http_exception:833",
@@ -223,7 +230,7 @@
       "line": 833,
       "end_line": 866,
       "parent": "Flask",
-      "description": "Invokes registered error handlers for HTTP-specific exceptions."
+      "description": "Processes HTTP exceptions by invoking registered error handlers or returning standard responses."
     },
     {
       "id": "symbol:app.py:handle_user_exception:868",
@@ -233,7 +240,7 @@
       "line": 868,
       "end_line": 898,
       "parent": "Flask",
-      "description": "Processes application-specific exceptions by triggering handlers or re-raising."
+      "description": "Routes application-level exceptions to appropriate error handlers or re-raises them."
     },
     {
       "id": "symbol:app.py:handle_exception:900",
@@ -243,7 +250,7 @@
       "line": 900,
       "end_line": 951,
       "parent": "Flask",
-      "description": "Standardizes unhandled exceptions into internal server error responses."
+      "description": "Manages unhandled exceptions by logging them and returning a standard internal server error response."
     },
     {
       "id": "symbol:app.py:log_exception:953",
@@ -253,7 +260,7 @@
       "line": 953,
       "end_line": 967,
       "parent": "Flask",
-      "description": "Records unhandled exceptions using the application logger."
+      "description": "Logs details regarding an unhandled exception to the application's logger."
     },
     {
       "id": "symbol:app.py:dispatch_request:969",
@@ -263,7 +270,7 @@
       "line": 969,
       "end_line": 993,
       "parent": "Flask",
-      "description": "Matches the request URL and executes the corresponding view function."
+      "description": "Matches the request to a view function and executes the function's logic."
     },
     {
       "id": "symbol:app.py:full_dispatch_request:995",
@@ -273,7 +280,7 @@
       "line": 995,
       "end_line": 1022,
       "parent": "Flask",
-      "description": "Orchestrates the entire request lifecycle including pre-processing and finalization."
+      "description": "Orchestrates request processing including preprocessing, dispatching, and error handling."
     },
     {
       "id": "symbol:app.py:finalize_request:1024",
@@ -283,7 +290,7 @@
       "line": 1024,
       "end_line": 1054,
       "parent": "Flask",
-      "description": "Converts a view return value into a response and executes post-processing."
+      "description": "Converts dispatch results into a final response and triggers post-processing logic."
     },
     {
       "id": "symbol:app.py:make_default_options_response:1056",
@@ -293,7 +300,7 @@
       "line": 1056,
       "end_line": 1066,
       "parent": "Flask",
-      "description": "Creates a default response for OPTIONS requests based on allowed methods."
+      "description": "Constructs a standard response for HTTP OPTIONS requests."
     },
     {
       "id": "symbol:app.py:ensure_sync:1068",
@@ -303,7 +310,7 @@
       "line": 1068,
       "end_line": 1080,
       "parent": "Flask",
-      "description": "Normalizes asynchronous functions to be compatible with synchronous WSGI workers."
+      "description": "Wraps asynchronous functions to ensure they execute synchronously for WSGI compatibility."
     },
     {
       "id": "symbol:app.py:async_to_sync:1082",
@@ -313,7 +320,7 @@
       "line": 1082,
       "end_line": 1103,
       "parent": "Flask",
-      "description": "Converts coroutine functions into synchronously callable counterparts."
+      "description": "Converts an asynchronous coroutine into a synchronous function using asgiref."
     },
     {
       "id": "symbol:app.py:url_for:1105",
@@ -323,7 +330,7 @@
       "line": 1105,
       "end_line": 1225,
       "parent": "Flask",
-      "description": "Builds a URL for a specified endpoint using registered rules."
+      "description": "Generates a URL for a specific endpoint based on provided variable arguments."
     },
     {
       "id": "symbol:app.py:make_response:1227",
@@ -333,7 +340,7 @@
       "line": 1227,
       "end_line": 1367,
       "parent": "Flask",
-      "description": "Converts various return types from view functions into standard response objects."
+      "description": "Transforms various return types from view functions into a standardized response object."
     },
     {
       "id": "symbol:app.py:preprocess_request:1369",
@@ -343,7 +350,7 @@
       "line": 1369,
       "end_line": 1395,
       "parent": "Flask",
-      "description": "Executes functions registered to run before the request is dispatched."
+      "description": "Executes pre-request processing functions and blueprint-specific URL processors."
     },
     {
       "id": "symbol:app.py:process_response:1397",
@@ -353,7 +360,7 @@
       "line": 1397,
       "end_line": 1421,
       "parent": "Flask",
-      "description": "Modifies the response object before it is sent to the client."
+      "description": "Modifies the response object using registered post-request functions and session management logic."
     },
     {
       "id": "symbol:app.py:do_teardown_request:1423",
@@ -363,7 +370,7 @@
       "line": 1423,
       "end_line": 1454,
       "parent": "Flask",
-      "description": "Cleans up resources and executes teardown functions after a request."
+      "description": "Cleans up resources and triggers signals after a request has been fully processed."
     },
     {
       "id": "symbol:app.py:do_teardown_appcontext:1456",
@@ -373,7 +380,7 @@
       "line": 1456,
       "end_line": 1482,
       "parent": "Flask",
-      "description": "Cleans up application context resources upon completion."
+      "description": "Performs cleanup tasks associated with the application context upon its destruction."
     },
     {
       "id": "symbol:app.py:app_context:1484",
@@ -383,7 +390,7 @@
       "line": 1484,
       "end_line": 1502,
       "parent": "Flask",
-      "description": "Creates an application context for manual push and interaction."
+      "description": "Creates an application context for managing shared state during requests or tasks."
     },
     {
       "id": "symbol:app.py:request_context:1504",
@@ -393,7 +400,7 @@
       "line": 1504,
       "end_line": 1518,
       "parent": "Flask",
-      "description": "Creates a request context bound to a WSGI environment."
+      "description": "Creates a request context bound to the specified WSGI environment."
     },
     {
       "id": "symbol:app.py:test_request_context:1520",
@@ -403,7 +410,7 @@
       "line": 1520,
       "end_line": 1567,
       "parent": "Flask",
-      "description": "Creates a request context for testing without dispatching full requests."
+      "description": "Creates a temporary request context for use in testing scenarios."
     },
     {
       "id": "symbol:app.py:wsgi_app:1569",
@@ -413,7 +420,7 @@
       "line": 1569,
       "end_line": 1619,
       "parent": "Flask",
-      "description": "Executes the core WSGI request processing logic."
+      "description": "Serves as the main WSGI interface for the application, handling the request lifecycle."
     },
     {
       "id": "symbol:app.py:__call__:1621",
@@ -423,7 +430,7 @@
       "line": 1621,
       "end_line": 1628,
       "parent": "Flask",
-      "description": "Allows the application instance to function as a callable WSGI application."
+      "description": "Enables the Flask instance to be invoked as a standard WSGI application."
     },
     {
       "id": "file:blueprints.py",
@@ -431,7 +438,7 @@
       "name": "blueprints.py",
       "path": "blueprints.py",
       "module": "flask",
-      "description": "Defines Blueprint objects for organizing Flask application components, including routing, static file handling, and resource access functionality."
+      "description": "Defines Blueprint objects for organizing Flask application components into modular, reusable modules with independent static files, templates, and CLI commands."
     },
     {
       "id": "symbol:blueprints.py:Blueprint:18",
@@ -441,7 +448,7 @@
       "line": 18,
       "end_line": 128,
       "parent": "",
-      "description": "Provides a modular way to organize application features and related resources."
+      "description": "Represents a collection of application components for modular Flask application development."
     },
     {
       "id": "symbol:blueprints.py:__init__:19",
@@ -450,7 +457,8 @@
       "file": "blueprints.py",
       "line": 19,
       "end_line": 53,
-      "parent": "Blueprint"
+      "parent": "Blueprint",
+      "description": "Initializes the blueprint instance with configuration paths and a dedicated command group."
     },
     {
       "id": "symbol:blueprints.py:get_send_file_max_age:55",
@@ -459,7 +467,8 @@
       "file": "blueprints.py",
       "line": 55,
       "end_line": 80,
-      "parent": "Blueprint"
+      "parent": "Blueprint",
+      "description": "Determines the cache duration for static files based on current application configuration."
     },
     {
       "id": "symbol:blueprints.py:send_static_file:82",
@@ -468,7 +477,8 @@
       "file": "blueprints.py",
       "line": 82,
       "end_line": 102,
-      "parent": "Blueprint"
+      "parent": "Blueprint",
+      "description": "Serves files from the defined static directory using configured cache settings."
     },
     {
       "id": "symbol:blueprints.py:open_resource:104",
@@ -477,7 +487,8 @@
       "file": "blueprints.py",
       "line": 104,
       "end_line": 128,
-      "parent": "Blueprint"
+      "parent": "Blueprint",
+      "description": "Opens a resource file located relative to the blueprint's root directory."
     },
     {
       "id": "file:cli.py",
@@ -485,7 +496,7 @@
       "name": "cli.py",
       "path": "cli.py",
       "module": "flask",
-      "description": "Provides command-line interface infrastructure and utilities for Flask applications, including server execution, shell access, route inspection, and application discovery."
+      "description": "Provides command-line interface utilities for managing Flask applications, including server execution, shell interaction, route inspection, and application loading management."
     },
     {
       "id": "symbol:cli.py:NoAppException:37",
@@ -495,7 +506,7 @@
       "line": 37,
       "end_line": 38,
       "parent": "",
-      "description": "Indicates failure to locate or load a Flask application."
+      "description": "Error raised when a Flask application cannot be located or loaded."
     },
     {
       "id": "symbol:cli.py:find_best_app:41",
@@ -505,7 +516,7 @@
       "line": 41,
       "end_line": 91,
       "parent": "",
-      "description": "Attempts to discover a Flask application instance or factory function within a module."
+      "description": "Identifies the appropriate Flask application instance from a given module."
     },
     {
       "id": "symbol:cli.py:_called_with_wrong_args:94",
@@ -514,7 +525,8 @@
       "file": "cli.py",
       "line": 94,
       "end_line": 117,
-      "parent": ""
+      "parent": "",
+      "description": "Determines if a function call failure was caused by invalid arguments."
     },
     {
       "id": "symbol:cli.py:find_app_by_string:120",
@@ -524,7 +536,7 @@
       "line": 120,
       "end_line": 197,
       "parent": "",
-      "description": "Locates a specific Flask application instance or factory function using a string reference."
+      "description": "Retrieves a Flask application instance based on a module attribute string."
     },
     {
       "id": "symbol:cli.py:prepare_import:200",
@@ -534,7 +546,7 @@
       "line": 200,
       "end_line": 226,
       "parent": "",
-      "description": "Calculates the Python path and module name from a file path."
+      "description": "Adds a file path to the system path and returns the module name."
     },
     {
       "id": "symbol:cli.py:locate_app:230",
@@ -544,7 +556,7 @@
       "line": 230,
       "end_line": 232,
       "parent": "",
-      "description": "Imports a module and returns the identified Flask application instance."
+      "description": "Imports a module and searches for an application using the given name."
     },
     {
       "id": "symbol:cli.py:locate_app:236",
@@ -554,7 +566,7 @@
       "line": 236,
       "end_line": 238,
       "parent": "",
-      "description": "Imports a module and returns the identified Flask application instance."
+      "description": "Imports a module and searches for an application using the given name."
     },
     {
       "id": "symbol:cli.py:locate_app:241",
@@ -564,7 +576,7 @@
       "line": 241,
       "end_line": 264,
       "parent": "",
-      "description": "Imports a module and returns the identified Flask application instance."
+      "description": "Imports a module and searches for an application using the given name."
     },
     {
       "id": "symbol:cli.py:get_version:267",
@@ -574,7 +586,7 @@
       "line": 267,
       "end_line": 280,
       "parent": "",
-      "description": "Displays version information for Python, Flask, and Werkzeug."
+      "description": "Prints version information for Python, Flask, and Werkzeug, then exits."
     },
     {
       "id": "symbol:cli.py:ScriptInfo:293",
@@ -584,7 +596,7 @@
       "line": 293,
       "end_line": 372,
       "parent": "",
-      "description": "Manages configuration and loading of Flask application instances."
+      "description": "Manages configuration and loading state for Flask application discovery within CLI commands."
     },
     {
       "id": "symbol:cli.py:__init__:305",
@@ -593,7 +605,8 @@
       "file": "cli.py",
       "line": 305,
       "end_line": 331,
-      "parent": "ScriptInfo"
+      "parent": "ScriptInfo",
+      "description": "Initializes discovery settings for locating and loading a Flask application."
     },
     {
       "id": "symbol:cli.py:load_app:333",
@@ -602,7 +615,8 @@
       "file": "cli.py",
       "line": 333,
       "end_line": 372,
-      "parent": "ScriptInfo"
+      "parent": "ScriptInfo",
+      "description": "Locates and initializes the Flask application based on defined import paths."
     },
     {
       "id": "symbol:cli.py:with_appcontext:380",
@@ -612,7 +626,7 @@
       "line": 380,
       "end_line": 402,
       "parent": "",
-      "description": "Ensures a command callback executes within an active application context."
+      "description": "Ensures a CLI command executes within an active Flask application context."
     },
     {
       "id": "symbol:cli.py:AppGroup:405",
@@ -622,7 +636,7 @@
       "line": 405,
       "end_line": 437,
       "parent": "",
-      "description": "A click group class that automatically wraps commands in an application context."
+      "description": "A Click group subclass that automatically wraps commands with the application context."
     },
     {
       "id": "symbol:cli.py:command:413",
@@ -631,7 +645,8 @@
       "file": "cli.py",
       "line": 413,
       "end_line": 427,
-      "parent": "AppGroup"
+      "parent": "AppGroup",
+      "description": "Registers a command and optionally wraps it with the application context."
     },
     {
       "id": "symbol:cli.py:group:429",
@@ -640,7 +655,8 @@
       "file": "cli.py",
       "line": 429,
       "end_line": 437,
-      "parent": "AppGroup"
+      "parent": "AppGroup",
+      "description": "Registers a subcommand group using this class by default."
     },
     {
       "id": "symbol:cli.py:_set_app:440",
@@ -649,7 +665,8 @@
       "file": "cli.py",
       "line": 440,
       "end_line": 446,
-      "parent": ""
+      "parent": "",
+      "description": "Updates the import path for the application within the script info."
     },
     {
       "id": "symbol:cli.py:_set_debug:468",
@@ -658,7 +675,8 @@
       "file": "cli.py",
       "line": 468,
       "end_line": 482,
-      "parent": ""
+      "parent": "",
+      "description": "Sets the debug environment variable based on a CLI flag value."
     },
     {
       "id": "symbol:cli.py:_env_file_callback:493",
@@ -667,7 +685,8 @@
       "file": "cli.py",
       "line": 493,
       "end_line": 512,
-      "parent": ""
+      "parent": "",
+      "description": "Loads environment variables from a specified file or default locations."
     },
     {
       "id": "symbol:cli.py:FlaskGroup:531",
@@ -677,7 +696,7 @@
       "line": 531,
       "end_line": 688,
       "parent": "",
-      "description": "A command-line group that manages Flask application loading, environment variables, and CLI plugins."
+      "description": "A command group for managing Flask apps including discovery, context, and loading."
     },
     {
       "id": "symbol:cli.py:__init__:563",
@@ -686,7 +705,8 @@
       "file": "cli.py",
       "line": 563,
       "end_line": 598,
-      "parent": "FlaskGroup"
+      "parent": "FlaskGroup",
+      "description": "Initializes CLI group with default options and application-specific command loaders."
     },
     {
       "id": "symbol:cli.py:_load_plugin_commands:600",
@@ -695,7 +715,8 @@
       "file": "cli.py",
       "line": 600,
       "end_line": 607,
-      "parent": "FlaskGroup"
+      "parent": "FlaskGroup",
+      "description": "Registers additional CLI commands provided by installed plugins."
     },
     {
       "id": "symbol:cli.py:get_command:609",
@@ -704,7 +725,8 @@
       "file": "cli.py",
       "line": 609,
       "end_line": 634,
-      "parent": "FlaskGroup"
+      "parent": "FlaskGroup",
+      "description": "Retrieves a command from internal sources or the loaded application instance."
     },
     {
       "id": "symbol:cli.py:list_commands:636",
@@ -713,7 +735,8 @@
       "file": "cli.py",
       "line": 636,
       "end_line": 655,
-      "parent": "FlaskGroup"
+      "parent": "FlaskGroup",
+      "description": "Returns a sorted list of all available built-in and application-provided commands."
     },
     {
       "id": "symbol:cli.py:make_context:657",
@@ -722,7 +745,8 @@
       "file": "cli.py",
       "line": 657,
       "end_line": 676,
-      "parent": "FlaskGroup"
+      "parent": "FlaskGroup",
+      "description": "Prepares the CLI execution context and initializes script information."
     },
     {
       "id": "symbol:cli.py:parse_args:678",
@@ -731,7 +755,8 @@
       "file": "cli.py",
       "line": 678,
       "end_line": 688,
-      "parent": "FlaskGroup"
+      "parent": "FlaskGroup",
+      "description": "Handles early parsing of environment and application options during CLI startup."
     },
     {
       "id": "symbol:cli.py:_path_is_ancestor:691",
@@ -740,7 +765,8 @@
       "file": "cli.py",
       "line": 691,
       "end_line": 695,
-      "parent": ""
+      "parent": "",
+      "description": "Checks if one directory path is an ancestor of another path."
     },
     {
       "id": "symbol:cli.py:load_dotenv:698",
@@ -750,7 +776,7 @@
       "line": 698,
       "end_line": 763,
       "parent": "",
-      "description": "Loads environment variables from dotenv files into the process environment."
+      "description": "Loads environment variables from local dotenv files into the system environment."
     },
     {
       "id": "symbol:cli.py:show_server_banner:766",
@@ -760,7 +786,7 @@
       "line": 766,
       "end_line": 777,
       "parent": "",
-      "description": "Prints startup messages including application path and debug status."
+      "description": "Displays application and debug status messages upon server startup."
     },
     {
       "id": "symbol:cli.py:CertParamType:780",
@@ -770,7 +796,7 @@
       "line": 780,
       "end_line": 825,
       "parent": "",
-      "description": "Validates and processes SSL certificate options for the development server."
+      "description": "Click parameter type for validating SSL certificate files or ad-hoc settings."
     },
     {
       "id": "symbol:cli.py:__init__:788",
@@ -779,7 +805,8 @@
       "file": "cli.py",
       "line": 788,
       "end_line": 789,
-      "parent": "CertParamType"
+      "parent": "CertParamType",
+      "description": "Initializes the file path validator for the certificate parameter."
     },
     {
       "id": "symbol:cli.py:convert:791",
@@ -788,7 +815,8 @@
       "file": "cli.py",
       "line": 791,
       "end_line": 825,
-      "parent": "CertParamType"
+      "parent": "CertParamType",
+      "description": "Validates and returns an SSL certificate path or context object."
     },
     {
       "id": "symbol:cli.py:_validate_key:828",
@@ -797,7 +825,8 @@
       "file": "cli.py",
       "line": 828,
       "end_line": 864,
-      "parent": ""
+      "parent": "",
+      "description": "Ensures the key file is provided when a certificate file is specified."
     },
     {
       "id": "symbol:cli.py:SeparatedPathType:867",
@@ -807,7 +836,7 @@
       "line": 867,
       "end_line": 879,
       "parent": "",
-      "description": "A click path type that parses lists separated by the system path separator."
+      "description": "Click path type that supports multiple values separated by OS-specific delimiters."
     },
     {
       "id": "symbol:cli.py:convert:873",
@@ -816,7 +845,8 @@
       "file": "cli.py",
       "line": 873,
       "end_line": 879,
-      "parent": "SeparatedPathType"
+      "parent": "SeparatedPathType",
+      "description": "Splits a path string and validates each individual component."
     },
     {
       "id": "symbol:cli.py:run_command:935",
@@ -826,7 +856,7 @@
       "line": 935,
       "end_line": 993,
       "parent": "",
-      "description": "Starts a local development server for the Flask application."
+      "description": "Starts a local development server for the current Flask application."
     },
     {
       "id": "symbol:cli.py:shell_command:1001",
@@ -836,7 +866,7 @@
       "line": 1001,
       "end_line": 1045,
       "parent": "",
-      "description": "Opens an interactive Python shell within the application context."
+      "description": "Launches an interactive Python shell within the active application context."
     },
     {
       "id": "symbol:cli.py:routes_command:1061",
@@ -846,7 +876,7 @@
       "line": 1061,
       "end_line": 1107,
       "parent": "",
-      "description": "Lists all URL routes registered to the Flask application."
+      "description": "Lists all registered URL routes for the application with metadata."
     },
     {
       "id": "symbol:cli.py:main:1122",
@@ -856,7 +886,7 @@
       "line": 1122,
       "end_line": 1123,
       "parent": "",
-      "description": "Entry point for the Flask command-line interface."
+      "description": "Entry point for executing the Flask CLI."
     },
     {
       "id": "file:config.py",
@@ -864,7 +894,7 @@
       "name": "config.py",
       "path": "config.py",
       "module": "flask",
-      "description": "Provides a configuration management system for applications using dictionary-like structures with methods for loading settings from files, modules, and environment variables."
+      "description": "Provides classes for managing application configuration, including loading settings from files, environment variables, objects, and mappings."
     },
     {
       "id": "symbol:config.py:ConfigAttribute:20",
@@ -874,7 +904,7 @@
       "line": 20,
       "end_line": 47,
       "parent": "",
-      "description": "Proxies access to specific configuration keys with optional value conversion."
+      "description": "Descriptor class that forwards attribute access to an application configuration object."
     },
     {
       "id": "symbol:config.py:__init__:23",
@@ -883,7 +913,8 @@
       "file": "config.py",
       "line": 23,
       "end_line": 27,
-      "parent": "ConfigAttribute"
+      "parent": "ConfigAttribute",
+      "description": "Initializes the descriptor with a name and an optional value converter."
     },
     {
       "id": "symbol:config.py:__get__:30",
@@ -892,7 +923,8 @@
       "file": "config.py",
       "line": 30,
       "end_line": 30,
-      "parent": "ConfigAttribute"
+      "parent": "ConfigAttribute",
+      "description": "Returns the descriptor instance when accessed from the class."
     },
     {
       "id": "symbol:config.py:__get__:33",
@@ -901,7 +933,8 @@
       "file": "config.py",
       "line": 33,
       "end_line": 33,
-      "parent": "ConfigAttribute"
+      "parent": "ConfigAttribute",
+      "description": "Retrieves and converts the configuration value from the application instance."
     },
     {
       "id": "symbol:config.py:__get__:35",
@@ -910,7 +943,8 @@
       "file": "config.py",
       "line": 35,
       "end_line": 44,
-      "parent": "ConfigAttribute"
+      "parent": "ConfigAttribute",
+      "description": "Retrieves the configuration value from the application instance with optional conversion."
     },
     {
       "id": "symbol:config.py:__set__:46",
@@ -919,7 +953,8 @@
       "file": "config.py",
       "line": 46,
       "end_line": 47,
-      "parent": "ConfigAttribute"
+      "parent": "ConfigAttribute",
+      "description": "Updates the configuration value in the application instance."
     },
     {
       "id": "symbol:config.py:Config:50",
@@ -929,7 +964,7 @@
       "line": 50,
       "end_line": 367,
       "parent": "",
-      "description": "Manages application settings by extending dictionaries with file and object-based loading capabilities."
+      "description": "Dictionary-based configuration class that supports loading settings from various external sources."
     },
     {
       "id": "symbol:config.py:__init__:94",
@@ -939,7 +974,7 @@
       "line": 94,
       "end_line": 100,
       "parent": "Config",
-      "description": "Initializes the configuration store with a root directory and optional default values."
+      "description": "Initializes the configuration with a root path and optional default values."
     },
     {
       "id": "symbol:config.py:from_envvar:102",
@@ -949,7 +984,7 @@
       "line": 102,
       "end_line": 124,
       "parent": "Config",
-      "description": "Loads settings from a file path specified by an environment variable."
+      "description": "Loads configuration from a file path specified in an environment variable."
     },
     {
       "id": "symbol:config.py:from_prefixed_env:126",
@@ -959,7 +994,7 @@
       "line": 126,
       "end_line": 185,
       "parent": "Config",
-      "description": "Loads prefixed environment variables into the configuration mapping, supporting nested dictionary structures."
+      "description": "Loads prefixed environment variables into the configuration object."
     },
     {
       "id": "symbol:config.py:from_pyfile:187",
@@ -969,7 +1004,7 @@
       "line": 187,
       "end_line": 216,
       "parent": "Config",
-      "description": "Updates configuration values by executing a Python file as a module."
+      "description": "Loads configuration settings from a Python file."
     },
     {
       "id": "symbol:config.py:from_object:218",
@@ -979,7 +1014,7 @@
       "line": 218,
       "end_line": 254,
       "parent": "Config",
-      "description": "Imports uppercase attributes from a specified object or module into the configuration."
+      "description": "Loads uppercase attributes from a module or object into the configuration."
     },
     {
       "id": "symbol:config.py:from_file:256",
@@ -989,7 +1024,7 @@
       "line": 256,
       "end_line": 302,
       "parent": "Config",
-      "description": "Reads and loads configuration data from a file using a provided loader function."
+      "description": "Loads configuration from a file using a provided loading function."
     },
     {
       "id": "symbol:config.py:from_mapping:304",
@@ -999,7 +1034,7 @@
       "line": 304,
       "end_line": 321,
       "parent": "Config",
-      "description": "Updates configuration values from mappings, strictly filtering for uppercase keys."
+      "description": "Updates configuration settings from a mapping, ignoring non-uppercase keys."
     },
     {
       "id": "symbol:config.py:get_namespace:323",
@@ -1009,7 +1044,7 @@
       "line": 323,
       "end_line": 364,
       "parent": "Config",
-      "description": "Extracts a subset of configuration keys matching a specific prefix into a new dictionary."
+      "description": "Extracts a subset of configuration keys matching a specific namespace."
     },
     {
       "id": "symbol:config.py:__repr__:366",
@@ -1018,7 +1053,8 @@
       "file": "config.py",
       "line": 366,
       "end_line": 367,
-      "parent": "Config"
+      "parent": "Config",
+      "description": "Returns a string representation of the configuration dictionary."
     },
     {
       "id": "file:ctx.py",
@@ -1026,7 +1062,7 @@
       "name": "ctx.py",
       "path": "ctx.py",
       "module": "flask",
-      "description": "Manages application and request contexts, providing storage and lifecycle hooks for Flask request processing and background tasks."
+      "description": "Manages application and request contexts, providing storage, lifecycle management, and helper functions for Flask applications."
     },
     {
       "id": "symbol:ctx.py:_AppCtxGlobals:30",
@@ -1036,7 +1072,7 @@
       "line": 30,
       "end_line": 115,
       "parent": "",
-      "description": "Acts as a namespace for storing data within an application context."
+      "description": "Namespace object for storing data within an application context."
     },
     {
       "id": "symbol:ctx.py:__getattr__:53",
@@ -1045,7 +1081,8 @@
       "file": "ctx.py",
       "line": 53,
       "end_line": 57,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Retrieves an attribute from the internal storage dictionary."
     },
     {
       "id": "symbol:ctx.py:__setattr__:59",
@@ -1054,7 +1091,8 @@
       "file": "ctx.py",
       "line": 59,
       "end_line": 60,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Sets an attribute in the internal storage dictionary."
     },
     {
       "id": "symbol:ctx.py:__delattr__:62",
@@ -1063,7 +1101,8 @@
       "file": "ctx.py",
       "line": 62,
       "end_line": 66,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Removes an attribute from the internal storage dictionary."
     },
     {
       "id": "symbol:ctx.py:get:68",
@@ -1072,7 +1111,8 @@
       "file": "ctx.py",
       "line": 68,
       "end_line": 77,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Returns an attribute value or a default if not found."
     },
     {
       "id": "symbol:ctx.py:pop:79",
@@ -1081,7 +1121,8 @@
       "file": "ctx.py",
       "line": 79,
       "end_line": 91,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Removes and returns an attribute value by name."
     },
     {
       "id": "symbol:ctx.py:setdefault:93",
@@ -1090,7 +1131,8 @@
       "file": "ctx.py",
       "line": 93,
       "end_line": 103,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Returns an existing attribute or sets and returns a default."
     },
     {
       "id": "symbol:ctx.py:__contains__:105",
@@ -1099,7 +1141,8 @@
       "file": "ctx.py",
       "line": 105,
       "end_line": 106,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Checks if an attribute name exists in the storage."
     },
     {
       "id": "symbol:ctx.py:__iter__:108",
@@ -1108,7 +1151,8 @@
       "file": "ctx.py",
       "line": 108,
       "end_line": 109,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Iterates over the stored attribute names."
     },
     {
       "id": "symbol:ctx.py:__repr__:111",
@@ -1117,7 +1161,8 @@
       "file": "ctx.py",
       "line": 111,
       "end_line": 115,
-      "parent": "_AppCtxGlobals"
+      "parent": "_AppCtxGlobals",
+      "description": "Returns a string representation identifying the current application."
     },
     {
       "id": "symbol:ctx.py:after_this_request:118",
@@ -1127,7 +1172,7 @@
       "line": 118,
       "end_line": 148,
       "parent": "",
-      "description": "Registers a function to execute after the current request finishes."
+      "description": "Registers a function to run after the current request completes."
     },
     {
       "id": "symbol:ctx.py:copy_current_request_context:154",
@@ -1147,7 +1192,7 @@
       "line": 209,
       "end_line": 232,
       "parent": "",
-      "description": "Determines if a request context is currently active."
+      "description": "Checks if an application context with request information is active."
     },
     {
       "id": "symbol:ctx.py:has_app_context:235",
@@ -1157,7 +1202,7 @@
       "line": 235,
       "end_line": 257,
       "parent": "",
-      "description": "Determines if an application context is currently active."
+      "description": "Checks if an application context is currently active."
     },
     {
       "id": "symbol:ctx.py:AppContext:260",
@@ -1167,7 +1212,7 @@
       "line": 260,
       "end_line": 525,
       "parent": "",
-      "description": "Manages the lifecycle, resources, and request routing for an application or request context."
+      "description": "Maintains application state and request data during the request lifecycle."
     },
     {
       "id": "symbol:ctx.py:__init__:300",
@@ -1177,7 +1222,7 @@
       "line": 300,
       "end_line": 337,
       "parent": "AppContext",
-      "description": "Initializes context storage for an application and optional request."
+      "description": "Initializes the context with application and optional request data."
     },
     {
       "id": "symbol:ctx.py:from_environ:340",
@@ -1187,7 +1232,7 @@
       "line": 340,
       "end_line": 348,
       "parent": "AppContext",
-      "description": "Creates a context using a WSGI environment dictionary."
+      "description": "Creates a new context instance from WSGI environment data."
     },
     {
       "id": "symbol:ctx.py:has_request:351",
@@ -1196,7 +1241,8 @@
       "file": "ctx.py",
       "line": 351,
       "end_line": 353,
-      "parent": "AppContext"
+      "parent": "AppContext",
+      "description": "Indicates whether the context contains valid request data."
     },
     {
       "id": "symbol:ctx.py:copy:355",
@@ -1206,7 +1252,7 @@
       "line": 355,
       "end_line": 368,
       "parent": "AppContext",
-      "description": "Duplicates the current context with existing data objects."
+      "description": "Creates a duplicate of the current context."
     },
     {
       "id": "symbol:ctx.py:request:371",
@@ -1215,7 +1261,8 @@
       "file": "ctx.py",
       "line": 371,
       "end_line": 379,
-      "parent": "AppContext"
+      "parent": "AppContext",
+      "description": "Accesses the request object associated with this context."
     },
     {
       "id": "symbol:ctx.py:_get_session:381",
@@ -1224,7 +1271,8 @@
       "file": "ctx.py",
       "line": 381,
       "end_line": 393,
-      "parent": "AppContext"
+      "parent": "AppContext",
+      "description": "Retrieves or initializes the session for the request context."
     },
     {
       "id": "symbol:ctx.py:session:396",
@@ -1233,7 +1281,8 @@
       "file": "ctx.py",
       "line": 396,
       "end_line": 403,
-      "parent": "AppContext"
+      "parent": "AppContext",
+      "description": "Provides access to the session object for the request."
     },
     {
       "id": "symbol:ctx.py:match_request:405",
@@ -1243,7 +1292,7 @@
       "line": 405,
       "end_line": 414,
       "parent": "AppContext",
-      "description": "Performs URL routing for the associated request."
+      "description": "Performs URL matching against the request within the context."
     },
     {
       "id": "symbol:ctx.py:push:416",
@@ -1253,7 +1302,7 @@
       "line": 416,
       "end_line": 444,
       "parent": "AppContext",
-      "description": "Activates the context and initializes necessary request data."
+      "description": "Activates the context and performs initial request processing."
     },
     {
       "id": "symbol:ctx.py:pop:446",
@@ -1263,7 +1312,7 @@
       "line": 446,
       "end_line": 504,
       "parent": "AppContext",
-      "description": "Deactivates the context and triggers teardown functions."
+      "description": "Deactivates the context and runs teardown procedures."
     },
     {
       "id": "symbol:ctx.py:__enter__:506",
@@ -1273,7 +1322,7 @@
       "line": 506,
       "end_line": 508,
       "parent": "AppContext",
-      "description": "Enables the context as a resource manager using a block."
+      "description": "Enters the runtime context by pushing the object."
     },
     {
       "id": "symbol:ctx.py:__exit__:510",
@@ -1283,7 +1332,7 @@
       "line": 510,
       "end_line": 516,
       "parent": "AppContext",
-      "description": "Cleans up the context upon exiting the block."
+      "description": "Exits the runtime context by popping the object."
     },
     {
       "id": "symbol:ctx.py:__repr__:518",
@@ -1292,7 +1341,8 @@
       "file": "ctx.py",
       "line": 518,
       "end_line": 525,
-      "parent": "AppContext"
+      "parent": "AppContext",
+      "description": "Returns a string representation of the context state."
     },
     {
       "id": "symbol:ctx.py:__getattr__:528",
@@ -1301,7 +1351,8 @@
       "file": "ctx.py",
       "line": 528,
       "end_line": 540,
-      "parent": ""
+      "parent": "",
+      "description": "Provides backward compatibility for deprecated request context names."
     },
     {
       "id": "file:debughelpers.py",
@@ -1309,7 +1360,7 @@
       "name": "debughelpers.py",
       "path": "debughelpers.py",
       "module": "flask",
-      "description": "Provides specialized exceptions and diagnostic utilities to assist developers with debugging common Flask configuration, routing, and template loading issues."
+      "description": "Provides specialized diagnostic exceptions and helper utilities to improve error reporting during Flask development and template loading processes."
     },
     {
       "id": "symbol:debughelpers.py:UnexpectedUnicodeError:17",
@@ -1319,7 +1370,7 @@
       "line": 17,
       "end_line": 20,
       "parent": "",
-      "description": "Signals errors related to invalid unicode or binary data."
+      "description": "Reports errors related to unexpected unicode or binary data."
     },
     {
       "id": "symbol:debughelpers.py:DebugFilesKeyError:23",
@@ -1329,7 +1380,7 @@
       "line": 23,
       "end_line": 47,
       "parent": "",
-      "description": "Provides descriptive error messages when accessing missing files in a request without proper multipart encoding."
+      "description": "Provides informative error messages when request file access fails in debug mode."
     },
     {
       "id": "symbol:debughelpers.py:__init__:28",
@@ -1338,7 +1389,8 @@
       "file": "debughelpers.py",
       "line": 28,
       "end_line": 44,
-      "parent": "DebugFilesKeyError"
+      "parent": "DebugFilesKeyError",
+      "description": "Initializes the error with details regarding missing file keys and mime-types."
     },
     {
       "id": "symbol:debughelpers.py:__str__:46",
@@ -1347,7 +1399,8 @@
       "file": "debughelpers.py",
       "line": 46,
       "end_line": 47,
-      "parent": "DebugFilesKeyError"
+      "parent": "DebugFilesKeyError",
+      "description": "Returns the generated error message string."
     },
     {
       "id": "symbol:debughelpers.py:FormDataRoutingRedirect:50",
@@ -1357,7 +1410,7 @@
       "line": 50,
       "end_line": 78,
       "parent": "",
-      "description": "Warns when a routing redirect risks discarding form data or request methods."
+      "description": "Signals potential data loss during redirects caused by incorrect HTTP methods."
     },
     {
       "id": "symbol:debughelpers.py:__init__:57",
@@ -1366,7 +1419,8 @@
       "file": "debughelpers.py",
       "line": 57,
       "end_line": 78,
-      "parent": "FormDataRoutingRedirect"
+      "parent": "FormDataRoutingRedirect",
+      "description": "Constructs a descriptive message warning about lost form data after redirection."
     },
     {
       "id": "symbol:debughelpers.py:attach_enctype_error_multidict:81",
@@ -1376,7 +1430,7 @@
       "line": 81,
       "end_line": 104,
       "parent": "",
-      "description": "Patches the request files collection to improve error reporting for incorrect form encoding."
+      "description": "Patches the request files dictionary to report missing multipart encoding errors."
     },
     {
       "id": "symbol:debughelpers.py:_dump_loader_info:107",
@@ -1386,7 +1440,7 @@
       "line": 107,
       "end_line": 121,
       "parent": "",
-      "description": "Generates a textual representation of a template loader's internal configuration state."
+      "description": "Extracts and formats state information from a template loader instance."
     },
     {
       "id": "symbol:debughelpers.py:explain_template_loading_attempts:124",
@@ -1396,7 +1450,7 @@
       "line": 124,
       "end_line": 179,
       "parent": "",
-      "description": "Logs detailed diagnostic information regarding the process of locating templates across loaders."
+      "description": "Logs a detailed trace of template lookup attempts for debugging purposes."
     },
     {
       "id": "file:globals.py",
@@ -1404,7 +1458,7 @@
       "name": "globals.py",
       "path": "globals.py",
       "module": "flask",
-      "description": "Provides globally accessible proxies for current Flask application, request, and session contexts using thread-local and context-variable storage."
+      "description": "Defines proxy objects for Flask application and request context globals to provide type-safe access during the request lifecycle."
     },
     {
       "id": "symbol:globals.py:ProxyMixin:17",
@@ -1413,7 +1467,8 @@
       "file": "globals.py",
       "line": 17,
       "end_line": 18,
-      "parent": ""
+      "parent": "",
+      "description": "Protocol defining the interface for retrieving proxied objects."
     },
     {
       "id": "symbol:globals.py:_get_current_object:18",
@@ -1422,7 +1477,8 @@
       "file": "globals.py",
       "line": 18,
       "end_line": 18,
-      "parent": "ProxyMixin"
+      "parent": "ProxyMixin",
+      "description": "Retrieves the underlying proxied instance."
     },
     {
       "id": "symbol:globals.py:FlaskProxy:22",
@@ -1431,7 +1487,8 @@
       "file": "globals.py",
       "line": 22,
       "end_line": 22,
-      "parent": ""
+      "parent": "",
+      "description": "Type-hinting proxy class for the Flask application instance."
     },
     {
       "id": "symbol:globals.py:AppContextProxy:24",
@@ -1440,7 +1497,8 @@
       "file": "globals.py",
       "line": 24,
       "end_line": 24,
-      "parent": ""
+      "parent": "",
+      "description": "Type-hinting proxy class for the application context."
     },
     {
       "id": "symbol:globals.py:_AppCtxGlobalsProxy:26",
@@ -1449,7 +1507,8 @@
       "file": "globals.py",
       "line": 26,
       "end_line": 26,
-      "parent": ""
+      "parent": "",
+      "description": "Type-hinting proxy class for global application context variables."
     },
     {
       "id": "symbol:globals.py:RequestProxy:28",
@@ -1458,7 +1517,8 @@
       "file": "globals.py",
       "line": 28,
       "end_line": 28,
-      "parent": ""
+      "parent": "",
+      "description": "Type-hinting proxy class for the current HTTP request."
     },
     {
       "id": "symbol:globals.py:SessionMixinProxy:30",
@@ -1467,7 +1527,8 @@
       "file": "globals.py",
       "line": 30,
       "end_line": 30,
-      "parent": ""
+      "parent": "",
+      "description": "Type-hinting proxy class for session management interfaces."
     },
     {
       "id": "symbol:globals.py:__getattr__:65",
@@ -1477,7 +1538,7 @@
       "line": 65,
       "end_line": 77,
       "parent": "",
-      "description": "Handles attribute access for deprecated request context proxying."
+      "description": "Handles attribute access with deprecation warnings for renamed globals."
     },
     {
       "id": "file:helpers.py",
@@ -1485,7 +1546,7 @@
       "name": "helpers.py",
       "path": "helpers.py",
       "module": "flask",
-      "description": "Provides utility functions for request handling, response creation, file serving, and path resolution within the Flask framework."
+      "description": "Provides core Flask helper utilities for application configuration, request handling, file delivery, URL generation, and session-based messaging."
     },
     {
       "id": "symbol:helpers.py:get_debug_flag:28",
@@ -1495,7 +1556,7 @@
       "line": 28,
       "end_line": 33,
       "parent": "",
-      "description": "Determines if application debug mode is enabled via environment variables."
+      "description": "Determines if the application debug mode is enabled via environment variables."
     },
     {
       "id": "symbol:helpers.py:get_load_dotenv:36",
@@ -1505,7 +1566,7 @@
       "line": 36,
       "end_line": 48,
       "parent": "",
-      "description": "Checks if loading default dotenv files is enabled through environment configuration."
+      "description": "Checks if loading default dotenv files is enabled or suppressed."
     },
     {
       "id": "symbol:helpers.py:stream_with_context:52",
@@ -1515,7 +1576,7 @@
       "line": 52,
       "end_line": 54,
       "parent": "",
-      "description": "Wraps a generator to maintain request context during streamed responses."
+      "description": "Provides an overload for typing stream helper functions."
     },
     {
       "id": "symbol:helpers.py:stream_with_context:58",
@@ -1525,7 +1586,7 @@
       "line": 58,
       "end_line": 60,
       "parent": "",
-      "description": "Wraps a generator to maintain request context during streamed responses."
+      "description": "Provides an overload for typing stream helper decorators."
     },
     {
       "id": "symbol:helpers.py:stream_with_context:63",
@@ -1535,7 +1596,7 @@
       "line": 63,
       "end_line": 148,
       "parent": "",
-      "description": "Wraps a generator to maintain request context during streamed responses."
+      "description": "Wraps a generator to maintain request context during streaming responses."
     },
     {
       "id": "symbol:helpers.py:make_response:151",
@@ -1545,7 +1606,7 @@
       "line": 151,
       "end_line": 197,
       "parent": "",
-      "description": "Converts view return values into a formal response object for header manipulation."
+      "description": "Converts return values into a standard response object for header manipulation."
     },
     {
       "id": "symbol:helpers.py:url_for:200",
@@ -1555,7 +1616,7 @@
       "line": 200,
       "end_line": 251,
       "parent": "",
-      "description": "Generates a URL for a specific endpoint with optional query parameters."
+      "description": "Constructs a URL for a specific endpoint using provided parameters."
     },
     {
       "id": "symbol:helpers.py:redirect:254",
@@ -1565,7 +1626,7 @@
       "line": 254,
       "end_line": 278,
       "parent": "",
-      "description": "Constructs a redirection response to a specified location."
+      "description": "Generates a response object that redirects the client to another location."
     },
     {
       "id": "symbol:helpers.py:abort:281",
@@ -1575,7 +1636,7 @@
       "line": 281,
       "end_line": 301,
       "parent": "",
-      "description": "Raises an HTTP exception for the provided status code."
+      "description": "Triggers an HTTP exception for a given status code."
     },
     {
       "id": "symbol:helpers.py:get_template_attribute:304",
@@ -1585,7 +1646,7 @@
       "line": 304,
       "end_line": 323,
       "parent": "",
-      "description": "Loads a specific macro or variable from a template module."
+      "description": "Retrieves a specific macro or variable from a Jinja template."
     },
     {
       "id": "symbol:helpers.py:flash:326",
@@ -1595,7 +1656,7 @@
       "line": 326,
       "end_line": 357,
       "parent": "",
-      "description": "Stores a message in the session to be retrieved by subsequent requests."
+      "description": "Stores a message in the session to be displayed in subsequent requests."
     },
     {
       "id": "symbol:helpers.py:get_flashed_messages:360",
@@ -1605,7 +1666,7 @@
       "line": 360,
       "end_line": 399,
       "parent": "",
-      "description": "Retrieves and removes pending flashed messages from the session."
+      "description": "Retrieves and clears all pending flashed messages from the session."
     },
     {
       "id": "symbol:helpers.py:_prepare_send_file_kwargs:402",
@@ -1614,7 +1675,8 @@
       "file": "helpers.py",
       "line": 402,
       "end_line": 414,
-      "parent": ""
+      "parent": "",
+      "description": "Configures parameters for serving files using application context defaults."
     },
     {
       "id": "symbol:helpers.py:send_file:417",
@@ -1624,7 +1686,7 @@
       "line": 417,
       "end_line": 540,
       "parent": "",
-      "description": "Streams file contents to the client with optional security and metadata handling."
+      "description": "Sends the contents of a file to the client browser."
     },
     {
       "id": "symbol:helpers.py:send_from_directory:543",
@@ -1634,7 +1696,7 @@
       "line": 543,
       "end_line": 584,
       "parent": "",
-      "description": "Securely serves files from a specific directory to prevent unauthorized access."
+      "description": "Securely serves a file located within a specific directory."
     },
     {
       "id": "symbol:helpers.py:get_root_path:587",
@@ -1644,7 +1706,7 @@
       "line": 587,
       "end_line": 641,
       "parent": "",
-      "description": "Calculates the absolute filesystem path for a given package or module."
+      "description": "Locates the filesystem directory containing the specified Python module."
     },
     {
       "id": "symbol:helpers.py:_split_blueprint_path:645",
@@ -1653,7 +1715,8 @@
       "file": "helpers.py",
       "line": 645,
       "end_line": 651,
-      "parent": ""
+      "parent": "",
+      "description": "Decomposes a blueprint name into its constituent path segments."
     },
     {
       "id": "symbol:helpers.py:_CollectErrors:654",
@@ -1663,7 +1726,7 @@
       "line": 654,
       "end_line": 682,
       "parent": "",
-      "description": "Records multiple exceptions raised within a context block for later aggregation."
+      "description": "A context manager that records and suppresses exceptions."
     },
     {
       "id": "symbol:helpers.py:__init__:659",
@@ -1672,7 +1735,8 @@
       "file": "helpers.py",
       "line": 659,
       "end_line": 660,
-      "parent": "_CollectErrors"
+      "parent": "_CollectErrors",
+      "description": "Initializes the internal collection of gathered exceptions."
     },
     {
       "id": "symbol:helpers.py:__enter__:662",
@@ -1681,7 +1745,8 @@
       "file": "helpers.py",
       "line": 662,
       "end_line": 663,
-      "parent": "_CollectErrors"
+      "parent": "_CollectErrors",
+      "description": "Enters the context management block."
     },
     {
       "id": "symbol:helpers.py:__exit__:665",
@@ -1690,7 +1755,8 @@
       "file": "helpers.py",
       "line": 665,
       "end_line": 674,
-      "parent": "_CollectErrors"
+      "parent": "_CollectErrors",
+      "description": "Captures any exceptions occurring within the managed block."
     },
     {
       "id": "symbol:helpers.py:raise_any:676",
@@ -1699,7 +1765,8 @@
       "file": "helpers.py",
       "line": 676,
       "end_line": 682,
-      "parent": "_CollectErrors"
+      "parent": "_CollectErrors",
+      "description": "Raises an aggregate exception if any errors were collected."
     },
     {
       "id": "file:json/__init__.py",
@@ -1707,7 +1774,7 @@
       "name": "__init__.py",
       "path": "json/__init__.py",
       "module": "json",
-      "description": "Provides JSON serialization and deserialization utilities that delegate to the current Flask application's configured JSON provider or standard library functions."
+      "description": "Provides utility functions for JSON serialization, deserialization, and HTTP response creation using the configured application JSON provider."
     },
     {
       "id": "symbol:json/__init__.py:dumps:13",
@@ -1717,7 +1784,7 @@
       "line": 13,
       "end_line": 44,
       "parent": "",
-      "description": "Serializes objects to JSON strings using the current application context or default encoders."
+      "description": "Serializes an object into a JSON-formatted string."
     },
     {
       "id": "symbol:json/__init__.py:dump:47",
@@ -1727,7 +1794,7 @@
       "line": 47,
       "end_line": 74,
       "parent": "",
-      "description": "Writes serialized JSON objects to a file stream using application-specific or default configuration."
+      "description": "Serializes an object and writes it to a file stream."
     },
     {
       "id": "symbol:json/__init__.py:loads:77",
@@ -1737,7 +1804,7 @@
       "line": 77,
       "end_line": 105,
       "parent": "",
-      "description": "Deserializes JSON strings into objects using application-specific or default decoding logic."
+      "description": "Deserializes JSON data from a string or bytes."
     },
     {
       "id": "symbol:json/__init__.py:load:108",
@@ -1747,7 +1814,7 @@
       "line": 108,
       "end_line": 135,
       "parent": "",
-      "description": "Reads and deserializes JSON data from a file stream using application-specific logic."
+      "description": "Deserializes JSON data read from a file stream."
     },
     {
       "id": "symbol:json/__init__.py:jsonify:138",
@@ -1757,7 +1824,7 @@
       "line": 138,
       "end_line": 170,
       "parent": "",
-      "description": "Creates a response object containing serialized JSON data with the correct content type."
+      "description": "Creates a JSON-formatted HTTP response object."
     },
     {
       "id": "file:json/provider.py",
@@ -1775,7 +1842,7 @@
       "line": 19,
       "end_line": 105,
       "parent": "",
-      "description": "Provides an interface for custom JSON serialization and deserialization logic in Flask."
+      "description": "Base class defining the interface for application-specific JSON serialization and deserialization providers."
     },
     {
       "id": "symbol:json/provider.py:__init__:38",
@@ -1795,7 +1862,7 @@
       "line": 41,
       "end_line": 47,
       "parent": "JSONProvider",
-      "description": "Serializes objects to JSON strings."
+      "description": "Serializes an object into a JSON-formatted string."
     },
     {
       "id": "symbol:json/provider.py:dump:49",
@@ -1805,7 +1872,7 @@
       "line": 49,
       "end_line": 57,
       "parent": "JSONProvider",
-      "description": "Writes serialized JSON data to a file stream."
+      "description": "Serializes an object into JSON and writes it to a file stream."
     },
     {
       "id": "symbol:json/provider.py:loads:59",
@@ -1815,7 +1882,7 @@
       "line": 59,
       "end_line": 65,
       "parent": "JSONProvider",
-      "description": "Deserializes JSON data from strings or bytes."
+      "description": "Deserializes a JSON string or bytes into a Python object."
     },
     {
       "id": "symbol:json/provider.py:load:67",
@@ -1825,7 +1892,7 @@
       "line": 67,
       "end_line": 73,
       "parent": "JSONProvider",
-      "description": "Deserializes JSON data from a file stream."
+      "description": "Deserializes JSON data read from a file stream."
     },
     {
       "id": "symbol:json/provider.py:_prepare_response_obj:75",
@@ -1834,7 +1901,8 @@
       "file": "json/provider.py",
       "line": 75,
       "end_line": 87,
-      "parent": "JSONProvider"
+      "parent": "JSONProvider",
+      "description": "Validates and prepares input arguments for conversion into a JSON response object."
     },
     {
       "id": "symbol:json/provider.py:response:89",
@@ -1844,7 +1912,7 @@
       "line": 89,
       "end_line": 105,
       "parent": "JSONProvider",
-      "description": "Creates a Flask response object containing JSON serialized content."
+      "description": "Creates an application response object containing serialized JSON content."
     },
     {
       "id": "symbol:json/provider.py:_default:108",
@@ -1854,7 +1922,7 @@
       "line": 108,
       "end_line": 121,
       "parent": "",
-      "description": "Handles serialization for non-standard types including dates, UUIDs, dataclasses, and HTML objects."
+      "description": "Handles serialization for data types not natively supported by the standard JSON library."
     },
     {
       "id": "symbol:json/provider.py:DefaultJSONProvider:124",
@@ -1864,7 +1932,7 @@
       "line": 124,
       "end_line": 215,
       "parent": "",
-      "description": "Implements standard JSON operations using Python's built-in library with extended type support."
+      "description": "Provides JSON functionality using the built-in library with support for additional standard types."
     },
     {
       "id": "symbol:json/provider.py:dumps:166",
@@ -1874,7 +1942,7 @@
       "line": 166,
       "end_line": 179,
       "parent": "DefaultJSONProvider",
-      "description": "Serializes data using default configuration and custom type handlers."
+      "description": "Serializes data to JSON using configured defaults and settings."
     },
     {
       "id": "symbol:json/provider.py:loads:181",
@@ -1884,7 +1952,7 @@
       "line": 181,
       "end_line": 187,
       "parent": "DefaultJSONProvider",
-      "description": "Deserializes data using the standard JSON library."
+      "description": "Deserializes JSON data using the standard library loader."
     },
     {
       "id": "symbol:json/provider.py:response:189",
@@ -1894,7 +1962,7 @@
       "line": 189,
       "end_line": 215,
       "parent": "DefaultJSONProvider",
-      "description": "Creates a JSON response with optional formatting based on application debug mode."
+      "description": "Constructs an application response with JSON content, supporting optional compact or indented formatting."
     },
     {
       "id": "file:json/tag.py",
@@ -1902,7 +1970,7 @@
       "name": "tag.py",
       "path": "json/tag.py",
       "module": "json",
-      "description": "Provides a system for lossless serialization of non-standard Python types into JSON using extensible tag classes."
+      "description": "Provides a extensible framework for serializing and deserializing non-standard Python types into compact JSON format using custom tag structures."
     },
     {
       "id": "symbol:json/tag.py:JSONTag:60",
@@ -1912,7 +1980,7 @@
       "line": 60,
       "end_line": 90,
       "parent": "",
-      "description": "Base definition for creating type tags used by the serializer."
+      "description": "Base class for defining type tags for use in a serialization framework."
     },
     {
       "id": "symbol:json/tag.py:__init__:69",
@@ -1921,7 +1989,8 @@
       "file": "json/tag.py",
       "line": 69,
       "end_line": 71,
-      "parent": "JSONTag"
+      "parent": "JSONTag",
+      "description": "Initializes a new tag instance associated with a specific serializer."
     },
     {
       "id": "symbol:json/tag.py:check:73",
@@ -1930,7 +1999,8 @@
       "file": "json/tag.py",
       "line": 73,
       "end_line": 75,
-      "parent": "JSONTag"
+      "parent": "JSONTag",
+      "description": "Determines if a value should be processed by the current tag."
     },
     {
       "id": "symbol:json/tag.py:to_json:77",
@@ -1939,7 +2009,8 @@
       "file": "json/tag.py",
       "line": 77,
       "end_line": 80,
-      "parent": "JSONTag"
+      "parent": "JSONTag",
+      "description": "Converts a Python object into a standard JSON-compatible format."
     },
     {
       "id": "symbol:json/tag.py:to_python:82",
@@ -1948,7 +2019,8 @@
       "file": "json/tag.py",
       "line": 82,
       "end_line": 85,
-      "parent": "JSONTag"
+      "parent": "JSONTag",
+      "description": "Converts a JSON-compatible representation back into the original Python object type."
     },
     {
       "id": "symbol:json/tag.py:tag:87",
@@ -1957,7 +2029,8 @@
       "file": "json/tag.py",
       "line": 87,
       "end_line": 90,
-      "parent": "JSONTag"
+      "parent": "JSONTag",
+      "description": "Wraps a JSON-compatible value with the tag identifier structure."
     },
     {
       "id": "symbol:json/tag.py:TagDict:93",
@@ -1967,7 +2040,7 @@
       "line": 93,
       "end_line": 116,
       "parent": "",
-      "description": "Handles dictionaries that conflict with reserved tag keys."
+      "description": "Handles serialization for specialized dictionaries matching registered tag keys."
     },
     {
       "id": "symbol:json/tag.py:check:103",
@@ -1976,7 +2049,8 @@
       "file": "json/tag.py",
       "line": 103,
       "end_line": 108,
-      "parent": "TagDict"
+      "parent": "TagDict",
+      "description": "Verifies if the dictionary contains exactly one key matching a registered tag."
     },
     {
       "id": "symbol:json/tag.py:to_json:110",
@@ -1985,7 +2059,8 @@
       "file": "json/tag.py",
       "line": 110,
       "end_line": 112,
-      "parent": "TagDict"
+      "parent": "TagDict",
+      "description": "Serializes the dictionary content while preserving and tagging internal types."
     },
     {
       "id": "symbol:json/tag.py:to_python:114",
@@ -1994,7 +2069,8 @@
       "file": "json/tag.py",
       "line": 114,
       "end_line": 116,
-      "parent": "TagDict"
+      "parent": "TagDict",
+      "description": "Restores the dictionary by stripping internal key suffixes."
     },
     {
       "id": "symbol:json/tag.py:PassDict:119",
@@ -2004,7 +2080,7 @@
       "line": 119,
       "end_line": 130,
       "parent": "",
-      "description": "Handles standard dictionary serialization."
+      "description": "Processes standard dictionaries by recursively tagging their contained values."
     },
     {
       "id": "symbol:json/tag.py:check:122",
@@ -2013,7 +2089,8 @@
       "file": "json/tag.py",
       "line": 122,
       "end_line": 123,
-      "parent": "PassDict"
+      "parent": "PassDict",
+      "description": "Checks if the provided value is a standard dictionary."
     },
     {
       "id": "symbol:json/tag.py:to_json:125",
@@ -2022,7 +2099,8 @@
       "file": "json/tag.py",
       "line": 125,
       "end_line": 128,
-      "parent": "PassDict"
+      "parent": "PassDict",
+      "description": "Serializes dictionary values while maintaining original keys."
     },
     {
       "id": "symbol:json/tag.py:TagTuple:133",
@@ -2032,7 +2110,7 @@
       "line": 133,
       "end_line": 144,
       "parent": "",
-      "description": "Serializes sequences that should remain tuples after decoding."
+      "description": "Supports serialization and deserialization of tuple objects."
     },
     {
       "id": "symbol:json/tag.py:check:137",
@@ -2041,7 +2119,8 @@
       "file": "json/tag.py",
       "line": 137,
       "end_line": 138,
-      "parent": "TagTuple"
+      "parent": "TagTuple",
+      "description": "Checks if the provided value is a tuple."
     },
     {
       "id": "symbol:json/tag.py:to_json:140",
@@ -2050,7 +2129,8 @@
       "file": "json/tag.py",
       "line": 140,
       "end_line": 141,
-      "parent": "TagTuple"
+      "parent": "TagTuple",
+      "description": "Converts tuple items into a list of tagged JSON elements."
     },
     {
       "id": "symbol:json/tag.py:to_python:143",
@@ -2059,7 +2139,8 @@
       "file": "json/tag.py",
       "line": 143,
       "end_line": 144,
-      "parent": "TagTuple"
+      "parent": "TagTuple",
+      "description": "Converts a list representation back into a Python tuple."
     },
     {
       "id": "symbol:json/tag.py:PassList:147",
@@ -2069,7 +2150,7 @@
       "line": 147,
       "end_line": 156,
       "parent": "",
-      "description": "Handles standard list serialization."
+      "description": "Handles serialization for standard list objects."
     },
     {
       "id": "symbol:json/tag.py:check:150",
@@ -2078,7 +2159,8 @@
       "file": "json/tag.py",
       "line": 150,
       "end_line": 151,
-      "parent": "PassList"
+      "parent": "PassList",
+      "description": "Checks if the provided value is a list."
     },
     {
       "id": "symbol:json/tag.py:to_json:153",
@@ -2087,7 +2169,8 @@
       "file": "json/tag.py",
       "line": 153,
       "end_line": 154,
-      "parent": "PassList"
+      "parent": "PassList",
+      "description": "Serializes list elements by tagging each individual item."
     },
     {
       "id": "symbol:json/tag.py:TagBytes:159",
@@ -2097,7 +2180,7 @@
       "line": 159,
       "end_line": 170,
       "parent": "",
-      "description": "Encodes binary data using base64 for JSON compatibility."
+      "description": "Manages serialization of binary data using base64 encoding."
     },
     {
       "id": "symbol:json/tag.py:check:163",
@@ -2106,7 +2189,8 @@
       "file": "json/tag.py",
       "line": 163,
       "end_line": 164,
-      "parent": "TagBytes"
+      "parent": "TagBytes",
+      "description": "Checks if the provided value is a bytes object."
     },
     {
       "id": "symbol:json/tag.py:to_json:166",
@@ -2115,7 +2199,8 @@
       "file": "json/tag.py",
       "line": 166,
       "end_line": 167,
-      "parent": "TagBytes"
+      "parent": "TagBytes",
+      "description": "Encodes binary data into an ASCII base64 string."
     },
     {
       "id": "symbol:json/tag.py:to_python:169",
@@ -2124,7 +2209,8 @@
       "file": "json/tag.py",
       "line": 169,
       "end_line": 170,
-      "parent": "TagBytes"
+      "parent": "TagBytes",
+      "description": "Decodes base64 string back into original binary bytes."
     },
     {
       "id": "symbol:json/tag.py:TagMarkup:173",
@@ -2134,7 +2220,7 @@
       "line": 173,
       "end_line": 188,
       "parent": "",
-      "description": "Serializes objects providing HTML representations."
+      "description": "Handles serialization for objects supporting the MarkupSafe protocol."
     },
     {
       "id": "symbol:json/tag.py:check:181",
@@ -2143,7 +2229,8 @@
       "file": "json/tag.py",
       "line": 181,
       "end_line": 182,
-      "parent": "TagMarkup"
+      "parent": "TagMarkup",
+      "description": "Checks if the value implements the HTML conversion method."
     },
     {
       "id": "symbol:json/tag.py:to_json:184",
@@ -2152,7 +2239,8 @@
       "file": "json/tag.py",
       "line": 184,
       "end_line": 185,
-      "parent": "TagMarkup"
+      "parent": "TagMarkup",
+      "description": "Serializes markup content by invoking its HTML string conversion."
     },
     {
       "id": "symbol:json/tag.py:to_python:187",
@@ -2161,7 +2249,8 @@
       "file": "json/tag.py",
       "line": 187,
       "end_line": 188,
-      "parent": "TagMarkup"
+      "parent": "TagMarkup",
+      "description": "Converts a string back into a Markup object."
     },
     {
       "id": "symbol:json/tag.py:TagUUID:191",
@@ -2171,7 +2260,7 @@
       "line": 191,
       "end_line": 202,
       "parent": "",
-      "description": "Serializes unique identifiers as hexadecimal strings."
+      "description": "Supports serialization of UUID objects."
     },
     {
       "id": "symbol:json/tag.py:check:195",
@@ -2180,7 +2269,8 @@
       "file": "json/tag.py",
       "line": 195,
       "end_line": 196,
-      "parent": "TagUUID"
+      "parent": "TagUUID",
+      "description": "Checks if the value is a UUID instance."
     },
     {
       "id": "symbol:json/tag.py:to_json:198",
@@ -2189,7 +2279,8 @@
       "file": "json/tag.py",
       "line": 198,
       "end_line": 199,
-      "parent": "TagUUID"
+      "parent": "TagUUID",
+      "description": "Converts a UUID object into its hexadecimal string representation."
     },
     {
       "id": "symbol:json/tag.py:to_python:201",
@@ -2198,7 +2289,8 @@
       "file": "json/tag.py",
       "line": 201,
       "end_line": 202,
-      "parent": "TagUUID"
+      "parent": "TagUUID",
+      "description": "Restores a UUID object from a hexadecimal string."
     },
     {
       "id": "symbol:json/tag.py:TagDateTime:205",
@@ -2208,7 +2300,7 @@
       "line": 205,
       "end_line": 216,
       "parent": "",
-      "description": "Serializes timestamps using HTTP date formats."
+      "description": "Manages serialization for datetime objects using HTTP formatting."
     },
     {
       "id": "symbol:json/tag.py:check:209",
@@ -2217,7 +2309,8 @@
       "file": "json/tag.py",
       "line": 209,
       "end_line": 210,
-      "parent": "TagDateTime"
+      "parent": "TagDateTime",
+      "description": "Checks if the value is a datetime instance."
     },
     {
       "id": "symbol:json/tag.py:to_json:212",
@@ -2226,7 +2319,8 @@
       "file": "json/tag.py",
       "line": 212,
       "end_line": 213,
-      "parent": "TagDateTime"
+      "parent": "TagDateTime",
+      "description": "Converts a datetime object into a formatted HTTP date string."
     },
     {
       "id": "symbol:json/tag.py:to_python:215",
@@ -2235,7 +2329,8 @@
       "file": "json/tag.py",
       "line": 215,
       "end_line": 216,
-      "parent": "TagDateTime"
+      "parent": "TagDateTime",
+      "description": "Parses an HTTP date string back into a datetime object."
     },
     {
       "id": "symbol:json/tag.py:TaggedJSONSerializer:219",
@@ -2245,7 +2340,7 @@
       "line": 219,
       "end_line": 327,
       "parent": "",
-      "description": "Coordinates the conversion between Python types and tagged JSON representations."
+      "description": "Provides a configurable system for serializing objects not natively supported by JSON."
     },
     {
       "id": "symbol:json/tag.py:__init__:249",
@@ -2254,7 +2349,8 @@
       "file": "json/tag.py",
       "line": 249,
       "end_line": 254,
-      "parent": "TaggedJSONSerializer"
+      "parent": "TaggedJSONSerializer",
+      "description": "Initializes the serializer with default supported tag types."
     },
     {
       "id": "symbol:json/tag.py:register:256",
@@ -2264,7 +2360,7 @@
       "line": 256,
       "end_line": 287,
       "parent": "TaggedJSONSerializer",
-      "description": "Adds or replaces a type tag in the serialization order."
+      "description": "Registers a new tag class for the serialization system."
     },
     {
       "id": "symbol:json/tag.py:tag:289",
@@ -2274,7 +2370,7 @@
       "line": 289,
       "end_line": 295,
       "parent": "TaggedJSONSerializer",
-      "description": "Converts a Python value into its tagged representation."
+      "description": "Converts a value to its tagged representation based on registered tags."
     },
     {
       "id": "symbol:json/tag.py:untag:297",
@@ -2284,7 +2380,7 @@
       "line": 297,
       "end_line": 307,
       "parent": "TaggedJSONSerializer",
-      "description": "Converts a tagged structure back into the original Python type."
+      "description": "Converts a tagged dictionary back to its original Python type."
     },
     {
       "id": "symbol:json/tag.py:_untag_scan:309",
@@ -2293,7 +2389,8 @@
       "file": "json/tag.py",
       "line": 309,
       "end_line": 319,
-      "parent": "TaggedJSONSerializer"
+      "parent": "TaggedJSONSerializer",
+      "description": "Recursively scans and replaces tagged structures within complex nested data."
     },
     {
       "id": "symbol:json/tag.py:dumps:321",
@@ -2303,7 +2400,7 @@
       "line": 321,
       "end_line": 323,
       "parent": "TaggedJSONSerializer",
-      "description": "Serializes and tags data into a compact JSON string."
+      "description": "Tags a value and exports it as a compact JSON string."
     },
     {
       "id": "symbol:json/tag.py:loads:325",
@@ -2313,7 +2410,7 @@
       "line": 325,
       "end_line": 327,
       "parent": "TaggedJSONSerializer",
-      "description": "Parses a JSON string and recursively untags contained objects."
+      "description": "Deserializes a JSON string and reconstructs any tagged objects."
     },
     {
       "id": "file:logging.py",
@@ -2321,7 +2418,7 @@
       "name": "logging.py",
       "path": "logging.py",
       "module": "flask",
-      "description": "Provides logging utilities and configuration for Flask applications, including stream handling and logger initialization."
+      "description": "Provides logging utilities and configuration helpers for Flask applications."
     },
     {
       "id": "symbol:logging.py:wsgi_errors_stream:16",
@@ -2331,7 +2428,7 @@
       "line": 16,
       "end_line": 28,
       "parent": "",
-      "description": "Determines the appropriate error output stream based on the current request context."
+      "description": "Returns the active request error stream or the standard system error stream."
     },
     {
       "id": "symbol:logging.py:has_level_handler:31",
@@ -2341,7 +2438,7 @@
       "line": 31,
       "end_line": 47,
       "parent": "",
-      "description": "Verifies if any logger in the hierarchy processes the current effective logging level."
+      "description": "Determines if a logger or its parents possess a handler for its level."
     },
     {
       "id": "symbol:logging.py:create_logger:58",
@@ -2351,7 +2448,7 @@
       "line": 58,
       "end_line": 79,
       "parent": "",
-      "description": "Retrieves and configures an application logger with standard formatting and debug settings."
+      "description": "Retrieves and configures a logger instance for a Flask application."
     },
     {
       "id": "file:sansio/app.py",
@@ -2359,7 +2456,7 @@
       "name": "app.py",
       "path": "sansio/app.py",
       "module": "sansio",
-      "description": "Defines the core Flask application class, providing a central registry for routing, configuration, templating, and request handling logic."
+      "description": "Defines the core application object and its foundational mechanisms for routing, configuration, templating, and request handling in a framework-agnostic manner."
     },
     {
       "id": "symbol:sansio/app.py:_make_timedelta:52",
@@ -2368,7 +2465,8 @@
       "file": "sansio/app.py",
       "line": 52,
       "end_line": 56,
-      "parent": ""
+      "parent": "",
+      "description": "Converts input values into a datetime timedelta object."
     },
     {
       "id": "symbol:sansio/app.py:App:59",
@@ -2378,7 +2476,7 @@
       "line": 59,
       "end_line": 1013,
       "parent": "",
-      "description": "The central registry for view functions, URL rules, and template configuration."
+      "description": "Central registry for an application handling routing, configuration, and template management."
     },
     {
       "id": "symbol:sansio/app.py:__init__:279",
@@ -2388,7 +2486,7 @@
       "line": 279,
       "end_line": 408,
       "parent": "App",
-      "description": "Initializes the application instance with its core configuration and internal state."
+      "description": "Initializes the application instance with essential paths and configuration settings."
     },
     {
       "id": "symbol:sansio/app.py:_check_setup_finished:410",
@@ -2397,7 +2495,8 @@
       "file": "sansio/app.py",
       "line": 410,
       "end_line": 420,
-      "parent": "App"
+      "parent": "App",
+      "description": "Validates that application setup has not yet been bypassed by request processing."
     },
     {
       "id": "symbol:sansio/app.py:name:423",
@@ -2407,7 +2506,7 @@
       "line": 423,
       "end_line": 437,
       "parent": "App",
-      "description": "Returns the display name used for identifying the application instance."
+      "description": "Retrieves the application display name used for logging and identification."
     },
     {
       "id": "symbol:sansio/app.py:logger:440",
@@ -2417,7 +2516,7 @@
       "line": 440,
       "end_line": 464,
       "parent": "App",
-      "description": "Provides a standard logging interface for the application instance."
+      "description": "Provides a standard logging interface for the application."
     },
     {
       "id": "symbol:sansio/app.py:jinja_env:467",
@@ -2427,7 +2526,7 @@
       "line": 467,
       "end_line": 474,
       "parent": "App",
-      "description": "Provides access to the template environment used for rendering."
+      "description": "Accesses or initializes the environment used for rendering templates."
     },
     {
       "id": "symbol:sansio/app.py:create_jinja_environment:476",
@@ -2437,7 +2536,7 @@
       "line": 476,
       "end_line": 477,
       "parent": "App",
-      "description": "Constructs the environment instance responsible for loading and rendering templates."
+      "description": "Instantiates a new environment for template processing."
     },
     {
       "id": "symbol:sansio/app.py:make_config:479",
@@ -2447,7 +2546,7 @@
       "line": 479,
       "end_line": 493,
       "parent": "App",
-      "description": "Creates the application configuration object from default and instance-specific settings."
+      "description": "Generates a configuration object based on the application path."
     },
     {
       "id": "symbol:sansio/app.py:make_aborter:495",
@@ -2457,7 +2556,7 @@
       "line": 495,
       "end_line": 505,
       "parent": "App",
-      "description": "Instantiates the object responsible for raising standardized HTTP exceptions."
+      "description": "Creates a utility for raising HTTP error exceptions."
     },
     {
       "id": "symbol:sansio/app.py:auto_find_instance_path:507",
@@ -2467,7 +2566,7 @@
       "line": 507,
       "end_line": 518,
       "parent": "App",
-      "description": "Determines the filesystem path for application-specific instance data."
+      "description": "Determines the appropriate filesystem path for instance-specific data."
     },
     {
       "id": "symbol:sansio/app.py:create_global_jinja_loader:520",
@@ -2477,7 +2576,7 @@
       "line": 520,
       "end_line": 531,
       "parent": "App",
-      "description": "Generates the loader used to resolve templates across the application and registered blueprints."
+      "description": "Creates a loader to resolve templates across the application and blueprints."
     },
     {
       "id": "symbol:sansio/app.py:select_jinja_autoescape:533",
@@ -2487,7 +2586,7 @@
       "line": 533,
       "end_line": 547,
       "parent": "App",
-      "description": "Determines whether template autoescaping should be enabled for a given file."
+      "description": "Determines if a template file requires automatic HTML escaping."
     },
     {
       "id": "symbol:sansio/app.py:debug:550",
@@ -2497,7 +2596,7 @@
       "line": 550,
       "end_line": 560,
       "parent": "App",
-      "description": "Manages the debug mode state which affects error reporting and development utilities."
+      "description": "Checks the current enabled state of the application debug mode."
     },
     {
       "id": "symbol:sansio/app.py:debug:563",
@@ -2507,7 +2606,7 @@
       "line": 563,
       "end_line": 567,
       "parent": "App",
-      "description": "Manages the debug mode state which affects error reporting and development utilities."
+      "description": "Configures the debug mode setting and updates environment reload properties."
     },
     {
       "id": "symbol:sansio/app.py:register_blueprint:570",
@@ -2517,7 +2616,7 @@
       "line": 570,
       "end_line": 595,
       "parent": "App",
-      "description": "Attaches a modular blueprint to the application instance."
+      "description": "Attaches a blueprint to the application and records its registration."
     },
     {
       "id": "symbol:sansio/app.py:iter_blueprints:597",
@@ -2527,7 +2626,7 @@
       "line": 597,
       "end_line": 602,
       "parent": "App",
-      "description": "Returns all blueprints registered in their original order of registration."
+      "description": "Returns an iterator for all registered blueprints."
     },
     {
       "id": "symbol:sansio/app.py:add_url_rule:605",
@@ -2537,7 +2636,7 @@
       "line": 605,
       "end_line": 661,
       "parent": "App",
-      "description": "Registers a new URL route and associates it with a handler function."
+      "description": "Registers a new route mapping a URL pattern to an endpoint."
     },
     {
       "id": "symbol:sansio/app.py:template_filter:664",
@@ -2547,7 +2646,7 @@
       "line": 664,
       "end_line": 664,
       "parent": "App",
-      "description": "Registers a function as a Jinja template filter using a decorator."
+      "description": "Registers a function as a custom template filter via decorator."
     },
     {
       "id": "symbol:sansio/app.py:template_filter:666",
@@ -2557,7 +2656,7 @@
       "line": 666,
       "end_line": 668,
       "parent": "App",
-      "description": "Registers a function as a Jinja template filter using a decorator."
+      "description": "Provides a factory for creating a template filter registration decorator."
     },
     {
       "id": "symbol:sansio/app.py:template_filter:670",
@@ -2567,7 +2666,7 @@
       "line": 670,
       "end_line": 696,
       "parent": "App",
-      "description": "Registers a function as a Jinja template filter using a decorator."
+      "description": "Registers a template filter using a specific name or function name."
     },
     {
       "id": "symbol:sansio/app.py:add_template_filter:699",
@@ -2577,7 +2676,7 @@
       "line": 699,
       "end_line": 711,
       "parent": "App",
-      "description": "Registers a function as a Jinja template filter programmatically."
+      "description": "Adds a function to the environment's collection of template filters."
     },
     {
       "id": "symbol:sansio/app.py:template_test:714",
@@ -2587,7 +2686,7 @@
       "line": 714,
       "end_line": 714,
       "parent": "App",
-      "description": "Registers a function as a custom Jinja template test using a decorator."
+      "description": "Registers a function as a custom template test via decorator."
     },
     {
       "id": "symbol:sansio/app.py:template_test:716",
@@ -2597,7 +2696,7 @@
       "line": 716,
       "end_line": 718,
       "parent": "App",
-      "description": "Registers a function as a custom Jinja template test using a decorator."
+      "description": "Provides a factory for creating a template test registration decorator."
     },
     {
       "id": "symbol:sansio/app.py:template_test:720",
@@ -2607,7 +2706,7 @@
       "line": 720,
       "end_line": 753,
       "parent": "App",
-      "description": "Registers a function as a custom Jinja template test using a decorator."
+      "description": "Registers a template test using a specific name or function name."
     },
     {
       "id": "symbol:sansio/app.py:add_template_test:756",
@@ -2617,7 +2716,7 @@
       "line": 756,
       "end_line": 770,
       "parent": "App",
-      "description": "Registers a function as a custom Jinja template test programmatically."
+      "description": "Adds a function to the environment's collection of template tests."
     },
     {
       "id": "symbol:sansio/app.py:template_global:773",
@@ -2627,7 +2726,7 @@
       "line": 773,
       "end_line": 773,
       "parent": "App",
-      "description": "Registers a function as a Jinja template global using a decorator."
+      "description": "Registers a function as a global template helper via decorator."
     },
     {
       "id": "symbol:sansio/app.py:template_global:775",
@@ -2637,7 +2736,7 @@
       "line": 775,
       "end_line": 777,
       "parent": "App",
-      "description": "Registers a function as a Jinja template global using a decorator."
+      "description": "Provides a factory for creating a template global registration decorator."
     },
     {
       "id": "symbol:sansio/app.py:template_global:779",
@@ -2647,7 +2746,7 @@
       "line": 779,
       "end_line": 807,
       "parent": "App",
-      "description": "Registers a function as a Jinja template global using a decorator."
+      "description": "Registers a template global using a specific name or function name."
     },
     {
       "id": "symbol:sansio/app.py:add_template_global:810",
@@ -2657,7 +2756,7 @@
       "line": 810,
       "end_line": 824,
       "parent": "App",
-      "description": "Registers a function as a Jinja template global programmatically."
+      "description": "Adds a function to the environment's collection of template globals."
     },
     {
       "id": "symbol:sansio/app.py:teardown_appcontext:827",
@@ -2667,7 +2766,7 @@
       "line": 827,
       "end_line": 855,
       "parent": "App",
-      "description": "Registers a callback to execute when the application context is destroyed."
+      "description": "Registers a callback to execute when the application context ends."
     },
     {
       "id": "symbol:sansio/app.py:shell_context_processor:858",
@@ -2677,7 +2776,7 @@
       "line": 858,
       "end_line": 866,
       "parent": "App",
-      "description": "Registers a function that provides objects to the interactive shell context."
+      "description": "Registers a function to provide context to the interactive shell."
     },
     {
       "id": "symbol:sansio/app.py:_find_error_handler:868",
@@ -2686,7 +2785,8 @@
       "file": "sansio/app.py",
       "line": 868,
       "end_line": 891,
-      "parent": "App"
+      "parent": "App",
+      "description": "Searches for an appropriate exception handler within blueprints or application."
     },
     {
       "id": "symbol:sansio/app.py:trap_http_exception:893",
@@ -2696,7 +2796,7 @@
       "line": 893,
       "end_line": 926,
       "parent": "App",
-      "description": "Determines whether an HTTP exception should be re-raised instead of handled."
+      "description": "Determines if an HTTP exception should be re-raised instead of handled."
     },
     {
       "id": "symbol:sansio/app.py:redirect:939",
@@ -2706,7 +2806,7 @@
       "line": 939,
       "end_line": 958,
       "parent": "App",
-      "description": "Generates a redirect response object for the specified location."
+      "description": "Generates a response object for redirection to a new location."
     },
     {
       "id": "symbol:sansio/app.py:inject_url_defaults:960",
@@ -2716,7 +2816,7 @@
       "line": 960,
       "end_line": 979,
       "parent": "App",
-      "description": "Applies default values to a dictionary of endpoint arguments during URL construction."
+      "description": "Populates URL arguments with default values for a specific endpoint."
     },
     {
       "id": "symbol:sansio/app.py:handle_url_build_error:981",
@@ -2726,7 +2826,7 @@
       "line": 981,
       "end_line": 1013,
       "parent": "App",
-      "description": "Attempts to resolve URL building failures using registered error handlers."
+      "description": "Attempts to recover from a URL generation error using registered handlers."
     },
     {
       "id": "file:sansio/blueprints.py",
@@ -2734,7 +2834,7 @@
       "name": "blueprints.py",
       "path": "sansio/blueprints.py",
       "module": "sansio",
-      "description": "Defines Blueprint objects and setup state management for organizing Flask application routes, templates, and request handlers before final application registration."
+      "description": "Defines Blueprint components and setup state management for organizing Flask application routes, templates, and request handlers into modular, reusable modules."
     },
     {
       "id": "symbol:sansio/blueprints.py:BlueprintSetupState:34",
@@ -2744,7 +2844,7 @@
       "line": 34,
       "end_line": 116,
       "parent": "",
-      "description": "Holds temporary registration data used while applying a blueprint to an application instance."
+      "description": "Holds temporary state for registering a blueprint with a Flask application."
     },
     {
       "id": "symbol:sansio/blueprints.py:__init__:41",
@@ -2753,7 +2853,8 @@
       "file": "sansio/blueprints.py",
       "line": 41,
       "end_line": 85,
-      "parent": "BlueprintSetupState"
+      "parent": "BlueprintSetupState",
+      "description": "Initializes setup state with application references and configuration options."
     },
     {
       "id": "symbol:sansio/blueprints.py:add_url_rule:87",
@@ -2763,7 +2864,7 @@
       "line": 87,
       "end_line": 116,
       "parent": "BlueprintSetupState",
-      "description": "Registers a URL rule onto the associated application with prefixed endpoints and defaults."
+      "description": "Registers a URL rule with the application using blueprint configuration."
     },
     {
       "id": "symbol:sansio/blueprints.py:Blueprint:119",
@@ -2773,7 +2874,7 @@
       "line": 119,
       "end_line": 692,
       "parent": "",
-      "description": "Provides a modular collection of routes and handlers deferred for later application registration."
+      "description": "A collection of routes and functions for modular application organization."
     },
     {
       "id": "symbol:sansio/blueprints.py:__init__:174",
@@ -2782,7 +2883,8 @@
       "file": "sansio/blueprints.py",
       "line": 174,
       "end_line": 211,
-      "parent": "Blueprint"
+      "parent": "Blueprint",
+      "description": "Initializes a blueprint instance with specified configuration and path settings."
     },
     {
       "id": "symbol:sansio/blueprints.py:_check_setup_finished:213",
@@ -2792,7 +2894,7 @@
       "line": 213,
       "end_line": 221,
       "parent": "Blueprint",
-      "description": "Validates that the blueprint has not been previously registered to an application."
+      "description": "Verifies that the blueprint has not been registered yet."
     },
     {
       "id": "symbol:sansio/blueprints.py:record:224",
@@ -2802,7 +2904,7 @@
       "line": 224,
       "end_line": 230,
       "parent": "Blueprint",
-      "description": "Stores a callback function to execute during the application registration process."
+      "description": "Queues a function for execution upon blueprint registration."
     },
     {
       "id": "symbol:sansio/blueprints.py:record_once:233",
@@ -2812,7 +2914,7 @@
       "line": 233,
       "end_line": 244,
       "parent": "Blueprint",
-      "description": "Registers a callback to execute only during the initial application registration."
+      "description": "Queues a function to run only once during blueprint registration."
     },
     {
       "id": "symbol:sansio/blueprints.py:make_setup_state:246",
@@ -2822,7 +2924,7 @@
       "line": 246,
       "end_line": 253,
       "parent": "Blueprint",
-      "description": "Initializes the temporary object used for orchestrating the blueprint registration process."
+      "description": "Creates a setup state object for the registration process."
     },
     {
       "id": "symbol:sansio/blueprints.py:register_blueprint:256",
@@ -2832,7 +2934,7 @@
       "line": 256,
       "end_line": 271,
       "parent": "Blueprint",
-      "description": "Adds a nested blueprint to the current blueprint for hierarchical route structure."
+      "description": "Registers a child blueprint within this blueprint."
     },
     {
       "id": "symbol:sansio/blueprints.py:register:273",
@@ -2842,7 +2944,7 @@
       "line": 273,
       "end_line": 377,
       "parent": "Blueprint",
-      "description": "Applies all registered deferred functions and routes to the provided application instance."
+      "description": "Registers all blueprint components and handlers with the application."
     },
     {
       "id": "symbol:sansio/blueprints.py:_merge_blueprint_funcs:379",
@@ -2852,7 +2954,7 @@
       "line": 379,
       "end_line": 410,
       "parent": "Blueprint",
-      "description": "Transfers all registered blueprint handlers and context processors to the parent application."
+      "description": "Integrates all blueprint functions into the host application."
     },
     {
       "id": "symbol:sansio/blueprints.py:add_url_rule:413",
@@ -2862,7 +2964,7 @@
       "line": 413,
       "end_line": 441,
       "parent": "Blueprint",
-      "description": "Defines a URL route associated with the blueprint for later application registration."
+      "description": "Schedules a URL rule registration for the blueprint."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_filter:444",
@@ -2872,7 +2974,7 @@
       "line": 444,
       "end_line": 444,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template filter available across the entire application."
+      "description": "Registers a template filter for the entire application."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_filter:446",
@@ -2882,7 +2984,7 @@
       "line": 446,
       "end_line": 448,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template filter available across the entire application."
+      "description": "Decorator-based registration for global template filters."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_filter:450",
@@ -2892,7 +2994,7 @@
       "line": 450,
       "end_line": 473,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template filter available across the entire application."
+      "description": "Implements logic to register global template filters from a blueprint."
     },
     {
       "id": "symbol:sansio/blueprints.py:add_app_template_filter:476",
@@ -2902,7 +3004,7 @@
       "line": 476,
       "end_line": 495,
       "parent": "Blueprint",
-      "description": "Adds a custom Jinja filter accessible by all templates in the application."
+      "description": "Registers a template filter for all application templates."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_test:498",
@@ -2912,7 +3014,7 @@
       "line": 498,
       "end_line": 498,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template test available across the entire application."
+      "description": "Registers a global template test for the application."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_test:500",
@@ -2922,7 +3024,7 @@
       "line": 500,
       "end_line": 502,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template test available across the entire application."
+      "description": "Decorator-based registration for global template tests."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_test:504",
@@ -2932,7 +3034,7 @@
       "line": 504,
       "end_line": 529,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template test available across the entire application."
+      "description": "Handles global template test registration logic from a blueprint."
     },
     {
       "id": "symbol:sansio/blueprints.py:add_app_template_test:532",
@@ -2942,7 +3044,7 @@
       "line": 532,
       "end_line": 553,
       "parent": "Blueprint",
-      "description": "Adds a custom Jinja test accessible by all templates in the application."
+      "description": "Registers a template test for all application templates."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_global:556",
@@ -2952,7 +3054,7 @@
       "line": 556,
       "end_line": 556,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template variable available across the entire application."
+      "description": "Registers a global template variable for the application."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_global:558",
@@ -2962,7 +3064,7 @@
       "line": 558,
       "end_line": 560,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template variable available across the entire application."
+      "description": "Decorator-based registration for global template variables."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_template_global:562",
@@ -2972,7 +3074,7 @@
       "line": 562,
       "end_line": 587,
       "parent": "Blueprint",
-      "description": "Registers a global Jinja template variable available across the entire application."
+      "description": "Handles global template variable registration logic from a blueprint."
     },
     {
       "id": "symbol:sansio/blueprints.py:add_app_template_global:590",
@@ -2982,7 +3084,7 @@
       "line": 590,
       "end_line": 611,
       "parent": "Blueprint",
-      "description": "Adds a custom Jinja global variable accessible by all templates in the application."
+      "description": "Registers a template global for all application templates."
     },
     {
       "id": "symbol:sansio/blueprints.py:before_app_request:614",
@@ -2992,7 +3094,7 @@
       "line": 614,
       "end_line": 621,
       "parent": "Blueprint",
-      "description": "Registers a function to run before every request in the entire application."
+      "description": "Schedules a function to run before every application request."
     },
     {
       "id": "symbol:sansio/blueprints.py:after_app_request:624",
@@ -3002,7 +3104,7 @@
       "line": 624,
       "end_line": 631,
       "parent": "Blueprint",
-      "description": "Registers a function to run after every request in the entire application."
+      "description": "Schedules a function to run after every application request."
     },
     {
       "id": "symbol:sansio/blueprints.py:teardown_app_request:634",
@@ -3012,7 +3114,7 @@
       "line": 634,
       "end_line": 641,
       "parent": "Blueprint",
-      "description": "Registers a function to run after every request during teardown phase globally."
+      "description": "Schedules a teardown function for every application request."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_context_processor:644",
@@ -3022,7 +3124,7 @@
       "line": 644,
       "end_line": 653,
       "parent": "Blueprint",
-      "description": "Registers a context processor for all templates rendered within the application."
+      "description": "Registers a context processor for all application templates."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_errorhandler:656",
@@ -3032,7 +3134,7 @@
       "line": 656,
       "end_line": 670,
       "parent": "Blueprint",
-      "description": "Registers an error handler applicable to the entire application scope."
+      "description": "Registers an error handler for all application requests."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_url_value_preprocessor:673",
@@ -3042,7 +3144,7 @@
       "line": 673,
       "end_line": 682,
       "parent": "Blueprint",
-      "description": "Registers a URL value preprocessor for every request in the application."
+      "description": "Registers a URL value preprocessor for every request."
     },
     {
       "id": "symbol:sansio/blueprints.py:app_url_defaults:685",
@@ -3052,7 +3154,7 @@
       "line": 685,
       "end_line": 692,
       "parent": "Blueprint",
-      "description": "Registers a URL default processor for every request in the application."
+      "description": "Registers a URL default function for every request."
     },
     {
       "id": "file:sansio/scaffold.py",
@@ -3060,7 +3162,7 @@
       "name": "scaffold.py",
       "path": "sansio/scaffold.py",
       "module": "sansio",
-      "description": "Defines base scaffolding for Flask applications and blueprints, providing common logic for routing, static files, templates, and request lifecycle hooks."
+      "description": "Defines base class and utilities for Flask applications and blueprints, managing routing, error handling, and configuration for modular web application structure."
     },
     {
       "id": "symbol:sansio/scaffold.py:setupmethod:42",
@@ -3070,7 +3172,7 @@
       "line": 42,
       "end_line": 49,
       "parent": "",
-      "description": "Ensures methods verify scaffold setup state before execution."
+      "description": "Wraps methods to ensure they are only called during the application setup phase."
     },
     {
       "id": "symbol:sansio/scaffold.py:Scaffold:52",
@@ -3080,7 +3182,7 @@
       "line": 52,
       "end_line": 706,
       "parent": "",
-      "description": "Provides core registration and configuration logic for Flask applications and blueprints."
+      "description": "Provides shared functionality for configuring routing, templates, and request handling in Flask components."
     },
     {
       "id": "symbol:sansio/scaffold.py:__init__:75",
@@ -3090,7 +3192,7 @@
       "line": 75,
       "end_line": 215,
       "parent": "Scaffold",
-      "description": "Initializes the scaffold with import name, folder paths, and configuration state."
+      "description": "Initializes common attributes for application or blueprint configuration and internal registry structures."
     },
     {
       "id": "symbol:sansio/scaffold.py:__repr__:217",
@@ -3099,7 +3201,8 @@
       "file": "sansio/scaffold.py",
       "line": 217,
       "end_line": 218,
-      "parent": "Scaffold"
+      "parent": "Scaffold",
+      "description": "Returns a string representation identifying the object type and its configured name."
     },
     {
       "id": "symbol:sansio/scaffold.py:_check_setup_finished:220",
@@ -3108,7 +3211,8 @@
       "file": "sansio/scaffold.py",
       "line": 220,
       "end_line": 221,
-      "parent": "Scaffold"
+      "parent": "Scaffold",
+      "description": "Validates whether the component setup is completed before modifying its configuration."
     },
     {
       "id": "symbol:sansio/scaffold.py:static_folder:224",
@@ -3118,7 +3222,7 @@
       "line": 224,
       "end_line": 231,
       "parent": "Scaffold",
-      "description": "Returns the absolute path to the configured static directory."
+      "description": "Retrieves the absolute filesystem path to the configured static files directory."
     },
     {
       "id": "symbol:sansio/scaffold.py:static_folder:234",
@@ -3128,7 +3232,7 @@
       "line": 234,
       "end_line": 238,
       "parent": "Scaffold",
-      "description": "Returns the absolute path to the configured static directory."
+      "description": "Sets the directory path for serving static files from the filesystem."
     },
     {
       "id": "symbol:sansio/scaffold.py:has_static_folder:241",
@@ -3138,7 +3242,7 @@
       "line": 241,
       "end_line": 246,
       "parent": "Scaffold",
-      "description": "Indicates whether a static folder is configured."
+      "description": "Checks if a static folder has been configured for the current instance."
     },
     {
       "id": "symbol:sansio/scaffold.py:static_url_path:249",
@@ -3148,7 +3252,7 @@
       "line": 249,
       "end_line": 262,
       "parent": "Scaffold",
-      "description": "Returns the URL prefix used for accessing static files."
+      "description": "Determines the URL prefix used to access static files."
     },
     {
       "id": "symbol:sansio/scaffold.py:static_url_path:265",
@@ -3158,7 +3262,7 @@
       "line": 265,
       "end_line": 269,
       "parent": "Scaffold",
-      "description": "Returns the URL prefix used for accessing static files."
+      "description": "Sets the URL prefix that serves static files."
     },
     {
       "id": "symbol:sansio/scaffold.py:jinja_loader:272",
@@ -3168,7 +3272,7 @@
       "line": 272,
       "end_line": 282,
       "parent": "Scaffold",
-      "description": "Provides a Jinja loader for templates located in the scaffold's template folder."
+      "description": "Provides the Jinja loader configured for the current template directory."
     },
     {
       "id": "symbol:sansio/scaffold.py:_method_route:284",
@@ -3177,7 +3281,8 @@
       "file": "sansio/scaffold.py",
       "line": 284,
       "end_line": 293,
-      "parent": "Scaffold"
+      "parent": "Scaffold",
+      "description": "Registers a route constrained to a specific HTTP request method."
     },
     {
       "id": "symbol:sansio/scaffold.py:get:296",
@@ -3187,7 +3292,7 @@
       "line": 296,
       "end_line": 301,
       "parent": "Scaffold",
-      "description": "Registers a GET route for a specified path."
+      "description": "Registers a route specifically for handling GET requests."
     },
     {
       "id": "symbol:sansio/scaffold.py:query:304",
@@ -3197,7 +3302,7 @@
       "line": 304,
       "end_line": 309,
       "parent": "Scaffold",
-      "description": "Registers a QUERY route for a specified path."
+      "description": "Registers a route specifically for handling QUERY requests."
     },
     {
       "id": "symbol:sansio/scaffold.py:post:312",
@@ -3207,7 +3312,7 @@
       "line": 312,
       "end_line": 317,
       "parent": "Scaffold",
-      "description": "Registers a POST route for a specified path."
+      "description": "Registers a route specifically for handling POST requests."
     },
     {
       "id": "symbol:sansio/scaffold.py:put:320",
@@ -3217,7 +3322,7 @@
       "line": 320,
       "end_line": 325,
       "parent": "Scaffold",
-      "description": "Registers a PUT route for a specified path."
+      "description": "Registers a route specifically for handling PUT requests."
     },
     {
       "id": "symbol:sansio/scaffold.py:delete:328",
@@ -3227,7 +3332,7 @@
       "line": 328,
       "end_line": 333,
       "parent": "Scaffold",
-      "description": "Registers a DELETE route for a specified path."
+      "description": "Registers a route specifically for handling DELETE requests."
     },
     {
       "id": "symbol:sansio/scaffold.py:patch:336",
@@ -3237,7 +3342,7 @@
       "line": 336,
       "end_line": 341,
       "parent": "Scaffold",
-      "description": "Registers a PATCH route for a specified path."
+      "description": "Registers a route specifically for handling PATCH requests."
     },
     {
       "id": "symbol:sansio/scaffold.py:route:344",
@@ -3247,7 +3352,7 @@
       "line": 344,
       "end_line": 373,
       "parent": "Scaffold",
-      "description": "Decorates a function to register it as a view for a URL rule."
+      "description": "Registers a view function for a specific URL rule."
     },
     {
       "id": "symbol:sansio/scaffold.py:add_url_rule:376",
@@ -3257,7 +3362,7 @@
       "line": 376,
       "end_line": 441,
       "parent": "Scaffold",
-      "description": "Registers a URL rule for routing and endpoint association."
+      "description": "Registers a URL rule mapping to an endpoint and optional view function."
     },
     {
       "id": "symbol:sansio/scaffold.py:endpoint:444",
@@ -3267,7 +3372,7 @@
       "line": 444,
       "end_line": 465,
       "parent": "Scaffold",
-      "description": "Registers a function as the handler for a specific endpoint."
+      "description": "Registers a view function for an existing endpoint name."
     },
     {
       "id": "symbol:sansio/scaffold.py:before_request:468",
@@ -3277,7 +3382,7 @@
       "line": 468,
       "end_line": 492,
       "parent": "Scaffold",
-      "description": "Registers a function to execute before every request."
+      "description": "Registers a function to execute before processing each request."
     },
     {
       "id": "symbol:sansio/scaffold.py:after_request:495",
@@ -3287,7 +3392,7 @@
       "line": 495,
       "end_line": 513,
       "parent": "Scaffold",
-      "description": "Registers a function to execute after every request."
+      "description": "Registers a function to modify the response after processing a request."
     },
     {
       "id": "symbol:sansio/scaffold.py:teardown_request:516",
@@ -3297,7 +3402,7 @@
       "line": 516,
       "end_line": 547,
       "parent": "Scaffold",
-      "description": "Registers a function to execute when the request context is popped."
+      "description": "Registers a function to execute after request context is popped."
     },
     {
       "id": "symbol:sansio/scaffold.py:context_processor:550",
@@ -3307,7 +3412,7 @@
       "line": 550,
       "end_line": 564,
       "parent": "Scaffold",
-      "description": "Registers a function to inject context variables into templates."
+      "description": "Registers a function to inject variables into the template rendering context."
     },
     {
       "id": "symbol:sansio/scaffold.py:url_value_preprocessor:567",
@@ -3317,7 +3422,7 @@
       "line": 567,
       "end_line": 589,
       "parent": "Scaffold",
-      "description": "Registers a function to modify URL values before request handling."
+      "description": "Registers a function to modify URL values before route matching logic."
     },
     {
       "id": "symbol:sansio/scaffold.py:url_defaults:592",
@@ -3327,7 +3432,7 @@
       "line": 592,
       "end_line": 603,
       "parent": "Scaffold",
-      "description": "Registers a function to set default values for URL generation."
+      "description": "Registers a function to provide default URL values during generation."
     },
     {
       "id": "symbol:sansio/scaffold.py:errorhandler:606",
@@ -3337,7 +3442,7 @@
       "line": 606,
       "end_line": 647,
       "parent": "Scaffold",
-      "description": "Decorates a function to handle specified exceptions or status codes."
+      "description": "Registers a decorator function to handle specific exceptions or HTTP status codes."
     },
     {
       "id": "symbol:sansio/scaffold.py:register_error_handler:650",
@@ -3347,7 +3452,7 @@
       "line": 650,
       "end_line": 662,
       "parent": "Scaffold",
-      "description": "Registers a handler function for an exception or HTTP status code."
+      "description": "Registers a handler function for a specific exception or error code."
     },
     {
       "id": "symbol:sansio/scaffold.py:_get_exc_class_and_code:665",
@@ -3357,7 +3462,7 @@
       "line": 665,
       "end_line": 706,
       "parent": "Scaffold",
-      "description": "Resolves an exception class and status code from an input."
+      "description": "Resolves an error input into a corresponding exception class and HTTP code."
     },
     {
       "id": "symbol:sansio/scaffold.py:_endpoint_from_view_func:709",
@@ -3367,7 +3472,7 @@
       "line": 709,
       "end_line": 714,
       "parent": "",
-      "description": "Extracts the default endpoint name from a view function."
+      "description": "Determines the default endpoint name based on a provided function name."
     },
     {
       "id": "symbol:sansio/scaffold.py:_find_package_path:717",
@@ -3377,7 +3482,7 @@
       "line": 717,
       "end_line": 759,
       "parent": "",
-      "description": "Determines the filesystem path of a given package or module."
+      "description": "Identifies the filesystem directory path containing the specified package or module."
     },
     {
       "id": "symbol:sansio/scaffold.py:find_package:762",
@@ -3387,7 +3492,7 @@
       "line": 762,
       "end_line": 800,
       "parent": "",
-      "description": "Identifies the installation prefix and import path of a package."
+      "description": "Determines the installation prefix and import path for a given package."
     },
     {
       "id": "file:sessions.py",
@@ -3395,7 +3500,7 @@
       "name": "sessions.py",
       "path": "sessions.py",
       "module": "flask",
-      "description": "Defines session management structures, including cookie-based session interfaces and null session fallbacks for the Flask framework."
+      "description": "Defines session management interfaces and cookie-based implementations for Flask applications."
     },
     {
       "id": "symbol:sessions.py:SessionMixin:24",
@@ -3405,7 +3510,7 @@
       "line": 24,
       "end_line": 54,
       "parent": "",
-      "description": "Adds session-specific attributes and dictionary-like functionality to session objects."
+      "description": "Provides dictionary-like functionality with session-specific attributes for request contexts."
     },
     {
       "id": "symbol:sessions.py:permanent:28",
@@ -3414,7 +3519,8 @@
       "file": "sessions.py",
       "line": 28,
       "end_line": 30,
-      "parent": "SessionMixin"
+      "parent": "SessionMixin",
+      "description": "Retrieves the session persistence status from the underlying dictionary."
     },
     {
       "id": "symbol:sessions.py:permanent:33",
@@ -3423,7 +3529,8 @@
       "file": "sessions.py",
       "line": 33,
       "end_line": 34,
-      "parent": "SessionMixin"
+      "parent": "SessionMixin",
+      "description": "Sets the session persistence status in the underlying dictionary."
     },
     {
       "id": "symbol:sessions.py:SecureCookieSession:57",
@@ -3433,7 +3540,7 @@
       "line": 57,
       "end_line": 80,
       "parent": "",
-      "description": "Implements a signed, cookie-based session storage backend."
+      "description": "Implements session storage using cryptographically signed cookies."
     },
     {
       "id": "symbol:sessions.py:__init__:73",
@@ -3442,7 +3549,8 @@
       "file": "sessions.py",
       "line": 73,
       "end_line": 80,
-      "parent": "SecureCookieSession"
+      "parent": "SecureCookieSession",
+      "description": "Initializes a signed cookie session with optional starting data."
     },
     {
       "id": "symbol:sessions.py:NullSession:83",
@@ -3452,7 +3560,7 @@
       "line": 83,
       "end_line": 97,
       "parent": "",
-      "description": "Provides a read-only fallback session object when session support is unavailable."
+      "description": "Represents a non-functional session that raises errors on modification attempts."
     },
     {
       "id": "symbol:sessions.py:_fail:89",
@@ -3461,7 +3569,8 @@
       "file": "sessions.py",
       "line": 89,
       "end_line": 94,
-      "parent": "NullSession"
+      "parent": "NullSession",
+      "description": "Raises a runtime error indicating missing application secret keys."
     },
     {
       "id": "symbol:sessions.py:SessionInterface:100",
@@ -3471,7 +3580,7 @@
       "line": 100,
       "end_line": 270,
       "parent": "",
-      "description": "Defines the abstract base class for implementing custom session storage mechanisms."
+      "description": "Defines the contract for creating, reading, and saving application sessions."
     },
     {
       "id": "symbol:sessions.py:make_null_session:150",
@@ -3480,7 +3589,8 @@
       "file": "sessions.py",
       "line": 150,
       "end_line": 160,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Creates an instance of the configured null session class."
     },
     {
       "id": "symbol:sessions.py:is_null_session:162",
@@ -3489,7 +3599,8 @@
       "file": "sessions.py",
       "line": 162,
       "end_line": 169,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Verifies if an object is an instance of the null session type."
     },
     {
       "id": "symbol:sessions.py:get_cookie_name:171",
@@ -3498,7 +3609,8 @@
       "file": "sessions.py",
       "line": 171,
       "end_line": 173,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Retrieves the configured name for the session cookie."
     },
     {
       "id": "symbol:sessions.py:get_cookie_domain:175",
@@ -3507,7 +3619,8 @@
       "file": "sessions.py",
       "line": 175,
       "end_line": 185,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Retrieves the domain scope configured for the session cookie."
     },
     {
       "id": "symbol:sessions.py:get_cookie_path:187",
@@ -3516,7 +3629,8 @@
       "file": "sessions.py",
       "line": 187,
       "end_line": 193,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Retrieves the URL path scope configured for the session cookie."
     },
     {
       "id": "symbol:sessions.py:get_cookie_httponly:195",
@@ -3525,7 +3639,8 @@
       "file": "sessions.py",
       "line": 195,
       "end_line": 200,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Checks if the session cookie should restrict access to HTTP requests only."
     },
     {
       "id": "symbol:sessions.py:get_cookie_secure:202",
@@ -3534,7 +3649,8 @@
       "file": "sessions.py",
       "line": 202,
       "end_line": 206,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Checks if the session cookie requires a secure transport connection."
     },
     {
       "id": "symbol:sessions.py:get_cookie_samesite:208",
@@ -3543,7 +3659,8 @@
       "file": "sessions.py",
       "line": 208,
       "end_line": 213,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Retrieves the SameSite attribute policy for the session cookie."
     },
     {
       "id": "symbol:sessions.py:get_cookie_partitioned:215",
@@ -3552,7 +3669,8 @@
       "file": "sessions.py",
       "line": 215,
       "end_line": 221,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Checks if the session cookie should be partitioned by browser state."
     },
     {
       "id": "symbol:sessions.py:get_expiration_time:223",
@@ -3561,7 +3679,8 @@
       "file": "sessions.py",
       "line": 223,
       "end_line": 231,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Calculates the expiration timestamp for permanent sessions."
     },
     {
       "id": "symbol:sessions.py:should_set_cookie:233",
@@ -3570,7 +3689,8 @@
       "file": "sessions.py",
       "line": 233,
       "end_line": 247,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Determines if the session cookie needs to be written to the response."
     },
     {
       "id": "symbol:sessions.py:open_session:249",
@@ -3579,7 +3699,8 @@
       "file": "sessions.py",
       "line": 249,
       "end_line": 261,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Loads a session from the request data."
     },
     {
       "id": "symbol:sessions.py:save_session:263",
@@ -3588,7 +3709,8 @@
       "file": "sessions.py",
       "line": 263,
       "end_line": 270,
-      "parent": "SessionInterface"
+      "parent": "SessionInterface",
+      "description": "Serializes and saves a session into the response."
     },
     {
       "id": "symbol:sessions.py:_lazy_sha1:276",
@@ -3598,7 +3720,7 @@
       "line": 276,
       "end_line": 281,
       "parent": "",
-      "description": "Provides a deferred-import SHA-1 hash function compatible with FIPS builds."
+      "description": "Provides a SHA-1 hash object initialized at runtime."
     },
     {
       "id": "symbol:sessions.py:SecureCookieSessionInterface:284",
@@ -3608,7 +3730,7 @@
       "line": 284,
       "end_line": 385,
       "parent": "",
-      "description": "Manages signed cookie serialization and persistence using the itsdangerous library."
+      "description": "Manages signed cookie sessions using serializable payloads."
     },
     {
       "id": "symbol:sessions.py:get_signing_serializer:303",
@@ -3617,7 +3739,8 @@
       "file": "sessions.py",
       "line": 303,
       "end_line": 321,
-      "parent": "SecureCookieSessionInterface"
+      "parent": "SecureCookieSessionInterface",
+      "description": "Constructs a serializer for signing and verifying session data."
     },
     {
       "id": "symbol:sessions.py:open_session:323",
@@ -3626,7 +3749,8 @@
       "file": "sessions.py",
       "line": 323,
       "end_line": 335,
-      "parent": "SecureCookieSessionInterface"
+      "parent": "SecureCookieSessionInterface",
+      "description": "Decodes and validates a session from a signed request cookie."
     },
     {
       "id": "symbol:sessions.py:save_session:337",
@@ -3635,7 +3759,8 @@
       "file": "sessions.py",
       "line": 337,
       "end_line": 385,
-      "parent": "SecureCookieSessionInterface"
+      "parent": "SecureCookieSessionInterface",
+      "description": "Signs and writes session data to an outgoing response cookie."
     },
     {
       "id": "file:signals.py",
@@ -3643,7 +3768,7 @@
       "name": "signals.py",
       "path": "signals.py",
       "module": "flask",
-      "description": "Defines core Flask application and request lifecycle signals using the Blinker library for event notification."
+      "description": "Defines the core set of blinker signals used by the Flask framework for event notification."
     },
     {
       "id": "file:templating.py",
@@ -3651,7 +3776,7 @@
       "name": "templating.py",
       "path": "templating.py",
       "module": "flask",
-      "description": "Provides template rendering and streaming utilities for Flask applications by integrating Jinja2 environments with application contexts and blueprint-aware loading mechanisms."
+      "description": "Provides template rendering and streaming utilities for Flask applications by integrating Jinja2 with application and blueprint-specific template loaders."
     },
     {
       "id": "symbol:templating.py:_default_template_ctx_processor:21",
@@ -3661,7 +3786,7 @@
       "line": 21,
       "end_line": 33,
       "parent": "",
-      "description": "Provides core objects to the template rendering context."
+      "description": "Provides default template context variables by resolving request and application state proxies."
     },
     {
       "id": "symbol:templating.py:Environment:36",
@@ -3671,7 +3796,7 @@
       "line": 36,
       "end_line": 46,
       "parent": "",
-      "description": "Customizes template resolution to support Flask blueprint structures."
+      "description": "Customizes the Jinja environment to handle Flask blueprint-aware template path resolution."
     },
     {
       "id": "symbol:templating.py:__init__:42",
@@ -3680,7 +3805,8 @@
       "file": "templating.py",
       "line": 42,
       "end_line": 46,
-      "parent": "Environment"
+      "parent": "Environment",
+      "description": "Initializes the environment with a global loader derived from the application."
     },
     {
       "id": "symbol:templating.py:DispatchingJinjaLoader:49",
@@ -3690,7 +3816,7 @@
       "line": 49,
       "end_line": 120,
       "parent": "",
-      "description": "Retrieves templates from the application and registered blueprint directories."
+      "description": "Aggregates template loading across the application and its registered blueprints."
     },
     {
       "id": "symbol:templating.py:__init__:54",
@@ -3699,7 +3825,8 @@
       "file": "templating.py",
       "line": 54,
       "end_line": 55,
-      "parent": "DispatchingJinjaLoader"
+      "parent": "DispatchingJinjaLoader",
+      "description": "Initializes the loader with a reference to the Flask application."
     },
     {
       "id": "symbol:templating.py:get_source:57",
@@ -3708,7 +3835,8 @@
       "file": "templating.py",
       "line": 57,
       "end_line": 62,
-      "parent": "DispatchingJinjaLoader"
+      "parent": "DispatchingJinjaLoader",
+      "description": "Retrieves template source code using either fast or diagnostic loading strategies."
     },
     {
       "id": "symbol:templating.py:_get_source_explained:64",
@@ -3717,7 +3845,8 @@
       "file": "templating.py",
       "line": 64,
       "end_line": 86,
-      "parent": "DispatchingJinjaLoader"
+      "parent": "DispatchingJinjaLoader",
+      "description": "Locates template sources and generates a diagnostic report of all search attempts."
     },
     {
       "id": "symbol:templating.py:_get_source_fast:88",
@@ -3726,7 +3855,8 @@
       "file": "templating.py",
       "line": 88,
       "end_line": 96,
-      "parent": "DispatchingJinjaLoader"
+      "parent": "DispatchingJinjaLoader",
+      "description": "Iteratively searches for a template source without generating debug information."
     },
     {
       "id": "symbol:templating.py:_iter_loaders:98",
@@ -3735,7 +3865,8 @@
       "file": "templating.py",
       "line": 98,
       "end_line": 106,
-      "parent": "DispatchingJinjaLoader"
+      "parent": "DispatchingJinjaLoader",
+      "description": "Yields loaders configured for the application and all associated blueprints."
     },
     {
       "id": "symbol:templating.py:list_templates:108",
@@ -3744,7 +3875,8 @@
       "file": "templating.py",
       "line": 108,
       "end_line": 120,
-      "parent": "DispatchingJinjaLoader"
+      "parent": "DispatchingJinjaLoader",
+      "description": "Returns a unique list of all templates available across the application and blueprints."
     },
     {
       "id": "symbol:templating.py:_render:123",
@@ -3754,7 +3886,7 @@
       "line": 123,
       "end_line": 133,
       "parent": "",
-      "description": "Executes template rendering with signal dispatching and context updates."
+      "description": "Updates the template context and triggers rendering signals before producing output."
     },
     {
       "id": "symbol:templating.py:render_template:136",
@@ -3764,7 +3896,7 @@
       "line": 136,
       "end_line": 148,
       "parent": "",
-      "description": "Renders a specified template file using the current application context."
+      "description": "Renders a template file found within the application or blueprint structures."
     },
     {
       "id": "symbol:templating.py:render_template_string:151",
@@ -3774,7 +3906,7 @@
       "line": 151,
       "end_line": 160,
       "parent": "",
-      "description": "Processes a template string into a rendered response."
+      "description": "Renders a provided template source string within the current application context."
     },
     {
       "id": "symbol:templating.py:_stream:163",
@@ -3784,7 +3916,7 @@
       "line": 163,
       "end_line": 178,
       "parent": "",
-      "description": "Handles streaming of rendered templates while maintaining application context."
+      "description": "Wraps template generation in a streaming iterator with associated lifecycle signals."
     },
     {
       "id": "symbol:templating.py:stream_template:181",
@@ -3794,7 +3926,7 @@
       "line": 181,
       "end_line": 197,
       "parent": "",
-      "description": "Returns a streaming iterator for a specified template."
+      "description": "Streams the rendered output of a template file as an iterator."
     },
     {
       "id": "symbol:templating.py:stream_template_string:200",
@@ -3804,7 +3936,7 @@
       "line": 200,
       "end_line": 212,
       "parent": "",
-      "description": "Returns a streaming iterator for a provided template string."
+      "description": "Streams the rendered output of a template string as an iterator."
     },
     {
       "id": "file:testing.py",
@@ -3812,7 +3944,7 @@
       "name": "testing.py",
       "path": "testing.py",
       "module": "flask",
-      "description": "Provides testing utilities for Flask applications, including a custom request environment builder, a specialized test client, and a command-line interface runner."
+      "description": "Provides testing utilities for Flask applications, including request builders, test clients, and CLI runners."
     },
     {
       "id": "symbol:testing.py:EnvironBuilder:27",
@@ -3822,7 +3954,7 @@
       "line": 27,
       "end_line": 94,
       "parent": "",
-      "description": "Constructs WSGI environments tailored for Flask application requests."
+      "description": "Constructs WSGI environments using settings from a Flask application."
     },
     {
       "id": "symbol:testing.py:__init__:49",
@@ -3831,7 +3963,8 @@
       "file": "testing.py",
       "line": 49,
       "end_line": 86,
-      "parent": "EnvironBuilder"
+      "parent": "EnvironBuilder",
+      "description": "Initializes the builder with Flask application configuration and request details."
     },
     {
       "id": "symbol:testing.py:json_dumps:88",
@@ -3840,7 +3973,8 @@
       "file": "testing.py",
       "line": 88,
       "end_line": 94,
-      "parent": "EnvironBuilder"
+      "parent": "EnvironBuilder",
+      "description": "Serializes an object to JSON using the associated application's configuration."
     },
     {
       "id": "symbol:testing.py:_get_werkzeug_version:100",
@@ -3849,7 +3983,8 @@
       "file": "testing.py",
       "line": 100,
       "end_line": 106,
-      "parent": ""
+      "parent": "",
+      "description": "Retrieves the installed version of the Werkzeug library."
     },
     {
       "id": "symbol:testing.py:FlaskClient:109",
@@ -3859,7 +3994,7 @@
       "line": 109,
       "end_line": 262,
       "parent": "",
-      "description": "Simulates requests to a Flask application for integration testing."
+      "description": "A test client that facilitates request execution and request context management."
     },
     {
       "id": "symbol:testing.py:__init__:125",
@@ -3868,7 +4003,8 @@
       "file": "testing.py",
       "line": 125,
       "end_line": 133,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Initializes the client with a default environment and context stack."
     },
     {
       "id": "symbol:testing.py:session_transaction:136",
@@ -3877,7 +4013,8 @@
       "file": "testing.py",
       "line": 136,
       "end_line": 183,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Provides a context manager to modify and save session data."
     },
     {
       "id": "symbol:testing.py:_copy_environ:185",
@@ -3886,7 +4023,8 @@
       "file": "testing.py",
       "line": 185,
       "end_line": 191,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Merges client base environment variables with a provided environment dictionary."
     },
     {
       "id": "symbol:testing.py:_request_from_builder_args:193",
@@ -3895,7 +4033,8 @@
       "file": "testing.py",
       "line": 193,
       "end_line": 202,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Generates a request object using builder arguments and the client environment."
     },
     {
       "id": "symbol:testing.py:open:204",
@@ -3904,7 +4043,8 @@
       "file": "testing.py",
       "line": 204,
       "end_line": 247,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Executes a test request while managing context and session persistence."
     },
     {
       "id": "symbol:testing.py:__enter__:249",
@@ -3913,7 +4053,8 @@
       "file": "testing.py",
       "line": 249,
       "end_line": 253,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Enables context preservation for the duration of the block."
     },
     {
       "id": "symbol:testing.py:__exit__:255",
@@ -3922,7 +4063,8 @@
       "file": "testing.py",
       "line": 255,
       "end_line": 262,
-      "parent": "FlaskClient"
+      "parent": "FlaskClient",
+      "description": "Cleans up preserved contexts when exiting the client block."
     },
     {
       "id": "symbol:testing.py:FlaskCliRunner:265",
@@ -3932,7 +4074,7 @@
       "line": 265,
       "end_line": 298,
       "parent": "",
-      "description": "Executes Flask command-line interface commands within an isolated testing environment."
+      "description": "A test runner for executing Flask CLI commands in isolation."
     },
     {
       "id": "symbol:testing.py:__init__:271",
@@ -3941,7 +4083,8 @@
       "file": "testing.py",
       "line": 271,
       "end_line": 273,
-      "parent": "FlaskCliRunner"
+      "parent": "FlaskCliRunner",
+      "description": "Initializes the runner with the target Flask application instance."
     },
     {
       "id": "symbol:testing.py:invoke:275",
@@ -3950,7 +4093,8 @@
       "file": "testing.py",
       "line": 275,
       "end_line": 298,
-      "parent": "FlaskCliRunner"
+      "parent": "FlaskCliRunner",
+      "description": "Runs a CLI command within a configured application context."
     },
     {
       "id": "file:typing.py",
@@ -3958,7 +4102,7 @@
       "name": "typing.py",
       "path": "typing.py",
       "module": "flask",
-      "description": "Defines type aliases for Flask request handling, response structures, and various callback interfaces to facilitate static type checking throughout the application."
+      "description": "Defines type aliases for Flask's internal components, request handlers, and middleware structures."
     },
     {
       "id": "file:views.py",
@@ -3966,7 +4110,7 @@
       "name": "views.py",
       "path": "views.py",
       "module": "flask",
-      "description": "Provides base classes for implementing class-based views in Flask, allowing request dispatching via class instances or method-specific handlers."
+      "description": "Provides base classes for creating class-based views in Flask, enabling organized request handling and dispatching for web applications."
     },
     {
       "id": "symbol:views.py:View:16",
@@ -3976,7 +4120,7 @@
       "line": 16,
       "end_line": 135,
       "parent": "",
-      "description": "Base class for defining generic class-based views that dispatch requests to internal logic."
+      "description": "Base class for creating generic, class-based HTTP views in Flask applications."
     },
     {
       "id": "symbol:views.py:dispatch_request:78",
@@ -3986,7 +4130,7 @@
       "line": 78,
       "end_line": 83,
       "parent": "View",
-      "description": "Executes the main logic for a request within a view subclass."
+      "description": "Executes the main request logic that subclasses must override."
     },
     {
       "id": "symbol:views.py:as_view:86",
@@ -3996,7 +4140,7 @@
       "line": 86,
       "end_line": 135,
       "parent": "View",
-      "description": "Converts a class into a standard Flask view function for route registration."
+      "description": "Converts a class into a callable function for route registration."
     },
     {
       "id": "symbol:views.py:MethodView:138",
@@ -4006,7 +4150,7 @@
       "line": 138,
       "end_line": 191,
       "parent": "",
-      "description": "Extends generic views to automatically route requests to corresponding HTTP method handlers."
+      "description": "Dispatches incoming HTTP methods to corresponding instance methods defined on the class."
     },
     {
       "id": "symbol:views.py:__init_subclass__:165",
@@ -4016,7 +4160,7 @@
       "line": 165,
       "end_line": 180,
       "parent": "MethodView",
-      "description": "Automatically configures allowed HTTP methods based on implemented handler methods."
+      "description": "Automatically configures allowed HTTP methods based on defined instance methods."
     },
     {
       "id": "symbol:views.py:dispatch_request:182",
@@ -4026,7 +4170,7 @@
       "line": 182,
       "end_line": 191,
       "parent": "MethodView",
-      "description": "Routes incoming requests to the instance method matching the HTTP request verb."
+      "description": "Routes the incoming request to the appropriate method handler based on verb."
     },
     {
       "id": "file:wrappers.py",
@@ -4034,7 +4178,7 @@
       "name": "wrappers.py",
       "path": "wrappers.py",
       "module": "flask",
-      "description": "Defines Flask-specific request and response classes that extend Werkzeug functionality with framework-aware configuration, routing, and blueprint support."
+      "description": "Defines Flask's custom request and response objects, extending Werkzeug wrappers with application-specific configuration and context-aware metadata handling."
     },
     {
       "id": "symbol:wrappers.py:Request:18",
@@ -4044,7 +4188,7 @@
       "line": 18,
       "end_line": 219,
       "parent": "",
-      "description": "Extends Werkzeug request with application-specific routing, blueprint identification, and configurable limits."
+      "description": "Flask's default request object extending Werkzeug with URL matching and application-specific settings."
     },
     {
       "id": "symbol:wrappers.py:max_content_length:60",
@@ -4054,7 +4198,7 @@
       "line": 60,
       "end_line": 86,
       "parent": "Request",
-      "description": "Gets or sets the maximum byte size for incoming request content."
+      "description": "Retrieves the maximum allowed request content length from configuration or local settings."
     },
     {
       "id": "symbol:wrappers.py:max_content_length:89",
@@ -4064,7 +4208,7 @@
       "line": 89,
       "end_line": 90,
       "parent": "Request",
-      "description": "Gets or sets the maximum byte size for incoming request content."
+      "description": "Sets the custom maximum content length limit for this specific request instance."
     },
     {
       "id": "symbol:wrappers.py:max_form_memory_size:93",
@@ -4074,7 +4218,7 @@
       "line": 93,
       "end_line": 113,
       "parent": "Request",
-      "description": "Gets or sets the maximum size for non-file multipart form fields."
+      "description": "Retrieves the maximum allowed form memory size from configuration or local settings."
     },
     {
       "id": "symbol:wrappers.py:max_form_memory_size:116",
@@ -4084,7 +4228,7 @@
       "line": 116,
       "end_line": 117,
       "parent": "Request",
-      "description": "Gets or sets the maximum size for non-file multipart form fields."
+      "description": "Sets the custom maximum form memory size limit for this specific request instance."
     },
     {
       "id": "symbol:wrappers.py:max_form_parts:120",
@@ -4094,7 +4238,7 @@
       "line": 120,
       "end_line": 140,
       "parent": "Request",
-      "description": "Gets or sets the maximum number of fields allowed in multipart requests."
+      "description": "Retrieves the maximum allowed number of multipart form fields from configuration or local settings."
     },
     {
       "id": "symbol:wrappers.py:max_form_parts:143",
@@ -4104,7 +4248,7 @@
       "line": 143,
       "end_line": 144,
       "parent": "Request",
-      "description": "Gets or sets the maximum number of fields allowed in multipart requests."
+      "description": "Sets the custom maximum form parts limit for this specific request instance."
     },
     {
       "id": "symbol:wrappers.py:endpoint:147",
@@ -4114,7 +4258,7 @@
       "line": 147,
       "end_line": 159,
       "parent": "Request",
-      "description": "Provides the name of the route handler matching the current request."
+      "description": "Returns the identifier of the endpoint associated with the current URL rule."
     },
     {
       "id": "symbol:wrappers.py:blueprint:162",
@@ -4124,7 +4268,7 @@
       "line": 162,
       "end_line": 178,
       "parent": "Request",
-      "description": "Retrieves the name of the blueprint containing the current request's endpoint."
+      "description": "Returns the name of the blueprint containing the current request's endpoint."
     },
     {
       "id": "symbol:wrappers.py:blueprints:181",
@@ -4134,7 +4278,7 @@
       "line": 181,
       "end_line": 195,
       "parent": "Request",
-      "description": "Returns a list of current and parent blueprint names for the request."
+      "description": "Returns a list of all blueprint names associated with the current request hierarchy."
     },
     {
       "id": "symbol:wrappers.py:_load_form_data:197",
@@ -4144,7 +4288,7 @@
       "line": 197,
       "end_line": 210,
       "parent": "Request",
-      "description": "Populates form data and attaches debug helpers if enabled."
+      "description": "Parses form data and potentially attaches debugging information if in debug mode."
     },
     {
       "id": "symbol:wrappers.py:on_json_loading_failed:212",
@@ -4154,7 +4298,7 @@
       "line": 212,
       "end_line": 219,
       "parent": "Request",
-      "description": "Handles exceptions occurring during JSON payload parsing."
+      "description": "Handles JSON decoding errors by raising a bad request exception."
     },
     {
       "id": "symbol:wrappers.py:Response:222",
@@ -4164,7 +4308,7 @@
       "line": 222,
       "end_line": 257,
       "parent": "",
-      "description": "Extends Werkzeug response to provide default HTML mimetype and application-aware cookie configuration."
+      "description": "Flask's default response object extending Werkzeug with HTML defaults and JSON support."
     },
     {
       "id": "symbol:wrappers.py:max_cookie_size:247",
@@ -4174,7 +4318,7 @@
       "line": 247,
       "end_line": 257,
       "parent": "Response",
-      "description": "Returns the maximum allowed cookie size from application configuration."
+      "description": "Provides a read-only view of the cookie size limit from application configuration."
     }
   ],
   "edges": [
@@ -4297,6 +4441,72 @@
       "source": "module:sansio",
       "target": "file:sansio/scaffold.py",
       "relation": "contains"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:json/__init__.py",
+      "relation": "imports",
+      "statement": "from . import json as json"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask as Flask"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:blueprints.py",
+      "relation": "imports",
+      "statement": "from .blueprints import Blueprint as Blueprint"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:config.py",
+      "relation": "imports",
+      "statement": "from .config import Config as Config"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from .ctx import after_this_request as after_this_request"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app as current_app"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import abort as abort"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import appcontext_popped as appcontext_popped"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from .templating import render_template as render_template"
+    },
+    {
+      "source": "file:__init__.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request as Request"
+    },
+    {
+      "source": "file:__main__.py",
+      "target": "file:cli.py",
+      "relation": "imports",
+      "statement": "from .cli import main"
     },
     {
       "source": "file:app.py",
@@ -4495,9 +4705,75 @@
     },
     {
       "source": "file:app.py",
+      "target": "file:cli.py",
+      "relation": "imports",
+      "statement": "from . import cli"
+    },
+    {
+      "source": "file:app.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import typing as ft"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from .ctx import AppContext"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import _CollectErrors"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .sansio.app import App"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SecureCookieSessionInterface"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import appcontext_tearing_down"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from .templating import Environment"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:testing.py",
+      "relation": "imports",
+      "statement": "from .testing import FlaskClient"
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:debughelpers.py",
+      "relation": "imports",
+      "statement": "from .debughelpers import FormDataRoutingRedirect"
     },
     {
       "source": "symbol:app.py:Flask:110",
@@ -4771,9 +5047,39 @@
     },
     {
       "source": "file:blueprints.py",
-      "target": "file:typing.py",
+      "target": "file:cli.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .cli import AppGroup"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import send_from_directory"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:sansio/blueprints.py",
+      "relation": "imports",
+      "statement": "from .sansio.blueprints import Blueprint as SansioBlueprint"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .sansio.scaffold import _sentinel"
+    },
+    {
+      "source": "file:blueprints.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Response"
     },
     {
       "source": "symbol:blueprints.py:Blueprint:18",
@@ -5007,9 +5313,21 @@
     },
     {
       "source": "file:cli.py",
-      "target": "file:typing.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .globals import current_app"
+    },
+    {
+      "source": "file:cli.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import get_debug_flag"
+    },
+    {
+      "source": "file:cli.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
     },
     {
       "source": "symbol:cli.py:find_best_app:41",
@@ -5253,15 +5571,9 @@
     },
     {
       "source": "file:config.py",
-      "target": "file:json/__init__.py",
+      "target": "file:sansio/app.py",
       "relation": "imports",
-      "statement": "import json"
-    },
-    {
-      "source": "file:config.py",
-      "target": "file:typing.py",
-      "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .sansio.app import App"
     },
     {
       "source": "symbol:config.py:ConfigAttribute:20",
@@ -5502,7 +5814,43 @@
       "source": "file:ctx.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import typing as ft"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import _CollectErrors"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import appcontext_popped"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SessionMixin"
+    },
+    {
+      "source": "file:ctx.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:ctx.py:_AppCtxGlobals:30",
@@ -5666,9 +6014,33 @@
     },
     {
       "source": "file:debughelpers.py",
-      "target": "file:typing.py",
+      "target": "file:blueprints.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .blueprints import Blueprint"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .sansio.app import App"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .sansio.scaffold import Scaffold"
+    },
+    {
+      "source": "file:debughelpers.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:debughelpers.py:DebugFilesKeyError:23",
@@ -5737,9 +6109,27 @@
     },
     {
       "source": "file:globals.py",
-      "target": "file:typing.py",
+      "target": "file:app.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .app import Flask"
+    },
+    {
+      "source": "file:globals.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from .ctx import _AppCtxGlobals"
+    },
+    {
+      "source": "file:globals.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SessionMixin"
+    },
+    {
+      "source": "file:globals.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:globals.py:ProxyMixin:17",
@@ -5883,9 +6273,21 @@
     },
     {
       "source": "file:helpers.py",
-      "target": "file:typing.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .globals import _cv_app"
+    },
+    {
+      "source": "file:helpers.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import message_flashed"
+    },
+    {
+      "source": "file:helpers.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Response"
     },
     {
       "source": "symbol:helpers.py:stream_with_context:63",
@@ -5954,15 +6356,21 @@
     },
     {
       "source": "file:json/__init__.py",
-      "target": "file:json/__init__.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import json as _json"
+      "statement": "from ..globals import current_app"
     },
     {
       "source": "file:json/__init__.py",
-      "target": "file:typing.py",
+      "target": "file:json/provider.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .provider import _default"
+    },
+    {
+      "source": "file:json/__init__.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from ..wrappers import Response"
     },
     {
       "source": "file:json/provider.py",
@@ -6031,15 +6439,9 @@
     },
     {
       "source": "file:json/provider.py",
-      "target": "file:json/__init__.py",
+      "target": "file:sansio/app.py",
       "relation": "imports",
-      "statement": "import json"
-    },
-    {
-      "source": "file:json/provider.py",
-      "target": "file:typing.py",
-      "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from ..sansio.app import App"
     },
     {
       "source": "symbol:json/provider.py:JSONProvider:19",
@@ -6318,9 +6720,9 @@
     },
     {
       "source": "file:json/tag.py",
-      "target": "file:typing.py",
+      "target": "file:json/__init__.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from ..json import dumps"
     },
     {
       "source": "symbol:json/tag.py:JSONTag:60",
@@ -6559,15 +6961,15 @@
     },
     {
       "source": "file:logging.py",
-      "target": "file:logging.py",
+      "target": "file:globals.py",
       "relation": "imports",
-      "statement": "import logging"
+      "statement": "from .globals import request"
     },
     {
       "source": "file:logging.py",
-      "target": "file:typing.py",
+      "target": "file:sansio/app.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .sansio.app import App"
     },
     {
       "source": "symbol:logging.py:create_logger:58",
@@ -6761,15 +7163,63 @@
     },
     {
       "source": "file:sansio/app.py",
-      "target": "file:logging.py",
+      "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import logging"
+      "statement": "from .. import typing as ft"
     },
     {
       "source": "file:sansio/app.py",
-      "target": "file:typing.py",
+      "target": "file:config.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from ..config import Config"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:ctx.py",
+      "relation": "imports",
+      "statement": "from ..ctx import _AppCtxGlobals"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from ..helpers import _split_blueprint_path"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:json/provider.py",
+      "relation": "imports",
+      "statement": "from ..json.provider import DefaultJSONProvider"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:logging.py",
+      "relation": "imports",
+      "statement": "from ..logging import create_logger"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from ..templating import DispatchingJinjaLoader"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .scaffold import _endpoint_from_view_func"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:testing.py",
+      "relation": "imports",
+      "statement": "from ..testing import FlaskClient"
+    },
+    {
+      "source": "file:sansio/app.py",
+      "target": "file:sansio/blueprints.py",
+      "relation": "imports",
+      "statement": "from .blueprints import Blueprint"
     },
     {
       "source": "symbol:sansio/app.py:App:59",
@@ -7145,7 +7595,19 @@
       "source": "file:sansio/blueprints.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .. import typing as ft"
+    },
+    {
+      "source": "file:sansio/blueprints.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .scaffold import _endpoint_from_view_func"
+    },
+    {
+      "source": "file:sansio/blueprints.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .app import App"
     },
     {
       "source": "symbol:sansio/blueprints.py:BlueprintSetupState:34",
@@ -7481,7 +7943,19 @@
       "source": "file:sansio/scaffold.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .. import typing as ft"
+    },
+    {
+      "source": "file:sansio/scaffold.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from ..helpers import get_root_path"
+    },
+    {
+      "source": "file:sansio/scaffold.py",
+      "target": "file:templating.py",
+      "relation": "imports",
+      "statement": "from ..templating import _default_template_ctx_processor"
     },
     {
       "source": "symbol:sansio/scaffold.py:Scaffold:52",
@@ -7765,9 +8239,21 @@
     },
     {
       "source": "file:sessions.py",
-      "target": "file:typing.py",
+      "target": "file:json/tag.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .json.tag import TaggedJSONSerializer"
+    },
+    {
+      "source": "file:sessions.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
+    },
+    {
+      "source": "file:sessions.py",
+      "target": "file:wrappers.py",
+      "relation": "imports",
+      "statement": "from .wrappers import Request"
     },
     {
       "source": "symbol:sessions.py:SessionMixin:24",
@@ -7966,9 +8452,45 @@
     },
     {
       "source": "file:templating.py",
-      "target": "file:typing.py",
+      "target": "file:ctx.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .ctx import AppContext"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import app_ctx"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import stream_with_context"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:signals.py",
+      "relation": "imports",
+      "statement": "from .signals import before_render_template"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:sansio/app.py",
+      "relation": "imports",
+      "statement": "from .sansio.app import App"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:sansio/scaffold.py",
+      "relation": "imports",
+      "statement": "from .sansio.scaffold import Scaffold"
+    },
+    {
+      "source": "file:templating.py",
+      "target": "file:debughelpers.py",
+      "relation": "imports",
+      "statement": "from .debughelpers import explain_template_loading_attempts"
     },
     {
       "source": "symbol:templating.py:Environment:36",
@@ -8112,9 +8634,21 @@
     },
     {
       "source": "file:testing.py",
-      "target": "file:typing.py",
+      "target": "file:cli.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from .cli import ScriptInfo"
+    },
+    {
+      "source": "file:testing.py",
+      "target": "file:sessions.py",
+      "relation": "imports",
+      "statement": "from .sessions import SessionMixin"
+    },
+    {
+      "source": "file:testing.py",
+      "target": "file:app.py",
+      "relation": "imports",
+      "statement": "from .app import Flask"
     },
     {
       "source": "symbol:testing.py:EnvironBuilder:27",
@@ -8197,12 +8731,6 @@
       "relation": "calls"
     },
     {
-      "source": "file:typing.py",
-      "target": "file:typing.py",
-      "relation": "imports",
-      "statement": "import typing as t"
-    },
-    {
       "source": "file:views.py",
       "target": "symbol:views.py:View:16",
       "relation": "contains"
@@ -8236,7 +8764,13 @@
       "source": "file:views.py",
       "target": "file:typing.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import typing as ft"
+    },
+    {
+      "source": "file:views.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app"
     },
     {
       "source": "symbol:views.py:View:16",
@@ -8335,9 +8869,27 @@
     },
     {
       "source": "file:wrappers.py",
-      "target": "file:typing.py",
+      "target": "file:json/__init__.py",
       "relation": "imports",
-      "statement": "import typing as t"
+      "statement": "from . import json"
+    },
+    {
+      "source": "file:wrappers.py",
+      "target": "file:globals.py",
+      "relation": "imports",
+      "statement": "from .globals import current_app"
+    },
+    {
+      "source": "file:wrappers.py",
+      "target": "file:helpers.py",
+      "relation": "imports",
+      "statement": "from .helpers import _split_blueprint_path"
+    },
+    {
+      "source": "file:wrappers.py",
+      "target": "file:debughelpers.py",
+      "relation": "imports",
+      "statement": "from .debughelpers import attach_enctype_error_multidict"
     },
     {
       "source": "symbol:wrappers.py:Request:18",

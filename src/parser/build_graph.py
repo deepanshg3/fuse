@@ -386,12 +386,23 @@ def build_graph(repo_root: Path) -> nx.MultiDiGraph:
 
                 target_id = f"file:{target_file}"
 
-                graph.add_edge(
-                    source_file_id,
-                    target_id,
-                    relation="imports",
-                    statement=import_statement,
+                # Avoid duplicate file -> file import edges.
+                already_exists = any(
+                    data.get("relation") == "imports"
+                    for _, target, data in graph.out_edges(
+                        source_file_id,
+                        data=True,
+                    )
+                    if target == target_id
                 )
+
+                if not already_exists:
+                    graph.add_edge(
+                        source_file_id,
+                        target_id,
+                        relation="imports",
+                        statement=import_statement,
+                    )
 
     # ----------------------------------------
     # INHERITANCE RELATIONSHIPS
@@ -477,38 +488,221 @@ def resolve_import(
     current_file: FileInfo,
     parsed_files: list[FileInfo],
 ) -> str | None:
+    """
+    Resolve Python imports to files inside the repository.
 
-    statement = (
-        import_statement
-        .replace("from ", "")
-        .replace("import ", "")
-        .strip()
-    )
+    Handles:
+        from .ctx import AppContext
+        from .globals import request
+        from .sansio.app import App
+        from . import cli
+        from flask.ctx import AppContext
 
-    statement = statement.split(" as ")[0]
-    statement = statement.split(",")[0].strip()
+    Ignores external imports such as:
+        import typing
+        import os
+        import click
+        from werkzeug... import ...
+    """
 
-    # Convert Python module path to filesystem path
-    module_path = statement.replace(".", "/")
+    statement = import_statement.strip()
 
-    for info in parsed_files:
+    # --------------------------------------------------
+    # BUILD LOOKUP TABLE
+    # --------------------------------------------------
 
-        normalized = info.path.replace("\\", "/")
+    parsed_paths = {
+        info.path.replace("\\", "/"): info
+        for info in parsed_files
+    }
 
-        if (
-            normalized.endswith(module_path + ".py")
-            or normalized.endswith(module_path + "/__init__.py")
+    # --------------------------------------------------
+    # RELATIVE IMPORTS
+    # --------------------------------------------------
+
+    if statement.startswith("from .") or statement.startswith("from .."):
+
+        # Example:
+        # from .ctx import AppContext
+        #
+        # Remove "from " and " import ..."
+        body = statement[5:].strip()
+
+        if " import " in body:
+            module_part = body.split(" import ", 1)[0].strip()
+        else:
+            module_part = body
+
+        # Count relative-import dots.
+        dot_count = 0
+
+        for char in module_part:
+            if char == ".":
+                dot_count += 1
+            else:
+                break
+
+        relative_module = module_part[dot_count:]
+
+        current_path = Path(current_file.path)
+
+        # Directory containing current file.
+        current_dir = current_path.parent
+
+        # Resolve relative level.
+        base_dir = current_dir
+
+        # "." means current package directory.
+        # ".." means parent package directory, etc.
+        for _ in range(dot_count - 1):
+            base_dir = base_dir.parent
+
+        # --------------------------------------------------
+        # from . import cli
+        # --------------------------------------------------
+
+        if not relative_module:
+
+            # Extract imported name.
+            imported_part = body.split(" import ", 1)[1]
+
+            imported_names = [
+                name.strip().split(" as ")[0]
+                for name in imported_part.split(",")
+            ]
+
+            for name in imported_names:
+
+                candidate = (
+                    base_dir / f"{name}.py"
+                ).as_posix()
+
+                if candidate in parsed_paths:
+                    return candidate
+
+                candidate = (
+                    base_dir / name / "__init__.py"
+                ).as_posix()
+
+                if candidate in parsed_paths:
+                    return candidate
+
+            return None
+
+        # --------------------------------------------------
+        # from .ctx import ...
+        # --------------------------------------------------
+
+        module_path = relative_module.replace(".", "/")
+
+        candidate = (
+            base_dir / f"{module_path}.py"
+        ).as_posix()
+
+        if candidate in parsed_paths:
+            return candidate
+
+        candidate = (
+            base_dir / module_path / "__init__.py"
+        ).as_posix()
+
+        if candidate in parsed_paths:
+            return candidate
+
+        return None
+
+    # --------------------------------------------------
+    # ABSOLUTE IMPORTS
+    # --------------------------------------------------
+
+    if statement.startswith("from "):
+
+        body = statement[5:].strip()
+
+        if " import " in body:
+            module_part = body.split(" import ", 1)[0].strip()
+        else:
+            module_part = body
+
+        # Only resolve imports belonging to this repository.
+        #
+        # Our repository package is "flask".
+        package_name = current_file.module
+
+        if not (
+            module_part == package_name
+            or module_part.startswith(package_name + ".")
         ):
-            return info.path
+            return None
 
-    # Relative fallback
-    basename = statement.split(".")[-1]
+        module_part = module_part[
+            len(package_name):
+        ].lstrip(".")
 
-    for info in parsed_files:
+        if not module_part:
+            return None
 
-        if Path(info.path).stem == basename:
+        module_path = module_part.replace(".", "/")
 
-            return info.path
+        candidate = f"{module_path}.py"
+
+        if candidate in parsed_paths:
+            return candidate
+
+        candidate = f"{module_path}/__init__.py"
+
+        if candidate in parsed_paths:
+            return candidate
+
+        return None
+
+    # --------------------------------------------------
+    # NORMAL IMPORT
+    # --------------------------------------------------
+
+    if statement.startswith("import "):
+
+        # imported_part = statement[7:].strip()
+
+        # # "import foo, bar"
+        # imported_names = [
+        #     name.strip().split(" as ")[0]
+        #     for name in imported_part.split(",")
+        # ]
+
+        # for imported_name in imported_names:
+
+        #     # Only resolve imports belonging to our package.
+        #     if not (
+        #         imported_name == current_file.module
+        #         or imported_name.startswith(
+        #             current_file.module + "."
+        #         )
+        #     ):
+        #         continue
+
+        #     module_part = imported_name[
+        #         len(current_file.module):
+        #     ].lstrip(".")
+
+        #     if not module_part:
+        #         continue
+
+        #     module_path = module_part.replace(".", "/")
+
+        #     candidate = f"{module_path}.py"
+
+        #     if candidate in parsed_paths:
+        #         return candidate
+
+        #     candidate = (
+        #         f"{module_path}/__init__.py"
+        #     )
+
+        #     if candidate in parsed_paths:
+        #         return candidate
+
+         return None
 
     return None
 

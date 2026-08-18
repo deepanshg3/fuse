@@ -1,452 +1,2584 @@
 {
   "__init__.py": {
-    "file_summary": "Exposes core Flask framework components, utilities, globals, and signals as the primary public API entry point for the application.",
-    "symbols": {
-      "Flask": "Main class providing the central application object for web services.",
-      "Blueprint": "Organizes application components into modular, reusable groups.",
-      "Config": "Manages application settings and configuration variables.",
-      "after_this_request": "Registers a function to execute after the current request finishes.",
-      "copy_current_request_context": "Shares the active request context with a background task.",
-      "has_app_context": "Checks if an application context is currently active.",
-      "has_request_context": "Checks if a request context is currently active.",
-      "current_app": "Proxy providing access to the current application instance.",
-      "g": "Global namespace object for storing data during a request.",
-      "request": "Proxy providing access to the current request object.",
-      "session": "Proxy providing access to the current user session data.",
-      "abort": "Terminates request processing by raising an HTTP exception.",
-      "flash": "Queues a message to be displayed to the user later.",
-      "get_flashed_messages": "Retrieves and clears the queued flash messages.",
-      "get_template_attribute": "Loads a specific variable or function from a template file.",
-      "make_response": "Creates a response object from a given value.",
-      "redirect": "Generates a response that redirects to a different URL.",
-      "send_file": "Streams the contents of a file to the client.",
-      "send_from_directory": "Sends a file from a specified directory.",
-      "stream_with_context": "Streams a response while maintaining the request context.",
-      "url_for": "Generates a URL for a specific endpoint.",
-      "jsonify": "Creates a response object containing JSON data.",
-      "appcontext_popped": "Signal sent when an application context is popped.",
-      "appcontext_pushed": "Signal sent when an application context is pushed.",
-      "appcontext_tearing_down": "Signal sent when an application context is destroyed.",
-      "before_render_template": "Signal sent before a template is rendered.",
-      "got_request_exception": "Signal sent when an exception occurs during a request.",
-      "message_flashed": "Signal sent when a flash message is recorded.",
-      "request_finished": "Signal sent after the response is processed.",
-      "request_started": "Signal sent before request processing begins.",
-      "request_tearing_down": "Signal sent when the request context is destroyed.",
-      "template_rendered": "Signal sent after a template is successfully rendered.",
-      "render_template": "Renders a template file with provided context.",
-      "render_template_string": "Renders a template string with provided context.",
-      "stream_template": "Streams the rendering of a template file.",
-      "stream_template_string": "Streams the rendering of a template string.",
-      "Request": "Represents the incoming HTTP request data.",
-      "Response": "Represents the outgoing HTTP response data."
-    }
+    "file_summary": "Exposes core Flask framework components, utilities, signals, and wrappers for public API access.",
+    "symbols": []
   },
   "__main__.py": {
-    "file_summary": "Serves as the package entry point to execute the Flask command-line interface.",
-    "symbols": {}
+    "file_summary": "This script serves as the package entry point, invoking the Flask CLI main function to execute command-line operations.",
+    "symbols": []
   },
   "app.py": {
-    "file_summary": "Defines the core Flask WSGI application class, managing routing, request lifecycle, template rendering, and application configuration.",
-    "symbols": {
-      "Flask": "Implements the central WSGI application object for registry of routes, configurations, and request handling.",
-      "Flask.__init__": "Initializes the application with package information and default configurations.",
-      "Flask.get_send_file_max_age": "Calculates the cache expiration time for static files.",
-      "Flask.send_static_file": "Serves files from the configured static directory.",
-      "Flask.open_resource": "Opens a file relative to the application root directory for reading.",
-      "Flask.open_instance_resource": "Opens a file relative to the instance directory for reading or writing.",
-      "Flask.create_jinja_environment": "Constructs and configures the template rendering environment.",
-      "Flask.create_url_adapter": "Generates a URL adapter for binding requests or building URLs.",
-      "Flask.raise_routing_exception": "Intercepts and handles routing-related redirections.",
-      "Flask.update_template_context": "Injects request-specific variables into the template rendering context.",
-      "Flask.make_shell_context": "Returns a dictionary of objects available in the interactive shell.",
-      "Flask.run": "Starts the local development server for the application.",
-      "Flask.test_client": "Provides a test client for executing requests without a running server.",
-      "Flask.test_cli_runner": "Provides a CLI runner to test command-line interface commands.",
-      "Flask.handle_http_exception": "Invokes registered error handlers for HTTP-specific exceptions.",
-      "Flask.handle_user_exception": "Processes application-specific exceptions by triggering handlers or re-raising.",
-      "Flask.handle_exception": "Standardizes unhandled exceptions into internal server error responses.",
-      "Flask.log_exception": "Records unhandled exceptions using the application logger.",
-      "Flask.dispatch_request": "Matches the request URL and executes the corresponding view function.",
-      "Flask.full_dispatch_request": "Orchestrates the entire request lifecycle including pre-processing and finalization.",
-      "Flask.finalize_request": "Converts a view return value into a response and executes post-processing.",
-      "Flask.make_default_options_response": "Creates a default response for OPTIONS requests based on allowed methods.",
-      "Flask.ensure_sync": "Normalizes asynchronous functions to be compatible with synchronous WSGI workers.",
-      "Flask.async_to_sync": "Converts coroutine functions into synchronously callable counterparts.",
-      "Flask.url_for": "Builds a URL for a specified endpoint using registered rules.",
-      "Flask.make_response": "Converts various return types from view functions into standard response objects.",
-      "Flask.preprocess_request": "Executes functions registered to run before the request is dispatched.",
-      "Flask.process_response": "Modifies the response object before it is sent to the client.",
-      "Flask.do_teardown_request": "Cleans up resources and executes teardown functions after a request.",
-      "Flask.do_teardown_appcontext": "Cleans up application context resources upon completion.",
-      "Flask.app_context": "Creates an application context for manual push and interaction.",
-      "Flask.request_context": "Creates a request context bound to a WSGI environment.",
-      "Flask.test_request_context": "Creates a request context for testing without dispatching full requests.",
-      "Flask.wsgi_app": "Executes the core WSGI request processing logic.",
-      "Flask.__call__": "Allows the application instance to function as a callable WSGI application."
-    }
+    "file_summary": "Defines the core Flask WSGI application class, handling request dispatching, configuration, routing, context management, and error handling for web applications.",
+    "symbols": [
+      {
+        "name": "_make_timedelta",
+        "parent": "",
+        "line": 74,
+        "description": "Converts an integer or existing timedelta object into a standardized timedelta representation."
+      },
+      {
+        "name": "remove_ctx",
+        "parent": "",
+        "line": 86,
+        "description": "Wraps a method to remove the application context from its arguments for backward compatibility."
+      },
+      {
+        "name": "add_ctx",
+        "parent": "",
+        "line": 98,
+        "description": "Wraps a method to inject the current application context into its arguments for backward compatibility."
+      },
+      {
+        "name": "Flask",
+        "parent": "",
+        "line": 110,
+        "description": "The central WSGI application object acting as a registry for views, rules, and configuration."
+      },
+      {
+        "name": "__init_subclass__",
+        "parent": "Flask",
+        "line": 255,
+        "description": "Detects deprecated method signatures in subclasses and updates them to support context injection."
+      },
+      {
+        "name": "__init__",
+        "parent": "Flask",
+        "line": 311,
+        "description": "Initializes the application instance with its package name and directory configuration paths."
+      },
+      {
+        "name": "get_send_file_max_age",
+        "parent": "Flask",
+        "line": 366,
+        "description": "Determines the cache duration for static files based on configuration settings."
+      },
+      {
+        "name": "send_static_file",
+        "parent": "Flask",
+        "line": 393,
+        "description": "Serves a file from the configured static directory to the client."
+      },
+      {
+        "name": "open_resource",
+        "parent": "Flask",
+        "line": 415,
+        "description": "Opens a resource file from the application root directory for reading."
+      },
+      {
+        "name": "open_instance_resource",
+        "parent": "Flask",
+        "line": 448,
+        "description": "Opens a resource file from the application instance directory for reading or writing."
+      },
+      {
+        "name": "create_jinja_environment",
+        "parent": "Flask",
+        "line": 470,
+        "description": "Constructs the template rendering environment with configured globals and filters."
+      },
+      {
+        "name": "create_url_adapter",
+        "parent": "Flask",
+        "line": 510,
+        "description": "Generates a URL adapter to bind requests to internal URL rules and maps."
+      },
+      {
+        "name": "raise_routing_exception",
+        "parent": "Flask",
+        "line": 563,
+        "description": "Handles internal routing exceptions by potentially redirecting or returning errors."
+      },
+      {
+        "name": "update_template_context",
+        "parent": "Flask",
+        "line": 591,
+        "description": "Injects common request-level variables and processor data into the template rendering context."
+      },
+      {
+        "name": "make_shell_context",
+        "parent": "Flask",
+        "line": 621,
+        "description": "Collects variables and objects available for interactive shell sessions."
+      },
+      {
+        "name": "run",
+        "parent": "Flask",
+        "line": 633,
+        "description": "Starts the development server to host the application locally."
+      },
+      {
+        "name": "test_client",
+        "parent": "Flask",
+        "line": 758,
+        "description": "Creates a client to facilitate unit testing of the application routes."
+      },
+      {
+        "name": "test_cli_runner",
+        "parent": "Flask",
+        "line": 816,
+        "description": "Creates a runner to test the application's command line interface commands."
+      },
+      {
+        "name": "handle_http_exception",
+        "parent": "Flask",
+        "line": 833,
+        "description": "Processes HTTP exceptions by invoking registered error handlers or returning standard responses."
+      },
+      {
+        "name": "handle_user_exception",
+        "parent": "Flask",
+        "line": 868,
+        "description": "Routes application-level exceptions to appropriate error handlers or re-raises them."
+      },
+      {
+        "name": "handle_exception",
+        "parent": "Flask",
+        "line": 900,
+        "description": "Manages unhandled exceptions by logging them and returning a standard internal server error response."
+      },
+      {
+        "name": "log_exception",
+        "parent": "Flask",
+        "line": 953,
+        "description": "Logs details regarding an unhandled exception to the application's logger."
+      },
+      {
+        "name": "dispatch_request",
+        "parent": "Flask",
+        "line": 969,
+        "description": "Matches the request to a view function and executes the function's logic."
+      },
+      {
+        "name": "full_dispatch_request",
+        "parent": "Flask",
+        "line": 995,
+        "description": "Orchestrates request processing including preprocessing, dispatching, and error handling."
+      },
+      {
+        "name": "finalize_request",
+        "parent": "Flask",
+        "line": 1024,
+        "description": "Converts dispatch results into a final response and triggers post-processing logic."
+      },
+      {
+        "name": "make_default_options_response",
+        "parent": "Flask",
+        "line": 1056,
+        "description": "Constructs a standard response for HTTP OPTIONS requests."
+      },
+      {
+        "name": "ensure_sync",
+        "parent": "Flask",
+        "line": 1068,
+        "description": "Wraps asynchronous functions to ensure they execute synchronously for WSGI compatibility."
+      },
+      {
+        "name": "async_to_sync",
+        "parent": "Flask",
+        "line": 1082,
+        "description": "Converts an asynchronous coroutine into a synchronous function using asgiref."
+      },
+      {
+        "name": "url_for",
+        "parent": "Flask",
+        "line": 1105,
+        "description": "Generates a URL for a specific endpoint based on provided variable arguments."
+      },
+      {
+        "name": "make_response",
+        "parent": "Flask",
+        "line": 1227,
+        "description": "Transforms various return types from view functions into a standardized response object."
+      },
+      {
+        "name": "preprocess_request",
+        "parent": "Flask",
+        "line": 1369,
+        "description": "Executes pre-request processing functions and blueprint-specific URL processors."
+      },
+      {
+        "name": "process_response",
+        "parent": "Flask",
+        "line": 1397,
+        "description": "Modifies the response object using registered post-request functions and session management logic."
+      },
+      {
+        "name": "do_teardown_request",
+        "parent": "Flask",
+        "line": 1423,
+        "description": "Cleans up resources and triggers signals after a request has been fully processed."
+      },
+      {
+        "name": "do_teardown_appcontext",
+        "parent": "Flask",
+        "line": 1456,
+        "description": "Performs cleanup tasks associated with the application context upon its destruction."
+      },
+      {
+        "name": "app_context",
+        "parent": "Flask",
+        "line": 1484,
+        "description": "Creates an application context for managing shared state during requests or tasks."
+      },
+      {
+        "name": "request_context",
+        "parent": "Flask",
+        "line": 1504,
+        "description": "Creates a request context bound to the specified WSGI environment."
+      },
+      {
+        "name": "test_request_context",
+        "parent": "Flask",
+        "line": 1520,
+        "description": "Creates a temporary request context for use in testing scenarios."
+      },
+      {
+        "name": "wsgi_app",
+        "parent": "Flask",
+        "line": 1569,
+        "description": "Serves as the main WSGI interface for the application, handling the request lifecycle."
+      },
+      {
+        "name": "__call__",
+        "parent": "Flask",
+        "line": 1621,
+        "description": "Enables the Flask instance to be invoked as a standard WSGI application."
+      }
+    ]
   },
   "blueprints.py": {
-    "file_summary": "Defines Blueprint objects for organizing Flask application components, including routing, static file handling, and resource access functionality.",
-    "symbols": {
-      "Blueprint": "Provides a modular way to organize application features and related resources.",
-      "get_send_file_max_age": "Determines the cache duration for static files based on application configuration.",
-      "send_static_file": "Serves files from the static directory using configured cache settings.",
-      "open_resource": "Opens files located relative to the defined root path for reading."
-    }
+    "file_summary": "Defines Blueprint objects for organizing Flask application components into modular, reusable modules with independent static files, templates, and CLI commands.",
+    "symbols": [
+      {
+        "name": "Blueprint",
+        "parent": "",
+        "line": 18,
+        "description": "Represents a collection of application components for modular Flask application development."
+      },
+      {
+        "name": "__init__",
+        "parent": "Blueprint",
+        "line": 19,
+        "description": "Initializes the blueprint instance with configuration paths and a dedicated command group."
+      },
+      {
+        "name": "get_send_file_max_age",
+        "parent": "Blueprint",
+        "line": 55,
+        "description": "Determines the cache duration for static files based on current application configuration."
+      },
+      {
+        "name": "send_static_file",
+        "parent": "Blueprint",
+        "line": 82,
+        "description": "Serves files from the defined static directory using configured cache settings."
+      },
+      {
+        "name": "open_resource",
+        "parent": "Blueprint",
+        "line": 104,
+        "description": "Opens a resource file located relative to the blueprint's root directory."
+      }
+    ]
   },
   "cli.py": {
-    "file_summary": "Provides command-line interface infrastructure and utilities for Flask applications, including server execution, shell access, route inspection, and application discovery.",
-    "symbols": {
-      "NoAppException": "Indicates failure to locate or load a Flask application.",
-      "find_best_app": "Attempts to discover a Flask application instance or factory function within a module.",
-      "find_app_by_string": "Locates a specific Flask application instance or factory function using a string reference.",
-      "prepare_import": "Calculates the Python path and module name from a file path.",
-      "locate_app": "Imports a module and returns the identified Flask application instance.",
-      "get_version": "Displays version information for Python, Flask, and Werkzeug.",
-      "ScriptInfo": "Manages configuration and loading of Flask application instances.",
-      "with_appcontext": "Ensures a command callback executes within an active application context.",
-      "AppGroup": "A click group class that automatically wraps commands in an application context.",
-      "FlaskGroup": "A command-line group that manages Flask application loading, environment variables, and CLI plugins.",
-      "load_dotenv": "Loads environment variables from dotenv files into the process environment.",
-      "show_server_banner": "Prints startup messages including application path and debug status.",
-      "CertParamType": "Validates and processes SSL certificate options for the development server.",
-      "SeparatedPathType": "A click path type that parses lists separated by the system path separator.",
-      "run_command": "Starts a local development server for the Flask application.",
-      "shell_command": "Opens an interactive Python shell within the application context.",
-      "routes_command": "Lists all URL routes registered to the Flask application.",
-      "main": "Entry point for the Flask command-line interface."
-    }
+    "file_summary": "Provides command-line interface utilities for managing Flask applications, including server execution, shell interaction, route inspection, and application loading management.",
+    "symbols": [
+      {
+        "name": "NoAppException",
+        "parent": "",
+        "line": 37,
+        "description": "Error raised when a Flask application cannot be located or loaded."
+      },
+      {
+        "name": "find_best_app",
+        "parent": "",
+        "line": 41,
+        "description": "Identifies the appropriate Flask application instance from a given module."
+      },
+      {
+        "name": "_called_with_wrong_args",
+        "parent": "",
+        "line": 94,
+        "description": "Determines if a function call failure was caused by invalid arguments."
+      },
+      {
+        "name": "find_app_by_string",
+        "parent": "",
+        "line": 120,
+        "description": "Retrieves a Flask application instance based on a module attribute string."
+      },
+      {
+        "name": "prepare_import",
+        "parent": "",
+        "line": 200,
+        "description": "Adds a file path to the system path and returns the module name."
+      },
+      {
+        "name": "locate_app",
+        "parent": "",
+        "line": 230,
+        "description": "Imports a module and searches for an application using the given name."
+      },
+      {
+        "name": "locate_app",
+        "parent": "",
+        "line": 236,
+        "description": "Imports a module and searches for an application using the given name."
+      },
+      {
+        "name": "locate_app",
+        "parent": "",
+        "line": 241,
+        "description": "Imports a module and searches for an application using the given name."
+      },
+      {
+        "name": "get_version",
+        "parent": "",
+        "line": 267,
+        "description": "Prints version information for Python, Flask, and Werkzeug, then exits."
+      },
+      {
+        "name": "ScriptInfo",
+        "parent": "",
+        "line": 293,
+        "description": "Manages configuration and loading state for Flask application discovery within CLI commands."
+      },
+      {
+        "name": "__init__",
+        "parent": "ScriptInfo",
+        "line": 305,
+        "description": "Initializes discovery settings for locating and loading a Flask application."
+      },
+      {
+        "name": "load_app",
+        "parent": "ScriptInfo",
+        "line": 333,
+        "description": "Locates and initializes the Flask application based on defined import paths."
+      },
+      {
+        "name": "with_appcontext",
+        "parent": "",
+        "line": 380,
+        "description": "Ensures a CLI command executes within an active Flask application context."
+      },
+      {
+        "name": "AppGroup",
+        "parent": "",
+        "line": 405,
+        "description": "A Click group subclass that automatically wraps commands with the application context."
+      },
+      {
+        "name": "command",
+        "parent": "AppGroup",
+        "line": 413,
+        "description": "Registers a command and optionally wraps it with the application context."
+      },
+      {
+        "name": "group",
+        "parent": "AppGroup",
+        "line": 429,
+        "description": "Registers a subcommand group using this class by default."
+      },
+      {
+        "name": "_set_app",
+        "parent": "",
+        "line": 440,
+        "description": "Updates the import path for the application within the script info."
+      },
+      {
+        "name": "_set_debug",
+        "parent": "",
+        "line": 468,
+        "description": "Sets the debug environment variable based on a CLI flag value."
+      },
+      {
+        "name": "_env_file_callback",
+        "parent": "",
+        "line": 493,
+        "description": "Loads environment variables from a specified file or default locations."
+      },
+      {
+        "name": "FlaskGroup",
+        "parent": "",
+        "line": 531,
+        "description": "A command group for managing Flask apps including discovery, context, and loading."
+      },
+      {
+        "name": "__init__",
+        "parent": "FlaskGroup",
+        "line": 563,
+        "description": "Initializes CLI group with default options and application-specific command loaders."
+      },
+      {
+        "name": "_load_plugin_commands",
+        "parent": "FlaskGroup",
+        "line": 600,
+        "description": "Registers additional CLI commands provided by installed plugins."
+      },
+      {
+        "name": "get_command",
+        "parent": "FlaskGroup",
+        "line": 609,
+        "description": "Retrieves a command from internal sources or the loaded application instance."
+      },
+      {
+        "name": "list_commands",
+        "parent": "FlaskGroup",
+        "line": 636,
+        "description": "Returns a sorted list of all available built-in and application-provided commands."
+      },
+      {
+        "name": "make_context",
+        "parent": "FlaskGroup",
+        "line": 657,
+        "description": "Prepares the CLI execution context and initializes script information."
+      },
+      {
+        "name": "parse_args",
+        "parent": "FlaskGroup",
+        "line": 678,
+        "description": "Handles early parsing of environment and application options during CLI startup."
+      },
+      {
+        "name": "_path_is_ancestor",
+        "parent": "",
+        "line": 691,
+        "description": "Checks if one directory path is an ancestor of another path."
+      },
+      {
+        "name": "load_dotenv",
+        "parent": "",
+        "line": 698,
+        "description": "Loads environment variables from local dotenv files into the system environment."
+      },
+      {
+        "name": "show_server_banner",
+        "parent": "",
+        "line": 766,
+        "description": "Displays application and debug status messages upon server startup."
+      },
+      {
+        "name": "CertParamType",
+        "parent": "",
+        "line": 780,
+        "description": "Click parameter type for validating SSL certificate files or ad-hoc settings."
+      },
+      {
+        "name": "__init__",
+        "parent": "CertParamType",
+        "line": 788,
+        "description": "Initializes the file path validator for the certificate parameter."
+      },
+      {
+        "name": "convert",
+        "parent": "CertParamType",
+        "line": 791,
+        "description": "Validates and returns an SSL certificate path or context object."
+      },
+      {
+        "name": "_validate_key",
+        "parent": "",
+        "line": 828,
+        "description": "Ensures the key file is provided when a certificate file is specified."
+      },
+      {
+        "name": "SeparatedPathType",
+        "parent": "",
+        "line": 867,
+        "description": "Click path type that supports multiple values separated by OS-specific delimiters."
+      },
+      {
+        "name": "convert",
+        "parent": "SeparatedPathType",
+        "line": 873,
+        "description": "Splits a path string and validates each individual component."
+      },
+      {
+        "name": "run_command",
+        "parent": "",
+        "line": 935,
+        "description": "Starts a local development server for the current Flask application."
+      },
+      {
+        "name": "shell_command",
+        "parent": "",
+        "line": 1001,
+        "description": "Launches an interactive Python shell within the active application context."
+      },
+      {
+        "name": "routes_command",
+        "parent": "",
+        "line": 1061,
+        "description": "Lists all registered URL routes for the application with metadata."
+      },
+      {
+        "name": "main",
+        "parent": "",
+        "line": 1122,
+        "description": "Entry point for executing the Flask CLI."
+      }
+    ]
   },
   "config.py": {
-    "file_summary": "Provides a configuration management system for applications using dictionary-like structures with methods for loading settings from files, modules, and environment variables.",
-    "symbols": {
-      "ConfigAttribute": "Proxies access to specific configuration keys with optional value conversion.",
-      "Config": "Manages application settings by extending dictionaries with file and object-based loading capabilities.",
-      "Config.__init__": "Initializes the configuration store with a root directory and optional default values.",
-      "Config.from_envvar": "Loads settings from a file path specified by an environment variable.",
-      "Config.from_prefixed_env": "Loads prefixed environment variables into the configuration mapping, supporting nested dictionary structures.",
-      "Config.from_pyfile": "Updates configuration values by executing a Python file as a module.",
-      "Config.from_object": "Imports uppercase attributes from a specified object or module into the configuration.",
-      "Config.from_file": "Reads and loads configuration data from a file using a provided loader function.",
-      "Config.from_mapping": "Updates configuration values from mappings, strictly filtering for uppercase keys.",
-      "Config.get_namespace": "Extracts a subset of configuration keys matching a specific prefix into a new dictionary."
-    }
+    "file_summary": "Provides classes for managing application configuration, including loading settings from files, environment variables, objects, and mappings.",
+    "symbols": [
+      {
+        "name": "ConfigAttribute",
+        "parent": "",
+        "line": 20,
+        "description": "Descriptor class that forwards attribute access to an application configuration object."
+      },
+      {
+        "name": "__init__",
+        "parent": "ConfigAttribute",
+        "line": 23,
+        "description": "Initializes the descriptor with a name and an optional value converter."
+      },
+      {
+        "name": "__get__",
+        "parent": "ConfigAttribute",
+        "line": 30,
+        "description": "Returns the descriptor instance when accessed from the class."
+      },
+      {
+        "name": "__get__",
+        "parent": "ConfigAttribute",
+        "line": 33,
+        "description": "Retrieves and converts the configuration value from the application instance."
+      },
+      {
+        "name": "__get__",
+        "parent": "ConfigAttribute",
+        "line": 35,
+        "description": "Retrieves the configuration value from the application instance with optional conversion."
+      },
+      {
+        "name": "__set__",
+        "parent": "ConfigAttribute",
+        "line": 46,
+        "description": "Updates the configuration value in the application instance."
+      },
+      {
+        "name": "Config",
+        "parent": "",
+        "line": 50,
+        "description": "Dictionary-based configuration class that supports loading settings from various external sources."
+      },
+      {
+        "name": "__init__",
+        "parent": "Config",
+        "line": 94,
+        "description": "Initializes the configuration with a root path and optional default values."
+      },
+      {
+        "name": "from_envvar",
+        "parent": "Config",
+        "line": 102,
+        "description": "Loads configuration from a file path specified in an environment variable."
+      },
+      {
+        "name": "from_prefixed_env",
+        "parent": "Config",
+        "line": 126,
+        "description": "Loads prefixed environment variables into the configuration object."
+      },
+      {
+        "name": "from_pyfile",
+        "parent": "Config",
+        "line": 187,
+        "description": "Loads configuration settings from a Python file."
+      },
+      {
+        "name": "from_object",
+        "parent": "Config",
+        "line": 218,
+        "description": "Loads uppercase attributes from a module or object into the configuration."
+      },
+      {
+        "name": "from_file",
+        "parent": "Config",
+        "line": 256,
+        "description": "Loads configuration from a file using a provided loading function."
+      },
+      {
+        "name": "from_mapping",
+        "parent": "Config",
+        "line": 304,
+        "description": "Updates configuration settings from a mapping, ignoring non-uppercase keys."
+      },
+      {
+        "name": "get_namespace",
+        "parent": "Config",
+        "line": 323,
+        "description": "Extracts a subset of configuration keys matching a specific namespace."
+      },
+      {
+        "name": "__repr__",
+        "parent": "Config",
+        "line": 366,
+        "description": "Returns a string representation of the configuration dictionary."
+      }
+    ]
   },
   "ctx.py": {
-    "file_summary": "Manages application and request contexts, providing storage and lifecycle hooks for Flask request processing and background tasks.",
-    "symbols": {
-      "_AppCtxGlobals": "Acts as a namespace for storing data within an application context.",
-      "after_this_request": "Registers a function to execute after the current request finishes.",
-      "copy_current_request_context": "Wraps a function to execute within the active request context.",
-      "has_request_context": "Determines if a request context is currently active.",
-      "has_app_context": "Determines if an application context is currently active.",
-      "AppContext": "Manages the lifecycle, resources, and request routing for an application or request context.",
-      "AppContext.__init__": "Initializes context storage for an application and optional request.",
-      "AppContext.from_environ": "Creates a context using a WSGI environment dictionary.",
-      "AppContext.copy": "Duplicates the current context with existing data objects.",
-      "AppContext.match_request": "Performs URL routing for the associated request.",
-      "AppContext.push": "Activates the context and initializes necessary request data.",
-      "AppContext.pop": "Deactivates the context and triggers teardown functions.",
-      "AppContext.__enter__": "Enables the context as a resource manager using a block.",
-      "AppContext.__exit__": "Cleans up the context upon exiting the block."
-    }
+    "file_summary": "Manages application and request contexts, providing storage, lifecycle management, and helper functions for Flask applications.",
+    "symbols": [
+      {
+        "name": "_AppCtxGlobals",
+        "parent": "",
+        "line": 30,
+        "description": "Namespace object for storing data within an application context."
+      },
+      {
+        "name": "__getattr__",
+        "parent": "_AppCtxGlobals",
+        "line": 53,
+        "description": "Retrieves an attribute from the internal storage dictionary."
+      },
+      {
+        "name": "__setattr__",
+        "parent": "_AppCtxGlobals",
+        "line": 59,
+        "description": "Sets an attribute in the internal storage dictionary."
+      },
+      {
+        "name": "__delattr__",
+        "parent": "_AppCtxGlobals",
+        "line": 62,
+        "description": "Removes an attribute from the internal storage dictionary."
+      },
+      {
+        "name": "get",
+        "parent": "_AppCtxGlobals",
+        "line": 68,
+        "description": "Returns an attribute value or a default if not found."
+      },
+      {
+        "name": "pop",
+        "parent": "_AppCtxGlobals",
+        "line": 79,
+        "description": "Removes and returns an attribute value by name."
+      },
+      {
+        "name": "setdefault",
+        "parent": "_AppCtxGlobals",
+        "line": 93,
+        "description": "Returns an existing attribute or sets and returns a default."
+      },
+      {
+        "name": "__contains__",
+        "parent": "_AppCtxGlobals",
+        "line": 105,
+        "description": "Checks if an attribute name exists in the storage."
+      },
+      {
+        "name": "__iter__",
+        "parent": "_AppCtxGlobals",
+        "line": 108,
+        "description": "Iterates over the stored attribute names."
+      },
+      {
+        "name": "__repr__",
+        "parent": "_AppCtxGlobals",
+        "line": 111,
+        "description": "Returns a string representation identifying the current application."
+      },
+      {
+        "name": "after_this_request",
+        "parent": "",
+        "line": 118,
+        "description": "Registers a function to run after the current request completes."
+      },
+      {
+        "name": "copy_current_request_context",
+        "parent": "",
+        "line": 154,
+        "description": "Wraps a function to execute within the active request context."
+      },
+      {
+        "name": "has_request_context",
+        "parent": "",
+        "line": 209,
+        "description": "Checks if an application context with request information is active."
+      },
+      {
+        "name": "has_app_context",
+        "parent": "",
+        "line": 235,
+        "description": "Checks if an application context is currently active."
+      },
+      {
+        "name": "AppContext",
+        "parent": "",
+        "line": 260,
+        "description": "Maintains application state and request data during the request lifecycle."
+      },
+      {
+        "name": "__init__",
+        "parent": "AppContext",
+        "line": 300,
+        "description": "Initializes the context with application and optional request data."
+      },
+      {
+        "name": "from_environ",
+        "parent": "AppContext",
+        "line": 340,
+        "description": "Creates a new context instance from WSGI environment data."
+      },
+      {
+        "name": "has_request",
+        "parent": "AppContext",
+        "line": 351,
+        "description": "Indicates whether the context contains valid request data."
+      },
+      {
+        "name": "copy",
+        "parent": "AppContext",
+        "line": 355,
+        "description": "Creates a duplicate of the current context."
+      },
+      {
+        "name": "request",
+        "parent": "AppContext",
+        "line": 371,
+        "description": "Accesses the request object associated with this context."
+      },
+      {
+        "name": "_get_session",
+        "parent": "AppContext",
+        "line": 381,
+        "description": "Retrieves or initializes the session for the request context."
+      },
+      {
+        "name": "session",
+        "parent": "AppContext",
+        "line": 396,
+        "description": "Provides access to the session object for the request."
+      },
+      {
+        "name": "match_request",
+        "parent": "AppContext",
+        "line": 405,
+        "description": "Performs URL matching against the request within the context."
+      },
+      {
+        "name": "push",
+        "parent": "AppContext",
+        "line": 416,
+        "description": "Activates the context and performs initial request processing."
+      },
+      {
+        "name": "pop",
+        "parent": "AppContext",
+        "line": 446,
+        "description": "Deactivates the context and runs teardown procedures."
+      },
+      {
+        "name": "__enter__",
+        "parent": "AppContext",
+        "line": 506,
+        "description": "Enters the runtime context by pushing the object."
+      },
+      {
+        "name": "__exit__",
+        "parent": "AppContext",
+        "line": 510,
+        "description": "Exits the runtime context by popping the object."
+      },
+      {
+        "name": "__repr__",
+        "parent": "AppContext",
+        "line": 518,
+        "description": "Returns a string representation of the context state."
+      },
+      {
+        "name": "__getattr__",
+        "parent": "",
+        "line": 528,
+        "description": "Provides backward compatibility for deprecated request context names."
+      }
+    ]
   },
   "debughelpers.py": {
-    "file_summary": "Provides specialized exceptions and diagnostic utilities to assist developers with debugging common Flask configuration, routing, and template loading issues.",
-    "symbols": {
-      "UnexpectedUnicodeError": "Signals errors related to invalid unicode or binary data.",
-      "DebugFilesKeyError": "Provides descriptive error messages when accessing missing files in a request without proper multipart encoding.",
-      "FormDataRoutingRedirect": "Warns when a routing redirect risks discarding form data or request methods.",
-      "attach_enctype_error_multidict": "Patches the request files collection to improve error reporting for incorrect form encoding.",
-      "_dump_loader_info": "Generates a textual representation of a template loader's internal configuration state.",
-      "explain_template_loading_attempts": "Logs detailed diagnostic information regarding the process of locating templates across loaders."
-    }
+    "file_summary": "Provides specialized diagnostic exceptions and helper utilities to improve error reporting during Flask development and template loading processes.",
+    "symbols": [
+      {
+        "name": "UnexpectedUnicodeError",
+        "parent": "",
+        "line": 17,
+        "description": "Reports errors related to unexpected unicode or binary data."
+      },
+      {
+        "name": "DebugFilesKeyError",
+        "parent": "",
+        "line": 23,
+        "description": "Provides informative error messages when request file access fails in debug mode."
+      },
+      {
+        "name": "__init__",
+        "parent": "DebugFilesKeyError",
+        "line": 28,
+        "description": "Initializes the error with details regarding missing file keys and mime-types."
+      },
+      {
+        "name": "__str__",
+        "parent": "DebugFilesKeyError",
+        "line": 46,
+        "description": "Returns the generated error message string."
+      },
+      {
+        "name": "FormDataRoutingRedirect",
+        "parent": "",
+        "line": 50,
+        "description": "Signals potential data loss during redirects caused by incorrect HTTP methods."
+      },
+      {
+        "name": "__init__",
+        "parent": "FormDataRoutingRedirect",
+        "line": 57,
+        "description": "Constructs a descriptive message warning about lost form data after redirection."
+      },
+      {
+        "name": "attach_enctype_error_multidict",
+        "parent": "",
+        "line": 81,
+        "description": "Patches the request files dictionary to report missing multipart encoding errors."
+      },
+      {
+        "name": "_dump_loader_info",
+        "parent": "",
+        "line": 107,
+        "description": "Extracts and formats state information from a template loader instance."
+      },
+      {
+        "name": "explain_template_loading_attempts",
+        "parent": "",
+        "line": 124,
+        "description": "Logs a detailed trace of template lookup attempts for debugging purposes."
+      }
+    ]
   },
   "globals.py": {
-    "file_summary": "Provides globally accessible proxies for current Flask application, request, and session contexts using thread-local and context-variable storage.",
-    "symbols": {
-      "app_ctx": "Provides access to the current application context.",
-      "current_app": "Provides access to the active application instance.",
-      "g": "Stores arbitrary data for the duration of the application context.",
-      "request": "Provides access to the current HTTP request object.",
-      "session": "Provides access to the current user session data.",
-      "__getattr__": "Handles attribute access for deprecated request context proxying."
-    }
+    "file_summary": "Defines proxy objects for Flask application and request context globals to provide type-safe access during the request lifecycle.",
+    "symbols": [
+      {
+        "name": "ProxyMixin",
+        "parent": "",
+        "line": 17,
+        "description": "Protocol defining the interface for retrieving proxied objects."
+      },
+      {
+        "name": "_get_current_object",
+        "parent": "ProxyMixin",
+        "line": 18,
+        "description": "Retrieves the underlying proxied instance."
+      },
+      {
+        "name": "FlaskProxy",
+        "parent": "",
+        "line": 22,
+        "description": "Type-hinting proxy class for the Flask application instance."
+      },
+      {
+        "name": "AppContextProxy",
+        "parent": "",
+        "line": 24,
+        "description": "Type-hinting proxy class for the application context."
+      },
+      {
+        "name": "_AppCtxGlobalsProxy",
+        "parent": "",
+        "line": 26,
+        "description": "Type-hinting proxy class for global application context variables."
+      },
+      {
+        "name": "RequestProxy",
+        "parent": "",
+        "line": 28,
+        "description": "Type-hinting proxy class for the current HTTP request."
+      },
+      {
+        "name": "SessionMixinProxy",
+        "parent": "",
+        "line": 30,
+        "description": "Type-hinting proxy class for session management interfaces."
+      },
+      {
+        "name": "__getattr__",
+        "parent": "",
+        "line": 65,
+        "description": "Handles attribute access with deprecation warnings for renamed globals."
+      }
+    ]
   },
   "helpers.py": {
-    "file_summary": "Provides utility functions for request handling, response creation, file serving, and path resolution within the Flask framework.",
-    "symbols": {
-      "get_debug_flag": "Determines if application debug mode is enabled via environment variables.",
-      "get_load_dotenv": "Checks if loading default dotenv files is enabled through environment configuration.",
-      "stream_with_context": "Wraps a generator to maintain request context during streamed responses.",
-      "make_response": "Converts view return values into a formal response object for header manipulation.",
-      "url_for": "Generates a URL for a specific endpoint with optional query parameters.",
-      "redirect": "Constructs a redirection response to a specified location.",
-      "abort": "Raises an HTTP exception for the provided status code.",
-      "get_template_attribute": "Loads a specific macro or variable from a template module.",
-      "flash": "Stores a message in the session to be retrieved by subsequent requests.",
-      "get_flashed_messages": "Retrieves and removes pending flashed messages from the session.",
-      "send_file": "Streams file contents to the client with optional security and metadata handling.",
-      "send_from_directory": "Securely serves files from a specific directory to prevent unauthorized access.",
-      "get_root_path": "Calculates the absolute filesystem path for a given package or module.",
-      "_CollectErrors": "Records multiple exceptions raised within a context block for later aggregation.",
-      "__exit__": "Suppresses exceptions while capturing them for subsequent error reporting.",
-      "raise_any": "Raises collected exceptions as a group or individually if any occurred."
-    }
+    "file_summary": "Provides core Flask helper utilities for application configuration, request handling, file delivery, URL generation, and session-based messaging.",
+    "symbols": [
+      {
+        "name": "get_debug_flag",
+        "parent": "",
+        "line": 28,
+        "description": "Determines if the application debug mode is enabled via environment variables."
+      },
+      {
+        "name": "get_load_dotenv",
+        "parent": "",
+        "line": 36,
+        "description": "Checks if loading default dotenv files is enabled or suppressed."
+      },
+      {
+        "name": "stream_with_context",
+        "parent": "",
+        "line": 52,
+        "description": "Provides an overload for typing stream helper functions."
+      },
+      {
+        "name": "stream_with_context",
+        "parent": "",
+        "line": 58,
+        "description": "Provides an overload for typing stream helper decorators."
+      },
+      {
+        "name": "stream_with_context",
+        "parent": "",
+        "line": 63,
+        "description": "Wraps a generator to maintain request context during streaming responses."
+      },
+      {
+        "name": "make_response",
+        "parent": "",
+        "line": 151,
+        "description": "Converts return values into a standard response object for header manipulation."
+      },
+      {
+        "name": "url_for",
+        "parent": "",
+        "line": 200,
+        "description": "Constructs a URL for a specific endpoint using provided parameters."
+      },
+      {
+        "name": "redirect",
+        "parent": "",
+        "line": 254,
+        "description": "Generates a response object that redirects the client to another location."
+      },
+      {
+        "name": "abort",
+        "parent": "",
+        "line": 281,
+        "description": "Triggers an HTTP exception for a given status code."
+      },
+      {
+        "name": "get_template_attribute",
+        "parent": "",
+        "line": 304,
+        "description": "Retrieves a specific macro or variable from a Jinja template."
+      },
+      {
+        "name": "flash",
+        "parent": "",
+        "line": 326,
+        "description": "Stores a message in the session to be displayed in subsequent requests."
+      },
+      {
+        "name": "get_flashed_messages",
+        "parent": "",
+        "line": 360,
+        "description": "Retrieves and clears all pending flashed messages from the session."
+      },
+      {
+        "name": "_prepare_send_file_kwargs",
+        "parent": "",
+        "line": 402,
+        "description": "Configures parameters for serving files using application context defaults."
+      },
+      {
+        "name": "send_file",
+        "parent": "",
+        "line": 417,
+        "description": "Sends the contents of a file to the client browser."
+      },
+      {
+        "name": "send_from_directory",
+        "parent": "",
+        "line": 543,
+        "description": "Securely serves a file located within a specific directory."
+      },
+      {
+        "name": "get_root_path",
+        "parent": "",
+        "line": 587,
+        "description": "Locates the filesystem directory containing the specified Python module."
+      },
+      {
+        "name": "_split_blueprint_path",
+        "parent": "",
+        "line": 645,
+        "description": "Decomposes a blueprint name into its constituent path segments."
+      },
+      {
+        "name": "_CollectErrors",
+        "parent": "",
+        "line": 654,
+        "description": "A context manager that records and suppresses exceptions."
+      },
+      {
+        "name": "__init__",
+        "parent": "_CollectErrors",
+        "line": 659,
+        "description": "Initializes the internal collection of gathered exceptions."
+      },
+      {
+        "name": "__enter__",
+        "parent": "_CollectErrors",
+        "line": 662,
+        "description": "Enters the context management block."
+      },
+      {
+        "name": "__exit__",
+        "parent": "_CollectErrors",
+        "line": 665,
+        "description": "Captures any exceptions occurring within the managed block."
+      },
+      {
+        "name": "raise_any",
+        "parent": "_CollectErrors",
+        "line": 676,
+        "description": "Raises an aggregate exception if any errors were collected."
+      }
+    ]
   },
   "json/__init__.py": {
-    "file_summary": "Provides JSON serialization and deserialization utilities that delegate to the current Flask application's configured JSON provider or standard library functions.",
-    "symbols": {
-      "dumps": "Serializes objects to JSON strings using the current application context or default encoders.",
-      "dump": "Writes serialized JSON objects to a file stream using application-specific or default configuration.",
-      "loads": "Deserializes JSON strings into objects using application-specific or default decoding logic.",
-      "load": "Reads and deserializes JSON data from a file stream using application-specific logic.",
-      "jsonify": "Creates a response object containing serialized JSON data with the correct content type."
-    }
+    "file_summary": "Provides utility functions for JSON serialization, deserialization, and HTTP response creation using the configured application JSON provider.",
+    "symbols": [
+      {
+        "name": "dumps",
+        "parent": "",
+        "line": 13,
+        "description": "Serializes an object into a JSON-formatted string."
+      },
+      {
+        "name": "dump",
+        "parent": "",
+        "line": 47,
+        "description": "Serializes an object and writes it to a file stream."
+      },
+      {
+        "name": "loads",
+        "parent": "",
+        "line": 77,
+        "description": "Deserializes JSON data from a string or bytes."
+      },
+      {
+        "name": "load",
+        "parent": "",
+        "line": 108,
+        "description": "Deserializes JSON data read from a file stream."
+      },
+      {
+        "name": "jsonify",
+        "parent": "",
+        "line": 138,
+        "description": "Creates a JSON-formatted HTTP response object."
+      }
+    ]
   },
   "json/provider.py": {
     "file_summary": "Defines base and default providers for handling JSON serialization and deserialization within Flask applications.",
-    "symbols": {
-      "JSONProvider": "Provides an interface for custom JSON serialization and deserialization logic in Flask.",
-      "JSONProvider.__init__": "Initializes the provider with a weak reference to the application instance.",
-      "JSONProvider.dumps": "Serializes objects to JSON strings.",
-      "JSONProvider.dump": "Writes serialized JSON data to a file stream.",
-      "JSONProvider.loads": "Deserializes JSON data from strings or bytes.",
-      "JSONProvider.load": "Deserializes JSON data from a file stream.",
-      "JSONProvider.response": "Creates a Flask response object containing JSON serialized content.",
-      "_default": "Handles serialization for non-standard types including dates, UUIDs, dataclasses, and HTML objects.",
-      "DefaultJSONProvider": "Implements standard JSON operations using Python's built-in library with extended type support.",
-      "DefaultJSONProvider.dumps": "Serializes data using default configuration and custom type handlers.",
-      "DefaultJSONProvider.loads": "Deserializes data using the standard JSON library.",
-      "DefaultJSONProvider.response": "Creates a JSON response with optional formatting based on application debug mode."
-    }
+    "symbols": [
+      {
+        "name": "JSONProvider",
+        "parent": "",
+        "line": 19,
+        "description": "Base class defining the interface for application-specific JSON serialization and deserialization providers."
+      },
+      {
+        "name": "__init__",
+        "parent": "JSONProvider",
+        "line": 38,
+        "description": "Initializes the provider with a weak reference to the application instance."
+      },
+      {
+        "name": "dumps",
+        "parent": "JSONProvider",
+        "line": 41,
+        "description": "Serializes an object into a JSON-formatted string."
+      },
+      {
+        "name": "dump",
+        "parent": "JSONProvider",
+        "line": 49,
+        "description": "Serializes an object into JSON and writes it to a file stream."
+      },
+      {
+        "name": "loads",
+        "parent": "JSONProvider",
+        "line": 59,
+        "description": "Deserializes a JSON string or bytes into a Python object."
+      },
+      {
+        "name": "load",
+        "parent": "JSONProvider",
+        "line": 67,
+        "description": "Deserializes JSON data read from a file stream."
+      },
+      {
+        "name": "_prepare_response_obj",
+        "parent": "JSONProvider",
+        "line": 75,
+        "description": "Validates and prepares input arguments for conversion into a JSON response object."
+      },
+      {
+        "name": "response",
+        "parent": "JSONProvider",
+        "line": 89,
+        "description": "Creates an application response object containing serialized JSON content."
+      },
+      {
+        "name": "_default",
+        "parent": "",
+        "line": 108,
+        "description": "Handles serialization for data types not natively supported by the standard JSON library."
+      },
+      {
+        "name": "DefaultJSONProvider",
+        "parent": "",
+        "line": 124,
+        "description": "Provides JSON functionality using the built-in library with support for additional standard types."
+      },
+      {
+        "name": "dumps",
+        "parent": "DefaultJSONProvider",
+        "line": 166,
+        "description": "Serializes data to JSON using configured defaults and settings."
+      },
+      {
+        "name": "loads",
+        "parent": "DefaultJSONProvider",
+        "line": 181,
+        "description": "Deserializes JSON data using the standard library loader."
+      },
+      {
+        "name": "response",
+        "parent": "DefaultJSONProvider",
+        "line": 189,
+        "description": "Constructs an application response with JSON content, supporting optional compact or indented formatting."
+      }
+    ]
   },
   "json/tag.py": {
-    "file_summary": "Provides a system for lossless serialization of non-standard Python types into JSON using extensible tag classes.",
-    "symbols": {
-      "JSONTag": "Base definition for creating type tags used by the serializer.",
-      "TagDict": "Handles dictionaries that conflict with reserved tag keys.",
-      "PassDict": "Handles standard dictionary serialization.",
-      "TagTuple": "Serializes sequences that should remain tuples after decoding.",
-      "PassList": "Handles standard list serialization.",
-      "TagBytes": "Encodes binary data using base64 for JSON compatibility.",
-      "TagMarkup": "Serializes objects providing HTML representations.",
-      "TagUUID": "Serializes unique identifiers as hexadecimal strings.",
-      "TagDateTime": "Serializes timestamps using HTTP date formats.",
-      "TaggedJSONSerializer": "Coordinates the conversion between Python types and tagged JSON representations.",
-      "TaggedJSONSerializer.register": "Adds or replaces a type tag in the serialization order.",
-      "TaggedJSONSerializer.tag": "Converts a Python value into its tagged representation.",
-      "TaggedJSONSerializer.untag": "Converts a tagged structure back into the original Python type.",
-      "TaggedJSONSerializer.dumps": "Serializes and tags data into a compact JSON string.",
-      "TaggedJSONSerializer.loads": "Parses a JSON string and recursively untags contained objects."
-    }
+    "file_summary": "Provides a extensible framework for serializing and deserializing non-standard Python types into compact JSON format using custom tag structures.",
+    "symbols": [
+      {
+        "name": "JSONTag",
+        "parent": "",
+        "line": 60,
+        "description": "Base class for defining type tags for use in a serialization framework."
+      },
+      {
+        "name": "__init__",
+        "parent": "JSONTag",
+        "line": 69,
+        "description": "Initializes a new tag instance associated with a specific serializer."
+      },
+      {
+        "name": "check",
+        "parent": "JSONTag",
+        "line": 73,
+        "description": "Determines if a value should be processed by the current tag."
+      },
+      {
+        "name": "to_json",
+        "parent": "JSONTag",
+        "line": 77,
+        "description": "Converts a Python object into a standard JSON-compatible format."
+      },
+      {
+        "name": "to_python",
+        "parent": "JSONTag",
+        "line": 82,
+        "description": "Converts a JSON-compatible representation back into the original Python object type."
+      },
+      {
+        "name": "tag",
+        "parent": "JSONTag",
+        "line": 87,
+        "description": "Wraps a JSON-compatible value with the tag identifier structure."
+      },
+      {
+        "name": "TagDict",
+        "parent": "",
+        "line": 93,
+        "description": "Handles serialization for specialized dictionaries matching registered tag keys."
+      },
+      {
+        "name": "check",
+        "parent": "TagDict",
+        "line": 103,
+        "description": "Verifies if the dictionary contains exactly one key matching a registered tag."
+      },
+      {
+        "name": "to_json",
+        "parent": "TagDict",
+        "line": 110,
+        "description": "Serializes the dictionary content while preserving and tagging internal types."
+      },
+      {
+        "name": "to_python",
+        "parent": "TagDict",
+        "line": 114,
+        "description": "Restores the dictionary by stripping internal key suffixes."
+      },
+      {
+        "name": "PassDict",
+        "parent": "",
+        "line": 119,
+        "description": "Processes standard dictionaries by recursively tagging their contained values."
+      },
+      {
+        "name": "check",
+        "parent": "PassDict",
+        "line": 122,
+        "description": "Checks if the provided value is a standard dictionary."
+      },
+      {
+        "name": "to_json",
+        "parent": "PassDict",
+        "line": 125,
+        "description": "Serializes dictionary values while maintaining original keys."
+      },
+      {
+        "name": "TagTuple",
+        "parent": "",
+        "line": 133,
+        "description": "Supports serialization and deserialization of tuple objects."
+      },
+      {
+        "name": "check",
+        "parent": "TagTuple",
+        "line": 137,
+        "description": "Checks if the provided value is a tuple."
+      },
+      {
+        "name": "to_json",
+        "parent": "TagTuple",
+        "line": 140,
+        "description": "Converts tuple items into a list of tagged JSON elements."
+      },
+      {
+        "name": "to_python",
+        "parent": "TagTuple",
+        "line": 143,
+        "description": "Converts a list representation back into a Python tuple."
+      },
+      {
+        "name": "PassList",
+        "parent": "",
+        "line": 147,
+        "description": "Handles serialization for standard list objects."
+      },
+      {
+        "name": "check",
+        "parent": "PassList",
+        "line": 150,
+        "description": "Checks if the provided value is a list."
+      },
+      {
+        "name": "to_json",
+        "parent": "PassList",
+        "line": 153,
+        "description": "Serializes list elements by tagging each individual item."
+      },
+      {
+        "name": "TagBytes",
+        "parent": "",
+        "line": 159,
+        "description": "Manages serialization of binary data using base64 encoding."
+      },
+      {
+        "name": "check",
+        "parent": "TagBytes",
+        "line": 163,
+        "description": "Checks if the provided value is a bytes object."
+      },
+      {
+        "name": "to_json",
+        "parent": "TagBytes",
+        "line": 166,
+        "description": "Encodes binary data into an ASCII base64 string."
+      },
+      {
+        "name": "to_python",
+        "parent": "TagBytes",
+        "line": 169,
+        "description": "Decodes base64 string back into original binary bytes."
+      },
+      {
+        "name": "TagMarkup",
+        "parent": "",
+        "line": 173,
+        "description": "Handles serialization for objects supporting the MarkupSafe protocol."
+      },
+      {
+        "name": "check",
+        "parent": "TagMarkup",
+        "line": 181,
+        "description": "Checks if the value implements the HTML conversion method."
+      },
+      {
+        "name": "to_json",
+        "parent": "TagMarkup",
+        "line": 184,
+        "description": "Serializes markup content by invoking its HTML string conversion."
+      },
+      {
+        "name": "to_python",
+        "parent": "TagMarkup",
+        "line": 187,
+        "description": "Converts a string back into a Markup object."
+      },
+      {
+        "name": "TagUUID",
+        "parent": "",
+        "line": 191,
+        "description": "Supports serialization of UUID objects."
+      },
+      {
+        "name": "check",
+        "parent": "TagUUID",
+        "line": 195,
+        "description": "Checks if the value is a UUID instance."
+      },
+      {
+        "name": "to_json",
+        "parent": "TagUUID",
+        "line": 198,
+        "description": "Converts a UUID object into its hexadecimal string representation."
+      },
+      {
+        "name": "to_python",
+        "parent": "TagUUID",
+        "line": 201,
+        "description": "Restores a UUID object from a hexadecimal string."
+      },
+      {
+        "name": "TagDateTime",
+        "parent": "",
+        "line": 205,
+        "description": "Manages serialization for datetime objects using HTTP formatting."
+      },
+      {
+        "name": "check",
+        "parent": "TagDateTime",
+        "line": 209,
+        "description": "Checks if the value is a datetime instance."
+      },
+      {
+        "name": "to_json",
+        "parent": "TagDateTime",
+        "line": 212,
+        "description": "Converts a datetime object into a formatted HTTP date string."
+      },
+      {
+        "name": "to_python",
+        "parent": "TagDateTime",
+        "line": 215,
+        "description": "Parses an HTTP date string back into a datetime object."
+      },
+      {
+        "name": "TaggedJSONSerializer",
+        "parent": "",
+        "line": 219,
+        "description": "Provides a configurable system for serializing objects not natively supported by JSON."
+      },
+      {
+        "name": "__init__",
+        "parent": "TaggedJSONSerializer",
+        "line": 249,
+        "description": "Initializes the serializer with default supported tag types."
+      },
+      {
+        "name": "register",
+        "parent": "TaggedJSONSerializer",
+        "line": 256,
+        "description": "Registers a new tag class for the serialization system."
+      },
+      {
+        "name": "tag",
+        "parent": "TaggedJSONSerializer",
+        "line": 289,
+        "description": "Converts a value to its tagged representation based on registered tags."
+      },
+      {
+        "name": "untag",
+        "parent": "TaggedJSONSerializer",
+        "line": 297,
+        "description": "Converts a tagged dictionary back to its original Python type."
+      },
+      {
+        "name": "_untag_scan",
+        "parent": "TaggedJSONSerializer",
+        "line": 309,
+        "description": "Recursively scans and replaces tagged structures within complex nested data."
+      },
+      {
+        "name": "dumps",
+        "parent": "TaggedJSONSerializer",
+        "line": 321,
+        "description": "Tags a value and exports it as a compact JSON string."
+      },
+      {
+        "name": "loads",
+        "parent": "TaggedJSONSerializer",
+        "line": 325,
+        "description": "Deserializes a JSON string and reconstructs any tagged objects."
+      }
+    ]
   },
   "logging.py": {
-    "file_summary": "Provides logging utilities and configuration for Flask applications, including stream handling and logger initialization.",
-    "symbols": {
-      "wsgi_errors_stream": "Determines the appropriate error output stream based on the current request context.",
-      "has_level_handler": "Verifies if any logger in the hierarchy processes the current effective logging level.",
-      "create_logger": "Retrieves and configures an application logger with standard formatting and debug settings."
-    }
+    "file_summary": "Provides logging utilities and configuration helpers for Flask applications.",
+    "symbols": [
+      {
+        "name": "wsgi_errors_stream",
+        "parent": "",
+        "line": 16,
+        "description": "Returns the active request error stream or the standard system error stream."
+      },
+      {
+        "name": "has_level_handler",
+        "parent": "",
+        "line": 31,
+        "description": "Determines if a logger or its parents possess a handler for its level."
+      },
+      {
+        "name": "create_logger",
+        "parent": "",
+        "line": 58,
+        "description": "Retrieves and configures a logger instance for a Flask application."
+      }
+    ]
   },
   "sansio/app.py": {
-    "file_summary": "Defines the core Flask application class, providing a central registry for routing, configuration, templating, and request handling logic.",
-    "symbols": {
-      "App": "The central registry for view functions, URL rules, and template configuration.",
-      "App.__init__": "Initializes the application instance with its core configuration and internal state.",
-      "_check_setup_finished": "Verifies that configuration methods are not called after request processing has started.",
-      "App.name": "Returns the display name used for identifying the application instance.",
-      "App.logger": "Provides a standard logging interface for the application instance.",
-      "App.jinja_env": "Provides access to the template environment used for rendering.",
-      "App.create_jinja_environment": "Constructs the environment instance responsible for loading and rendering templates.",
-      "App.make_config": "Creates the application configuration object from default and instance-specific settings.",
-      "App.make_aborter": "Instantiates the object responsible for raising standardized HTTP exceptions.",
-      "App.auto_find_instance_path": "Determines the filesystem path for application-specific instance data.",
-      "App.create_global_jinja_loader": "Generates the loader used to resolve templates across the application and registered blueprints.",
-      "App.select_jinja_autoescape": "Determines whether template autoescaping should be enabled for a given file.",
-      "App.debug": "Manages the debug mode state which affects error reporting and development utilities.",
-      "App.register_blueprint": "Attaches a modular blueprint to the application instance.",
-      "App.iter_blueprints": "Returns all blueprints registered in their original order of registration.",
-      "App.add_url_rule": "Registers a new URL route and associates it with a handler function.",
-      "App.template_filter": "Registers a function as a Jinja template filter using a decorator.",
-      "App.add_template_filter": "Registers a function as a Jinja template filter programmatically.",
-      "App.template_test": "Registers a function as a custom Jinja template test using a decorator.",
-      "App.add_template_test": "Registers a function as a custom Jinja template test programmatically.",
-      "App.template_global": "Registers a function as a Jinja template global using a decorator.",
-      "App.add_template_global": "Registers a function as a Jinja template global programmatically.",
-      "App.teardown_appcontext": "Registers a callback to execute when the application context is destroyed.",
-      "App.shell_context_processor": "Registers a function that provides objects to the interactive shell context.",
-      "_find_error_handler": "Locates an appropriate error handler for a given exception based on hierarchy.",
-      "App.trap_http_exception": "Determines whether an HTTP exception should be re-raised instead of handled.",
-      "App.redirect": "Generates a redirect response object for the specified location.",
-      "App.inject_url_defaults": "Applies default values to a dictionary of endpoint arguments during URL construction.",
-      "App.handle_url_build_error": "Attempts to resolve URL building failures using registered error handlers."
-    }
+    "file_summary": "Defines the core application object and its foundational mechanisms for routing, configuration, templating, and request handling in a framework-agnostic manner.",
+    "symbols": [
+      {
+        "name": "_make_timedelta",
+        "parent": "",
+        "line": 52,
+        "description": "Converts input values into a datetime timedelta object."
+      },
+      {
+        "name": "App",
+        "parent": "",
+        "line": 59,
+        "description": "Central registry for an application handling routing, configuration, and template management."
+      },
+      {
+        "name": "__init__",
+        "parent": "App",
+        "line": 279,
+        "description": "Initializes the application instance with essential paths and configuration settings."
+      },
+      {
+        "name": "_check_setup_finished",
+        "parent": "App",
+        "line": 410,
+        "description": "Validates that application setup has not yet been bypassed by request processing."
+      },
+      {
+        "name": "name",
+        "parent": "App",
+        "line": 423,
+        "description": "Retrieves the application display name used for logging and identification."
+      },
+      {
+        "name": "logger",
+        "parent": "App",
+        "line": 440,
+        "description": "Provides a standard logging interface for the application."
+      },
+      {
+        "name": "jinja_env",
+        "parent": "App",
+        "line": 467,
+        "description": "Accesses or initializes the environment used for rendering templates."
+      },
+      {
+        "name": "create_jinja_environment",
+        "parent": "App",
+        "line": 476,
+        "description": "Instantiates a new environment for template processing."
+      },
+      {
+        "name": "make_config",
+        "parent": "App",
+        "line": 479,
+        "description": "Generates a configuration object based on the application path."
+      },
+      {
+        "name": "make_aborter",
+        "parent": "App",
+        "line": 495,
+        "description": "Creates a utility for raising HTTP error exceptions."
+      },
+      {
+        "name": "auto_find_instance_path",
+        "parent": "App",
+        "line": 507,
+        "description": "Determines the appropriate filesystem path for instance-specific data."
+      },
+      {
+        "name": "create_global_jinja_loader",
+        "parent": "App",
+        "line": 520,
+        "description": "Creates a loader to resolve templates across the application and blueprints."
+      },
+      {
+        "name": "select_jinja_autoescape",
+        "parent": "App",
+        "line": 533,
+        "description": "Determines if a template file requires automatic HTML escaping."
+      },
+      {
+        "name": "debug",
+        "parent": "App",
+        "line": 550,
+        "description": "Checks the current enabled state of the application debug mode."
+      },
+      {
+        "name": "debug",
+        "parent": "App",
+        "line": 563,
+        "description": "Configures the debug mode setting and updates environment reload properties."
+      },
+      {
+        "name": "register_blueprint",
+        "parent": "App",
+        "line": 570,
+        "description": "Attaches a blueprint to the application and records its registration."
+      },
+      {
+        "name": "iter_blueprints",
+        "parent": "App",
+        "line": 597,
+        "description": "Returns an iterator for all registered blueprints."
+      },
+      {
+        "name": "add_url_rule",
+        "parent": "App",
+        "line": 605,
+        "description": "Registers a new route mapping a URL pattern to an endpoint."
+      },
+      {
+        "name": "template_filter",
+        "parent": "App",
+        "line": 664,
+        "description": "Registers a function as a custom template filter via decorator."
+      },
+      {
+        "name": "template_filter",
+        "parent": "App",
+        "line": 666,
+        "description": "Provides a factory for creating a template filter registration decorator."
+      },
+      {
+        "name": "template_filter",
+        "parent": "App",
+        "line": 670,
+        "description": "Registers a template filter using a specific name or function name."
+      },
+      {
+        "name": "add_template_filter",
+        "parent": "App",
+        "line": 699,
+        "description": "Adds a function to the environment's collection of template filters."
+      },
+      {
+        "name": "template_test",
+        "parent": "App",
+        "line": 714,
+        "description": "Registers a function as a custom template test via decorator."
+      },
+      {
+        "name": "template_test",
+        "parent": "App",
+        "line": 716,
+        "description": "Provides a factory for creating a template test registration decorator."
+      },
+      {
+        "name": "template_test",
+        "parent": "App",
+        "line": 720,
+        "description": "Registers a template test using a specific name or function name."
+      },
+      {
+        "name": "add_template_test",
+        "parent": "App",
+        "line": 756,
+        "description": "Adds a function to the environment's collection of template tests."
+      },
+      {
+        "name": "template_global",
+        "parent": "App",
+        "line": 773,
+        "description": "Registers a function as a global template helper via decorator."
+      },
+      {
+        "name": "template_global",
+        "parent": "App",
+        "line": 775,
+        "description": "Provides a factory for creating a template global registration decorator."
+      },
+      {
+        "name": "template_global",
+        "parent": "App",
+        "line": 779,
+        "description": "Registers a template global using a specific name or function name."
+      },
+      {
+        "name": "add_template_global",
+        "parent": "App",
+        "line": 810,
+        "description": "Adds a function to the environment's collection of template globals."
+      },
+      {
+        "name": "teardown_appcontext",
+        "parent": "App",
+        "line": 827,
+        "description": "Registers a callback to execute when the application context ends."
+      },
+      {
+        "name": "shell_context_processor",
+        "parent": "App",
+        "line": 858,
+        "description": "Registers a function to provide context to the interactive shell."
+      },
+      {
+        "name": "_find_error_handler",
+        "parent": "App",
+        "line": 868,
+        "description": "Searches for an appropriate exception handler within blueprints or application."
+      },
+      {
+        "name": "trap_http_exception",
+        "parent": "App",
+        "line": 893,
+        "description": "Determines if an HTTP exception should be re-raised instead of handled."
+      },
+      {
+        "name": "redirect",
+        "parent": "App",
+        "line": 939,
+        "description": "Generates a response object for redirection to a new location."
+      },
+      {
+        "name": "inject_url_defaults",
+        "parent": "App",
+        "line": 960,
+        "description": "Populates URL arguments with default values for a specific endpoint."
+      },
+      {
+        "name": "handle_url_build_error",
+        "parent": "App",
+        "line": 981,
+        "description": "Attempts to recover from a URL generation error using registered handlers."
+      }
+    ]
   },
   "sansio/blueprints.py": {
-    "file_summary": "Defines Blueprint objects and setup state management for organizing Flask application routes, templates, and request handlers before final application registration.",
-    "symbols": {
-      "BlueprintSetupState": "Holds temporary registration data used while applying a blueprint to an application instance.",
-      "BlueprintSetupState.add_url_rule": "Registers a URL rule onto the associated application with prefixed endpoints and defaults.",
-      "Blueprint": "Provides a modular collection of routes and handlers deferred for later application registration.",
-      "Blueprint._check_setup_finished": "Validates that the blueprint has not been previously registered to an application.",
-      "Blueprint.record": "Stores a callback function to execute during the application registration process.",
-      "Blueprint.record_once": "Registers a callback to execute only during the initial application registration.",
-      "Blueprint.make_setup_state": "Initializes the temporary object used for orchestrating the blueprint registration process.",
-      "Blueprint.register_blueprint": "Adds a nested blueprint to the current blueprint for hierarchical route structure.",
-      "Blueprint.register": "Applies all registered deferred functions and routes to the provided application instance.",
-      "Blueprint._merge_blueprint_funcs": "Transfers all registered blueprint handlers and context processors to the parent application.",
-      "Blueprint.add_url_rule": "Defines a URL route associated with the blueprint for later application registration.",
-      "Blueprint.app_template_filter": "Registers a global Jinja template filter available across the entire application.",
-      "Blueprint.add_app_template_filter": "Adds a custom Jinja filter accessible by all templates in the application.",
-      "Blueprint.app_template_test": "Registers a global Jinja template test available across the entire application.",
-      "Blueprint.add_app_template_test": "Adds a custom Jinja test accessible by all templates in the application.",
-      "Blueprint.app_template_global": "Registers a global Jinja template variable available across the entire application.",
-      "Blueprint.add_app_template_global": "Adds a custom Jinja global variable accessible by all templates in the application.",
-      "Blueprint.before_app_request": "Registers a function to run before every request in the entire application.",
-      "Blueprint.after_app_request": "Registers a function to run after every request in the entire application.",
-      "Blueprint.teardown_app_request": "Registers a function to run after every request during teardown phase globally.",
-      "Blueprint.app_context_processor": "Registers a context processor for all templates rendered within the application.",
-      "Blueprint.app_errorhandler": "Registers an error handler applicable to the entire application scope.",
-      "Blueprint.app_url_value_preprocessor": "Registers a URL value preprocessor for every request in the application.",
-      "Blueprint.app_url_defaults": "Registers a URL default processor for every request in the application."
-    }
-  },
-  "sansio/scaffold.py": {
-    "file_summary": "Defines base scaffolding for Flask applications and blueprints, providing common logic for routing, static files, templates, and request lifecycle hooks.",
-    "symbols": {
-      "setupmethod": "Ensures methods verify scaffold setup state before execution.",
-      "Scaffold": "Provides core registration and configuration logic for Flask applications and blueprints.",
-      "Scaffold.__init__": "Initializes the scaffold with import name, folder paths, and configuration state.",
-      "Scaffold.static_folder": "Returns the absolute path to the configured static directory.",
-      "Scaffold.has_static_folder": "Indicates whether a static folder is configured.",
-      "Scaffold.static_url_path": "Returns the URL prefix used for accessing static files.",
-      "Scaffold.jinja_loader": "Provides a Jinja loader for templates located in the scaffold's template folder.",
-      "Scaffold.get": "Registers a GET route for a specified path.",
-      "Scaffold.query": "Registers a QUERY route for a specified path.",
-      "Scaffold.post": "Registers a POST route for a specified path.",
-      "Scaffold.put": "Registers a PUT route for a specified path.",
-      "Scaffold.delete": "Registers a DELETE route for a specified path.",
-      "Scaffold.patch": "Registers a PATCH route for a specified path.",
-      "Scaffold.route": "Decorates a function to register it as a view for a URL rule.",
-      "Scaffold.add_url_rule": "Registers a URL rule for routing and endpoint association.",
-      "Scaffold.endpoint": "Registers a function as the handler for a specific endpoint.",
-      "Scaffold.before_request": "Registers a function to execute before every request.",
-      "Scaffold.after_request": "Registers a function to execute after every request.",
-      "Scaffold.teardown_request": "Registers a function to execute when the request context is popped.",
-      "Scaffold.context_processor": "Registers a function to inject context variables into templates.",
-      "Scaffold.url_value_preprocessor": "Registers a function to modify URL values before request handling.",
-      "Scaffold.url_defaults": "Registers a function to set default values for URL generation.",
-      "Scaffold.errorhandler": "Decorates a function to handle specified exceptions or status codes.",
-      "Scaffold.register_error_handler": "Registers a handler function for an exception or HTTP status code.",
-      "Scaffold._get_exc_class_and_code": "Resolves an exception class and status code from an input.",
-      "_endpoint_from_view_func": "Extracts the default endpoint name from a view function.",
-      "_find_package_path": "Determines the filesystem path of a given package or module.",
-      "find_package": "Identifies the installation prefix and import path of a package."
-    }
+    "file_summary": "Defines Blueprint components and setup state management for organizing Flask application routes, templates, and request handlers into modular, reusable modules.",
+    "symbols": [
+      {
+        "name": "BlueprintSetupState",
+        "parent": "",
+        "line": 34,
+        "description": "Holds temporary state for registering a blueprint with a Flask application."
+      },
+      {
+        "name": "__init__",
+        "parent": "BlueprintSetupState",
+        "line": 41,
+        "description": "Initializes setup state with application references and configuration options."
+      },
+      {
+        "name": "add_url_rule",
+        "parent": "BlueprintSetupState",
+        "line": 87,
+        "description": "Registers a URL rule with the application using blueprint configuration."
+      },
+      {
+        "name": "Blueprint",
+        "parent": "",
+        "line": 119,
+        "description": "A collection of routes and functions for modular application organization."
+      },
+      {
+        "name": "__init__",
+        "parent": "Blueprint",
+        "line": 174,
+        "description": "Initializes a blueprint instance with specified configuration and path settings."
+      },
+      {
+        "name": "_check_setup_finished",
+        "parent": "Blueprint",
+        "line": 213,
+        "description": "Verifies that the blueprint has not been registered yet."
+      },
+      {
+        "name": "record",
+        "parent": "Blueprint",
+        "line": 224,
+        "description": "Queues a function for execution upon blueprint registration."
+      },
+      {
+        "name": "record_once",
+        "parent": "Blueprint",
+        "line": 233,
+        "description": "Queues a function to run only once during blueprint registration."
+      },
+      {
+        "name": "make_setup_state",
+        "parent": "Blueprint",
+        "line": 246,
+        "description": "Creates a setup state object for the registration process."
+      },
+      {
+        "name": "register_blueprint",
+        "parent": "Blueprint",
+        "line": 256,
+        "description": "Registers a child blueprint within this blueprint."
+      },
+      {
+        "name": "register",
+        "parent": "Blueprint",
+        "line": 273,
+        "description": "Registers all blueprint components and handlers with the application."
+      },
+      {
+        "name": "_merge_blueprint_funcs",
+        "parent": "Blueprint",
+        "line": 379,
+        "description": "Integrates all blueprint functions into the host application."
+      },
+      {
+        "name": "add_url_rule",
+        "parent": "Blueprint",
+        "line": 413,
+        "description": "Schedules a URL rule registration for the blueprint."
+      },
+      {
+        "name": "app_template_filter",
+        "parent": "Blueprint",
+        "line": 444,
+        "description": "Registers a template filter for the entire application."
+      },
+      {
+        "name": "app_template_filter",
+        "parent": "Blueprint",
+        "line": 446,
+        "description": "Decorator-based registration for global template filters."
+      },
+      {
+        "name": "app_template_filter",
+        "parent": "Blueprint",
+        "line": 450,
+        "description": "Implements logic to register global template filters from a blueprint."
+      },
+      {
+        "name": "add_app_template_filter",
+        "parent": "Blueprint",
+        "line": 476,
+        "description": "Registers a template filter for all application templates."
+      },
+      {
+        "name": "app_template_test",
+        "parent": "Blueprint",
+        "line": 498,
+        "description": "Registers a global template test for the application."
+      },
+      {
+        "name": "app_template_test",
+        "parent": "Blueprint",
+        "line": 500,
+        "description": "Decorator-based registration for global template tests."
+      },
+      {
+        "name": "app_template_test",
+        "parent": "Blueprint",
+        "line": 504,
+        "description": "Handles global template test registration logic from a blueprint."
+      },
+      {
+        "name": "add_app_template_test",
+        "parent": "Blueprint",
+        "line": 532,
+        "description": "Registers a template test for all application templates."
+      },
+      {
+        "name": "app_template_global",
+        "parent": "Blueprint",
+        "line": 556,
+        "description": "Registers a global template variable for the application."
+      },
+      {
+        "name": "app_template_global",
+        "parent": "Blueprint",
+        "line": 558,
+        "description": "Decorator-based registration for global template variables."
+      },
+      {
+        "name": "app_template_global",
+        "parent": "Blueprint",
+        "line": 562,
+        "description": "Handles global template variable registration logic from a blueprint."
+      },
+      {
+        "name": "add_app_template_global",
+        "parent": "Blueprint",
+        "line": 590,
+        "description": "Registers a template global for all application templates."
+      },
+      {
+        "name": "before_app_request",
+        "parent": "Blueprint",
+        "line": 614,
+        "description": "Schedules a function to run before every application request."
+      },
+      {
+        "name": "after_app_request",
+        "parent": "Blueprint",
+        "line": 624,
+        "description": "Schedules a function to run after every application request."
+      },
+      {
+        "name": "teardown_app_request",
+        "parent": "Blueprint",
+        "line": 634,
+        "description": "Schedules a teardown function for every application request."
+      },
+      {
+        "name": "app_context_processor",
+        "parent": "Blueprint",
+        "line": 644,
+        "description": "Registers a context processor for all application templates."
+      },
+      {
+        "name": "app_errorhandler",
+        "parent": "Blueprint",
+        "line": 656,
+        "description": "Registers an error handler for all application requests."
+      },
+      {
+        "name": "app_url_value_preprocessor",
+        "parent": "Blueprint",
+        "line": 673,
+        "description": "Registers a URL value preprocessor for every request."
+      },
+      {
+        "name": "app_url_defaults",
+        "parent": "Blueprint",
+        "line": 685,
+        "description": "Registers a URL default function for every request."
+      }
+    ]
   },
   "sessions.py": {
-    "file_summary": "Defines session management structures, including cookie-based session interfaces and null session fallbacks for the Flask framework.",
-    "symbols": {
-      "SessionMixin": "Adds session-specific attributes and dictionary-like functionality to session objects.",
-      "SecureCookieSession": "Implements a signed, cookie-based session storage backend.",
-      "NullSession": "Provides a read-only fallback session object when session support is unavailable.",
-      "SessionInterface": "Defines the abstract base class for implementing custom session storage mechanisms.",
-      "SecureCookieSessionInterface": "Manages signed cookie serialization and persistence using the itsdangerous library.",
-      "_lazy_sha1": "Provides a deferred-import SHA-1 hash function compatible with FIPS builds."
-    }
+    "file_summary": "Defines session management interfaces and cookie-based implementations for Flask applications.",
+    "symbols": [
+      {
+        "name": "SessionMixin",
+        "parent": "",
+        "line": 24,
+        "description": "Provides dictionary-like functionality with session-specific attributes for request contexts."
+      },
+      {
+        "name": "permanent",
+        "parent": "SessionMixin",
+        "line": 28,
+        "description": "Retrieves the session persistence status from the underlying dictionary."
+      },
+      {
+        "name": "permanent",
+        "parent": "SessionMixin",
+        "line": 33,
+        "description": "Sets the session persistence status in the underlying dictionary."
+      },
+      {
+        "name": "SecureCookieSession",
+        "parent": "",
+        "line": 57,
+        "description": "Implements session storage using cryptographically signed cookies."
+      },
+      {
+        "name": "__init__",
+        "parent": "SecureCookieSession",
+        "line": 73,
+        "description": "Initializes a signed cookie session with optional starting data."
+      },
+      {
+        "name": "NullSession",
+        "parent": "",
+        "line": 83,
+        "description": "Represents a non-functional session that raises errors on modification attempts."
+      },
+      {
+        "name": "_fail",
+        "parent": "NullSession",
+        "line": 89,
+        "description": "Raises a runtime error indicating missing application secret keys."
+      },
+      {
+        "name": "SessionInterface",
+        "parent": "",
+        "line": 100,
+        "description": "Defines the contract for creating, reading, and saving application sessions."
+      },
+      {
+        "name": "make_null_session",
+        "parent": "SessionInterface",
+        "line": 150,
+        "description": "Creates an instance of the configured null session class."
+      },
+      {
+        "name": "is_null_session",
+        "parent": "SessionInterface",
+        "line": 162,
+        "description": "Verifies if an object is an instance of the null session type."
+      },
+      {
+        "name": "get_cookie_name",
+        "parent": "SessionInterface",
+        "line": 171,
+        "description": "Retrieves the configured name for the session cookie."
+      },
+      {
+        "name": "get_cookie_domain",
+        "parent": "SessionInterface",
+        "line": 175,
+        "description": "Retrieves the domain scope configured for the session cookie."
+      },
+      {
+        "name": "get_cookie_path",
+        "parent": "SessionInterface",
+        "line": 187,
+        "description": "Retrieves the URL path scope configured for the session cookie."
+      },
+      {
+        "name": "get_cookie_httponly",
+        "parent": "SessionInterface",
+        "line": 195,
+        "description": "Checks if the session cookie should restrict access to HTTP requests only."
+      },
+      {
+        "name": "get_cookie_secure",
+        "parent": "SessionInterface",
+        "line": 202,
+        "description": "Checks if the session cookie requires a secure transport connection."
+      },
+      {
+        "name": "get_cookie_samesite",
+        "parent": "SessionInterface",
+        "line": 208,
+        "description": "Retrieves the SameSite attribute policy for the session cookie."
+      },
+      {
+        "name": "get_cookie_partitioned",
+        "parent": "SessionInterface",
+        "line": 215,
+        "description": "Checks if the session cookie should be partitioned by browser state."
+      },
+      {
+        "name": "get_expiration_time",
+        "parent": "SessionInterface",
+        "line": 223,
+        "description": "Calculates the expiration timestamp for permanent sessions."
+      },
+      {
+        "name": "should_set_cookie",
+        "parent": "SessionInterface",
+        "line": 233,
+        "description": "Determines if the session cookie needs to be written to the response."
+      },
+      {
+        "name": "open_session",
+        "parent": "SessionInterface",
+        "line": 249,
+        "description": "Loads a session from the request data."
+      },
+      {
+        "name": "save_session",
+        "parent": "SessionInterface",
+        "line": 263,
+        "description": "Serializes and saves a session into the response."
+      },
+      {
+        "name": "_lazy_sha1",
+        "parent": "",
+        "line": 276,
+        "description": "Provides a SHA-1 hash object initialized at runtime."
+      },
+      {
+        "name": "SecureCookieSessionInterface",
+        "parent": "",
+        "line": 284,
+        "description": "Manages signed cookie sessions using serializable payloads."
+      },
+      {
+        "name": "get_signing_serializer",
+        "parent": "SecureCookieSessionInterface",
+        "line": 303,
+        "description": "Constructs a serializer for signing and verifying session data."
+      },
+      {
+        "name": "open_session",
+        "parent": "SecureCookieSessionInterface",
+        "line": 323,
+        "description": "Decodes and validates a session from a signed request cookie."
+      },
+      {
+        "name": "save_session",
+        "parent": "SecureCookieSessionInterface",
+        "line": 337,
+        "description": "Signs and writes session data to an outgoing response cookie."
+      }
+    ]
   },
   "signals.py": {
-    "file_summary": "Defines core Flask application and request lifecycle signals using the Blinker library for event notification.",
-    "symbols": {
-      "template_rendered": "Emitted when a template is successfully rendered.",
-      "before_render_template": "Emitted before a template rendering process begins.",
-      "request_started": "Emitted when a request context is initiated.",
-      "request_finished": "Emitted after a request has been processed.",
-      "request_tearing_down": "Emitted when a request context is being destroyed.",
-      "got_request_exception": "Emitted when an unhandled exception occurs during request processing.",
-      "appcontext_tearing_down": "Emitted when an application context is being destroyed.",
-      "appcontext_pushed": "Emitted when an application context is pushed onto the stack.",
-      "appcontext_popped": "Emitted when an application context is popped from the stack.",
-      "message_flashed": "Emitted when a message is flashed to the user session."
-    }
+    "file_summary": "Defines the core set of blinker signals used by the Flask framework for event notification.",
+    "symbols": []
   },
   "templating.py": {
-    "file_summary": "Provides template rendering and streaming utilities for Flask applications by integrating Jinja2 environments with application contexts and blueprint-aware loading mechanisms.",
-    "symbols": {
-      "_default_template_ctx_processor": "Provides core objects to the template rendering context.",
-      "Environment": "Customizes template resolution to support Flask blueprint structures.",
-      "DispatchingJinjaLoader": "Retrieves templates from the application and registered blueprint directories.",
-      "_render": "Executes template rendering with signal dispatching and context updates.",
-      "render_template": "Renders a specified template file using the current application context.",
-      "render_template_string": "Processes a template string into a rendered response.",
-      "_stream": "Handles streaming of rendered templates while maintaining application context.",
-      "stream_template": "Returns a streaming iterator for a specified template.",
-      "stream_template_string": "Returns a streaming iterator for a provided template string."
-    }
+    "file_summary": "Provides template rendering and streaming utilities for Flask applications by integrating Jinja2 with application and blueprint-specific template loaders.",
+    "symbols": [
+      {
+        "name": "_default_template_ctx_processor",
+        "parent": "",
+        "line": 21,
+        "description": "Provides default template context variables by resolving request and application state proxies."
+      },
+      {
+        "name": "Environment",
+        "parent": "",
+        "line": 36,
+        "description": "Customizes the Jinja environment to handle Flask blueprint-aware template path resolution."
+      },
+      {
+        "name": "__init__",
+        "parent": "Environment",
+        "line": 42,
+        "description": "Initializes the environment with a global loader derived from the application."
+      },
+      {
+        "name": "DispatchingJinjaLoader",
+        "parent": "",
+        "line": 49,
+        "description": "Aggregates template loading across the application and its registered blueprints."
+      },
+      {
+        "name": "__init__",
+        "parent": "DispatchingJinjaLoader",
+        "line": 54,
+        "description": "Initializes the loader with a reference to the Flask application."
+      },
+      {
+        "name": "get_source",
+        "parent": "DispatchingJinjaLoader",
+        "line": 57,
+        "description": "Retrieves template source code using either fast or diagnostic loading strategies."
+      },
+      {
+        "name": "_get_source_explained",
+        "parent": "DispatchingJinjaLoader",
+        "line": 64,
+        "description": "Locates template sources and generates a diagnostic report of all search attempts."
+      },
+      {
+        "name": "_get_source_fast",
+        "parent": "DispatchingJinjaLoader",
+        "line": 88,
+        "description": "Iteratively searches for a template source without generating debug information."
+      },
+      {
+        "name": "_iter_loaders",
+        "parent": "DispatchingJinjaLoader",
+        "line": 98,
+        "description": "Yields loaders configured for the application and all associated blueprints."
+      },
+      {
+        "name": "list_templates",
+        "parent": "DispatchingJinjaLoader",
+        "line": 108,
+        "description": "Returns a unique list of all templates available across the application and blueprints."
+      },
+      {
+        "name": "_render",
+        "parent": "",
+        "line": 123,
+        "description": "Updates the template context and triggers rendering signals before producing output."
+      },
+      {
+        "name": "render_template",
+        "parent": "",
+        "line": 136,
+        "description": "Renders a template file found within the application or blueprint structures."
+      },
+      {
+        "name": "render_template_string",
+        "parent": "",
+        "line": 151,
+        "description": "Renders a provided template source string within the current application context."
+      },
+      {
+        "name": "_stream",
+        "parent": "",
+        "line": 163,
+        "description": "Wraps template generation in a streaming iterator with associated lifecycle signals."
+      },
+      {
+        "name": "stream_template",
+        "parent": "",
+        "line": 181,
+        "description": "Streams the rendered output of a template file as an iterator."
+      },
+      {
+        "name": "stream_template_string",
+        "parent": "",
+        "line": 200,
+        "description": "Streams the rendered output of a template string as an iterator."
+      }
+    ]
   },
   "testing.py": {
-    "file_summary": "Provides testing utilities for Flask applications, including a custom request environment builder, a specialized test client, and a command-line interface runner.",
-    "symbols": {
-      "EnvironBuilder": "Constructs WSGI environments tailored for Flask application requests.",
-      "json_dumps": "Serializes objects into JSON strings using the configured application encoder.",
-      "FlaskClient": "Simulates requests to a Flask application for integration testing.",
-      "session_transaction": "Opens a session context for inspecting or modifying session data during tests.",
-      "open": "Dispatches a request to the application and returns the resulting response object.",
-      "FlaskCliRunner": "Executes Flask command-line interface commands within an isolated testing environment.",
-      "invoke": "Runs a CLI command or group using the associated Flask application context."
-    }
+    "file_summary": "Provides testing utilities for Flask applications, including request builders, test clients, and CLI runners.",
+    "symbols": [
+      {
+        "name": "EnvironBuilder",
+        "parent": "",
+        "line": 27,
+        "description": "Constructs WSGI environments using settings from a Flask application."
+      },
+      {
+        "name": "__init__",
+        "parent": "EnvironBuilder",
+        "line": 49,
+        "description": "Initializes the builder with Flask application configuration and request details."
+      },
+      {
+        "name": "json_dumps",
+        "parent": "EnvironBuilder",
+        "line": 88,
+        "description": "Serializes an object to JSON using the associated application's configuration."
+      },
+      {
+        "name": "_get_werkzeug_version",
+        "parent": "",
+        "line": 100,
+        "description": "Retrieves the installed version of the Werkzeug library."
+      },
+      {
+        "name": "FlaskClient",
+        "parent": "",
+        "line": 109,
+        "description": "A test client that facilitates request execution and request context management."
+      },
+      {
+        "name": "__init__",
+        "parent": "FlaskClient",
+        "line": 125,
+        "description": "Initializes the client with a default environment and context stack."
+      },
+      {
+        "name": "session_transaction",
+        "parent": "FlaskClient",
+        "line": 136,
+        "description": "Provides a context manager to modify and save session data."
+      },
+      {
+        "name": "_copy_environ",
+        "parent": "FlaskClient",
+        "line": 185,
+        "description": "Merges client base environment variables with a provided environment dictionary."
+      },
+      {
+        "name": "_request_from_builder_args",
+        "parent": "FlaskClient",
+        "line": 193,
+        "description": "Generates a request object using builder arguments and the client environment."
+      },
+      {
+        "name": "open",
+        "parent": "FlaskClient",
+        "line": 204,
+        "description": "Executes a test request while managing context and session persistence."
+      },
+      {
+        "name": "__enter__",
+        "parent": "FlaskClient",
+        "line": 249,
+        "description": "Enables context preservation for the duration of the block."
+      },
+      {
+        "name": "__exit__",
+        "parent": "FlaskClient",
+        "line": 255,
+        "description": "Cleans up preserved contexts when exiting the client block."
+      },
+      {
+        "name": "FlaskCliRunner",
+        "parent": "",
+        "line": 265,
+        "description": "A test runner for executing Flask CLI commands in isolation."
+      },
+      {
+        "name": "__init__",
+        "parent": "FlaskCliRunner",
+        "line": 271,
+        "description": "Initializes the runner with the target Flask application instance."
+      },
+      {
+        "name": "invoke",
+        "parent": "FlaskCliRunner",
+        "line": 275,
+        "description": "Runs a CLI command within a configured application context."
+      }
+    ]
   },
   "typing.py": {
-    "file_summary": "Defines type aliases for Flask request handling, response structures, and various callback interfaces to facilitate static type checking throughout the application.",
-    "symbols": {
-      "ResponseValue": "Defines valid types that can be converted into a web response.",
-      "HeaderValue": "Represents the allowed formats for individual HTTP header values.",
-      "HeadersValue": "Describes the supported structures for collections of HTTP headers.",
-      "ResponseReturnValue": "Represents the full set of types allowed as return values from route functions.",
-      "ResponseClass": "Type variable constrained to valid web response object subclasses.",
-      "AppOrBlueprintKey": "Identifier type for applications or named blueprints.",
-      "AfterRequestCallable": "Interface for functions executed after a request is processed.",
-      "BeforeFirstRequestCallable": "Interface for functions executed before the initial application request.",
-      "BeforeRequestCallable": "Interface for functions executed before a request is processed.",
-      "ShellContextProcessorCallable": "Interface for functions providing variables to the interactive shell environment.",
-      "TeardownCallable": "Interface for functions executed during request or application cleanup.",
-      "TemplateContextProcessorCallable": "Interface for functions injecting variables into the template rendering context.",
-      "TemplateFilterCallable": "Interface for functions used as custom template filters.",
-      "TemplateGlobalCallable": "Interface for functions registered as globally available template helpers.",
-      "TemplateTestCallable": "Interface for functions performing boolean checks within templates.",
-      "URLDefaultCallable": "Interface for functions modifying default values during URL generation.",
-      "URLValuePreprocessorCallable": "Interface for functions that modify URL arguments before route handling.",
-      "ErrorHandlerCallable": "Interface for functions handling application-raised exceptions.",
-      "RouteCallable": "Interface for functions serving as route handlers."
-    }
+    "file_summary": "Defines type aliases for Flask's internal components, request handlers, and middleware structures.",
+    "symbols": []
   },
   "views.py": {
-    "file_summary": "Provides base classes for implementing class-based views in Flask, allowing request dispatching via class instances or method-specific handlers.",
-    "symbols": {
-      "View": "Base class for defining generic class-based views that dispatch requests to internal logic.",
-      "View.dispatch_request": "Executes the main logic for a request within a view subclass.",
-      "View.as_view": "Converts a class into a standard Flask view function for route registration.",
-      "MethodView": "Extends generic views to automatically route requests to corresponding HTTP method handlers.",
-      "MethodView.__init_subclass__": "Automatically configures allowed HTTP methods based on implemented handler methods.",
-      "MethodView.dispatch_request": "Routes incoming requests to the instance method matching the HTTP request verb."
-    }
+    "file_summary": "Provides base classes for creating class-based views in Flask, enabling organized request handling and dispatching for web applications.",
+    "symbols": [
+      {
+        "name": "View",
+        "parent": "",
+        "line": 16,
+        "description": "Base class for creating generic, class-based HTTP views in Flask applications."
+      },
+      {
+        "name": "dispatch_request",
+        "parent": "View",
+        "line": 78,
+        "description": "Executes the main request logic that subclasses must override."
+      },
+      {
+        "name": "as_view",
+        "parent": "View",
+        "line": 86,
+        "description": "Converts a class into a callable function for route registration."
+      },
+      {
+        "name": "MethodView",
+        "parent": "",
+        "line": 138,
+        "description": "Dispatches incoming HTTP methods to corresponding instance methods defined on the class."
+      },
+      {
+        "name": "__init_subclass__",
+        "parent": "MethodView",
+        "line": 165,
+        "description": "Automatically configures allowed HTTP methods based on defined instance methods."
+      },
+      {
+        "name": "dispatch_request",
+        "parent": "MethodView",
+        "line": 182,
+        "description": "Routes the incoming request to the appropriate method handler based on verb."
+      }
+    ]
   },
   "wrappers.py": {
-    "file_summary": "Defines Flask-specific request and response classes that extend Werkzeug functionality with framework-aware configuration, routing, and blueprint support.",
-    "symbols": {
-      "Request": "Extends Werkzeug request with application-specific routing, blueprint identification, and configurable limits.",
-      "Request.max_content_length": "Gets or sets the maximum byte size for incoming request content.",
-      "Request.max_form_memory_size": "Gets or sets the maximum size for non-file multipart form fields.",
-      "Request.max_form_parts": "Gets or sets the maximum number of fields allowed in multipart requests.",
-      "Request.endpoint": "Provides the name of the route handler matching the current request.",
-      "Request.blueprint": "Retrieves the name of the blueprint containing the current request's endpoint.",
-      "Request.blueprints": "Returns a list of current and parent blueprint names for the request.",
-      "Request._load_form_data": "Populates form data and attaches debug helpers if enabled.",
-      "Request.on_json_loading_failed": "Handles exceptions occurring during JSON payload parsing.",
-      "Response": "Extends Werkzeug response to provide default HTML mimetype and application-aware cookie configuration.",
-      "Response.max_cookie_size": "Returns the maximum allowed cookie size from application configuration."
-    }
+    "file_summary": "Defines Flask's custom request and response objects, extending Werkzeug wrappers with application-specific configuration and context-aware metadata handling.",
+    "symbols": [
+      {
+        "name": "Request",
+        "parent": "",
+        "line": 18,
+        "description": "Flask's default request object extending Werkzeug with URL matching and application-specific settings."
+      },
+      {
+        "name": "max_content_length",
+        "parent": "Request",
+        "line": 60,
+        "description": "Retrieves the maximum allowed request content length from configuration or local settings."
+      },
+      {
+        "name": "max_content_length",
+        "parent": "Request",
+        "line": 89,
+        "description": "Sets the custom maximum content length limit for this specific request instance."
+      },
+      {
+        "name": "max_form_memory_size",
+        "parent": "Request",
+        "line": 93,
+        "description": "Retrieves the maximum allowed form memory size from configuration or local settings."
+      },
+      {
+        "name": "max_form_memory_size",
+        "parent": "Request",
+        "line": 116,
+        "description": "Sets the custom maximum form memory size limit for this specific request instance."
+      },
+      {
+        "name": "max_form_parts",
+        "parent": "Request",
+        "line": 120,
+        "description": "Retrieves the maximum allowed number of multipart form fields from configuration or local settings."
+      },
+      {
+        "name": "max_form_parts",
+        "parent": "Request",
+        "line": 143,
+        "description": "Sets the custom maximum form parts limit for this specific request instance."
+      },
+      {
+        "name": "endpoint",
+        "parent": "Request",
+        "line": 147,
+        "description": "Returns the identifier of the endpoint associated with the current URL rule."
+      },
+      {
+        "name": "blueprint",
+        "parent": "Request",
+        "line": 162,
+        "description": "Returns the name of the blueprint containing the current request's endpoint."
+      },
+      {
+        "name": "blueprints",
+        "parent": "Request",
+        "line": 181,
+        "description": "Returns a list of all blueprint names associated with the current request hierarchy."
+      },
+      {
+        "name": "_load_form_data",
+        "parent": "Request",
+        "line": 197,
+        "description": "Parses form data and potentially attaches debugging information if in debug mode."
+      },
+      {
+        "name": "on_json_loading_failed",
+        "parent": "Request",
+        "line": 212,
+        "description": "Handles JSON decoding errors by raising a bad request exception."
+      },
+      {
+        "name": "Response",
+        "parent": "",
+        "line": 222,
+        "description": "Flask's default response object extending Werkzeug with HTML defaults and JSON support."
+      },
+      {
+        "name": "max_cookie_size",
+        "parent": "Response",
+        "line": 247,
+        "description": "Provides a read-only view of the cookie size limit from application configuration."
+      }
+    ]
+  },
+  "sansio/scaffold.py": {
+    "file_summary": "Defines base class and utilities for Flask applications and blueprints, managing routing, error handling, and configuration for modular web application structure.",
+    "symbols": [
+      {
+        "name": "setupmethod",
+        "parent": "",
+        "line": 42,
+        "description": "Wraps methods to ensure they are only called during the application setup phase."
+      },
+      {
+        "name": "Scaffold",
+        "parent": "",
+        "line": 52,
+        "description": "Provides shared functionality for configuring routing, templates, and request handling in Flask components."
+      },
+      {
+        "name": "__init__",
+        "parent": "Scaffold",
+        "line": 75,
+        "description": "Initializes common attributes for application or blueprint configuration and internal registry structures."
+      },
+      {
+        "name": "__repr__",
+        "parent": "Scaffold",
+        "line": 217,
+        "description": "Returns a string representation identifying the object type and its configured name."
+      },
+      {
+        "name": "_check_setup_finished",
+        "parent": "Scaffold",
+        "line": 220,
+        "description": "Validates whether the component setup is completed before modifying its configuration."
+      },
+      {
+        "name": "static_folder",
+        "parent": "Scaffold",
+        "line": 224,
+        "description": "Retrieves the absolute filesystem path to the configured static files directory."
+      },
+      {
+        "name": "static_folder",
+        "parent": "Scaffold",
+        "line": 234,
+        "description": "Sets the directory path for serving static files from the filesystem."
+      },
+      {
+        "name": "has_static_folder",
+        "parent": "Scaffold",
+        "line": 241,
+        "description": "Checks if a static folder has been configured for the current instance."
+      },
+      {
+        "name": "static_url_path",
+        "parent": "Scaffold",
+        "line": 249,
+        "description": "Determines the URL prefix used to access static files."
+      },
+      {
+        "name": "static_url_path",
+        "parent": "Scaffold",
+        "line": 265,
+        "description": "Sets the URL prefix that serves static files."
+      },
+      {
+        "name": "jinja_loader",
+        "parent": "Scaffold",
+        "line": 272,
+        "description": "Provides the Jinja loader configured for the current template directory."
+      },
+      {
+        "name": "_method_route",
+        "parent": "Scaffold",
+        "line": 284,
+        "description": "Registers a route constrained to a specific HTTP request method."
+      },
+      {
+        "name": "get",
+        "parent": "Scaffold",
+        "line": 296,
+        "description": "Registers a route specifically for handling GET requests."
+      },
+      {
+        "name": "query",
+        "parent": "Scaffold",
+        "line": 304,
+        "description": "Registers a route specifically for handling QUERY requests."
+      },
+      {
+        "name": "post",
+        "parent": "Scaffold",
+        "line": 312,
+        "description": "Registers a route specifically for handling POST requests."
+      },
+      {
+        "name": "put",
+        "parent": "Scaffold",
+        "line": 320,
+        "description": "Registers a route specifically for handling PUT requests."
+      },
+      {
+        "name": "delete",
+        "parent": "Scaffold",
+        "line": 328,
+        "description": "Registers a route specifically for handling DELETE requests."
+      },
+      {
+        "name": "patch",
+        "parent": "Scaffold",
+        "line": 336,
+        "description": "Registers a route specifically for handling PATCH requests."
+      },
+      {
+        "name": "route",
+        "parent": "Scaffold",
+        "line": 344,
+        "description": "Registers a view function for a specific URL rule."
+      },
+      {
+        "name": "add_url_rule",
+        "parent": "Scaffold",
+        "line": 376,
+        "description": "Registers a URL rule mapping to an endpoint and optional view function."
+      },
+      {
+        "name": "endpoint",
+        "parent": "Scaffold",
+        "line": 444,
+        "description": "Registers a view function for an existing endpoint name."
+      },
+      {
+        "name": "before_request",
+        "parent": "Scaffold",
+        "line": 468,
+        "description": "Registers a function to execute before processing each request."
+      },
+      {
+        "name": "after_request",
+        "parent": "Scaffold",
+        "line": 495,
+        "description": "Registers a function to modify the response after processing a request."
+      },
+      {
+        "name": "teardown_request",
+        "parent": "Scaffold",
+        "line": 516,
+        "description": "Registers a function to execute after request context is popped."
+      },
+      {
+        "name": "context_processor",
+        "parent": "Scaffold",
+        "line": 550,
+        "description": "Registers a function to inject variables into the template rendering context."
+      },
+      {
+        "name": "url_value_preprocessor",
+        "parent": "Scaffold",
+        "line": 567,
+        "description": "Registers a function to modify URL values before route matching logic."
+      },
+      {
+        "name": "url_defaults",
+        "parent": "Scaffold",
+        "line": 592,
+        "description": "Registers a function to provide default URL values during generation."
+      },
+      {
+        "name": "errorhandler",
+        "parent": "Scaffold",
+        "line": 606,
+        "description": "Registers a decorator function to handle specific exceptions or HTTP status codes."
+      },
+      {
+        "name": "register_error_handler",
+        "parent": "Scaffold",
+        "line": 650,
+        "description": "Registers a handler function for a specific exception or error code."
+      },
+      {
+        "name": "_get_exc_class_and_code",
+        "parent": "Scaffold",
+        "line": 665,
+        "description": "Resolves an error input into a corresponding exception class and HTTP code."
+      },
+      {
+        "name": "_endpoint_from_view_func",
+        "parent": "",
+        "line": 709,
+        "description": "Determines the default endpoint name based on a provided function name."
+      },
+      {
+        "name": "_find_package_path",
+        "parent": "",
+        "line": 717,
+        "description": "Identifies the filesystem directory path containing the specified package or module."
+      },
+      {
+        "name": "find_package",
+        "parent": "",
+        "line": 762,
+        "description": "Determines the installation prefix and import path for a given package."
+      }
+    ]
   }
 }

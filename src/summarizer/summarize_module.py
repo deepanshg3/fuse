@@ -13,87 +13,67 @@ client = genai.Client(
 )
 
 
-REPO_ROOT = Path("test_repo/flask/src/flask")
-OUTPUT_FILE = Path("data/summaries.json")
+OUTPUT_FILE = Path("data/module_summaries.json")
 
 
 PROMPT = """
-You are creating compact semantic metadata for a code knowledge graph.
+You are creating compact semantic metadata for a
+codebase knowledge graph.
 
-Analyze the COMPLETE Python source file.
+You are analyzing ONE Python module.
 
-Tree-sitter has already analyzed this file and identified the exact
-classes, functions, and methods that need descriptions.
+The module contains the following files and their
+already-generated summaries.
 
-Your job is ONLY to describe the symbols provided below.
+Your task is to write ONE concise description of
+what the entire module is responsible for.
 
-IMPORTANT:
-- You MUST provide exactly one description for EVERY symbol in the list.
-- Do NOT omit any symbol.
-- Do NOT create additional symbols.
-- Use the provided name, parent, and line exactly as given.
-- The line number identifies the exact symbol when names are duplicated.
+Do NOT analyze the source code.
+Use only the provided file summaries.
 
 Return ONLY valid JSON:
 
 {{
-  "file_summary": "Short description.",
-  "symbols": [
-    {{
-      "name": "SymbolName",
-      "parent": "ParentClass",
-      "line": 123,
-      "description": "Short description."
-    }}
-  ]
+  "module_summary": "Short description."
 }}
 
-STRICT LENGTH LIMITS:
-- file_summary: maximum 25 words.
-- class description: maximum 15 words.
-- function/method description: maximum 12 words.
-- Every description MUST be exactly one sentence.
-- Keep descriptions factual and information-dense.
-- Describe WHAT the symbol does, not HOW it implements it.
-- Do not mention parameters, return values, examples, implementation details,
-  error handling, or internal steps unless essential to its purpose.
-- Do not repeat the symbol name in its description.
+STRICT LENGTH LIMIT:
+- module_summary: maximum 35 words.
+- Exactly one sentence.
+- Describe the overall responsibility of the module.
+- Capture the major functionality represented by its files.
+- Keep it factual and information-dense.
+- Do not list individual files.
+- Do not mention implementation details.
 - Do not invent functionality.
-- Do not create descriptions for symbols not present in the provided list.
+- Return JSON only.
 
-FILE PATH:
-{file_path}
+MODULE:
+{module_name}
 
-SYMBOLS IDENTIFIED BY TREE-SITTER:
-{symbols}
-
-SOURCE CODE:
-{source_code}
+FILE SUMMARIES:
+{file_summaries}
 """
 
 
-def summarize_file(
-    file_path: Path,
-    symbols: list[dict],
+def summarize_module(
+    module_name: str,
+    file_summaries: list[dict],
 ) -> dict:
     """
-    Generate semantic metadata for one Python source file.
+    Generate a semantic description for one module
+    from its Level 2 file summaries.
     """
 
-    source_code = file_path.read_text(
-        encoding="utf-8"
-    )
-
-    symbol_text = json.dumps(
-        symbols,
+    summaries_text = json.dumps(
+        file_summaries,
         indent=2,
         ensure_ascii=False,
     )
 
     prompt = PROMPT.format(
-        file_path=file_path,
-        symbols=symbol_text,
-        source_code=source_code,
+        module_name=module_name,
+        file_summaries=summaries_text,
     )
 
     response = client.models.generate_content(
@@ -110,93 +90,43 @@ def summarize_file(
 
     result = json.loads(text)
 
-    # --------------------------------------------------------
-    # BASIC RESPONSE VALIDATION
-    # --------------------------------------------------------
+    # --------------------------------------------------
+    # VALIDATION
+    # --------------------------------------------------
 
-    if "file_summary" not in result:
+    if not isinstance(result, dict):
         raise ValueError(
-            "Gemini response missing 'file_summary'."
+            "Gemini module response must be a JSON object."
         )
 
-    if "symbols" not in result:
+    if "module_summary" not in result:
         raise ValueError(
-            "Gemini response missing 'symbols'."
+            "Gemini response missing 'module_summary'."
         )
 
-    if not isinstance(result["symbols"], list):
+    if not isinstance(
+        result["module_summary"],
+        str,
+    ):
         raise ValueError(
-            "'symbols' must be a JSON list."
+            "'module_summary' must be a string."
         )
 
-    # --------------------------------------------------------
-    # VALIDATE SYMBOL COUNT
-    # --------------------------------------------------------
-
-    if len(result["symbols"]) != len(symbols):
+    if not result["module_summary"].strip():
         raise ValueError(
-            f"Gemini returned {len(result['symbols'])} symbols, "
-            f"but Tree-sitter provided {len(symbols)}."
+            "'module_summary' cannot be empty."
         )
-
-    # --------------------------------------------------------
-    # VALIDATE SYMBOL IDENTITIES
-    # --------------------------------------------------------
-
-    expected = {
-        (
-            symbol["name"],
-            symbol.get("parent", ""),
-            symbol["line"],
-        )
-        for symbol in symbols
-    }
-
-    returned = {
-        (
-            symbol["name"],
-            symbol.get("parent", ""),
-            symbol["line"],
-        )
-        for symbol in result["symbols"]
-    }
-
-    missing = expected - returned
-    unexpected = returned - expected
-
-    if missing:
-        raise ValueError(
-            f"Gemini omitted symbols: {sorted(missing)}"
-        )
-
-    if unexpected:
-        raise ValueError(
-            f"Gemini returned unexpected symbols: {sorted(unexpected)}"
-        )
-
-    # --------------------------------------------------------
-    # VALIDATE DESCRIPTIONS
-    # --------------------------------------------------------
-
-    for symbol in result["symbols"]:
-
-        if not symbol.get("description"):
-            raise ValueError(
-                f"Empty description for symbol: "
-                f"{symbol.get('name')} "
-                f"at line {symbol.get('line')}"
-            )
 
     return result
 
 
-def save_summary(
-    file_path: Path,
+def save_module_summary(
+    module_name: str,
     result: dict,
 ):
     """
-    Save or update one file's summary without
-    deleting summaries generated for other files.
+    Save or update one module summary without
+    deleting summaries for other modules.
     """
 
     OUTPUT_FILE.parent.mkdir(
@@ -213,13 +143,10 @@ def save_summary(
             summaries = json.load(f)
 
     else:
+
         summaries = {}
 
-    relative_path = str(
-        file_path.relative_to(REPO_ROOT)
-    )
-
-    summaries[relative_path] = result
+    summaries[module_name] = result
 
     with OUTPUT_FILE.open(
         "w",

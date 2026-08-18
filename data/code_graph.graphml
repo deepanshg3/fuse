@@ -3527,6 +3527,50 @@
     <edge source="module:sansio" target="file:sansio/scaffold.py" id="0">
       <data key="d8">contains</data>
     </edge>
+    <edge source="file:__init__.py" target="file:json/__init__.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from . import json as json</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .app import Flask as Flask</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:blueprints.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .blueprints import Blueprint as Blueprint</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:config.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .config import Config as Config</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:ctx.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .ctx import after_this_request as after_this_request</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import current_app as current_app</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import abort as abort</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:signals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .signals import appcontext_popped as appcontext_popped</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:templating.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .templating import render_template as render_template</data>
+    </edge>
+    <edge source="file:__init__.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Request as Request</data>
+    </edge>
+    <edge source="file:__main__.py" target="file:cli.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .cli import main</data>
+    </edge>
     <edge source="file:app.py" target="symbol:app.py:_make_timedelta:74" id="0">
       <data key="d8">contains</data>
     </edge>
@@ -3644,9 +3688,53 @@
     <edge source="file:app.py" target="symbol:app.py:__call__:1621" id="0">
       <data key="d8">contains</data>
     </edge>
+    <edge source="file:app.py" target="file:cli.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from . import cli</data>
+    </edge>
     <edge source="file:app.py" target="file:typing.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from . import typing as ft</data>
+    </edge>
+    <edge source="file:app.py" target="file:ctx.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .ctx import AppContext</data>
+    </edge>
+    <edge source="file:app.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import _cv_app</data>
+    </edge>
+    <edge source="file:app.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import _CollectErrors</data>
+    </edge>
+    <edge source="file:app.py" target="file:sansio/app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.app import App</data>
+    </edge>
+    <edge source="file:app.py" target="file:sessions.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sessions import SecureCookieSessionInterface</data>
+    </edge>
+    <edge source="file:app.py" target="file:signals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .signals import appcontext_tearing_down</data>
+    </edge>
+    <edge source="file:app.py" target="file:templating.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .templating import Environment</data>
+    </edge>
+    <edge source="file:app.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Request</data>
+    </edge>
+    <edge source="file:app.py" target="file:testing.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .testing import FlaskClient</data>
+    </edge>
+    <edge source="file:app.py" target="file:debughelpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .debughelpers import FormDataRoutingRedirect</data>
     </edge>
     <edge source="symbol:app.py:Flask:110" target="symbol:app.py:__init_subclass__:255" id="0">
       <data key="d8">contains</data>
@@ -3810,9 +3898,29 @@
     <edge source="file:blueprints.py" target="symbol:blueprints.py:open_resource:104" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:blueprints.py" target="file:typing.py" id="0">
+    <edge source="file:blueprints.py" target="file:cli.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .cli import AppGroup</data>
+    </edge>
+    <edge source="file:blueprints.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import current_app</data>
+    </edge>
+    <edge source="file:blueprints.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import send_from_directory</data>
+    </edge>
+    <edge source="file:blueprints.py" target="file:sansio/blueprints.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.blueprints import Blueprint as SansioBlueprint</data>
+    </edge>
+    <edge source="file:blueprints.py" target="file:sansio/scaffold.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.scaffold import _sentinel</data>
+    </edge>
+    <edge source="file:blueprints.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Response</data>
     </edge>
     <edge source="symbol:blueprints.py:Blueprint:18" target="symbol:blueprints.py:__init__:19" id="0">
       <data key="d8">contains</data>
@@ -3952,9 +4060,17 @@
     <edge source="file:cli.py" target="symbol:cli.py:main:1122" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:cli.py" target="file:typing.py" id="0">
+    <edge source="file:cli.py" target="file:globals.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .globals import current_app</data>
+    </edge>
+    <edge source="file:cli.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import get_debug_flag</data>
+    </edge>
+    <edge source="file:cli.py" target="file:app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .app import Flask</data>
     </edge>
     <edge source="symbol:cli.py:find_best_app:41" target="symbol:cli.py:NoAppException:37" id="0">
       <data key="d8">calls</data>
@@ -4100,13 +4216,9 @@
     <edge source="file:config.py" target="symbol:config.py:__repr__:366" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:config.py" target="file:json/__init__.py" id="0">
+    <edge source="file:config.py" target="file:sansio/app.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import json</data>
-    </edge>
-    <edge source="file:config.py" target="file:typing.py" id="0">
-      <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .sansio.app import App</data>
     </edge>
     <edge source="symbol:config.py:ConfigAttribute:20" target="symbol:config.py:__init__:23" id="0">
       <data key="d8">contains</data>
@@ -4251,7 +4363,31 @@
     </edge>
     <edge source="file:ctx.py" target="file:typing.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from . import typing as ft</data>
+    </edge>
+    <edge source="file:ctx.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import _cv_app</data>
+    </edge>
+    <edge source="file:ctx.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import _CollectErrors</data>
+    </edge>
+    <edge source="file:ctx.py" target="file:signals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .signals import appcontext_popped</data>
+    </edge>
+    <edge source="file:ctx.py" target="file:app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .app import Flask</data>
+    </edge>
+    <edge source="file:ctx.py" target="file:sessions.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sessions import SessionMixin</data>
+    </edge>
+    <edge source="file:ctx.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Request</data>
     </edge>
     <edge source="symbol:ctx.py:_AppCtxGlobals:30" target="symbol:ctx.py:__getattr__:53" id="0">
       <data key="d8">contains</data>
@@ -4349,9 +4485,25 @@
     <edge source="file:debughelpers.py" target="symbol:debughelpers.py:explain_template_loading_attempts:124" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:debughelpers.py" target="file:typing.py" id="0">
+    <edge source="file:debughelpers.py" target="file:blueprints.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .blueprints import Blueprint</data>
+    </edge>
+    <edge source="file:debughelpers.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import _cv_app</data>
+    </edge>
+    <edge source="file:debughelpers.py" target="file:sansio/app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.app import App</data>
+    </edge>
+    <edge source="file:debughelpers.py" target="file:sansio/scaffold.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.scaffold import Scaffold</data>
+    </edge>
+    <edge source="file:debughelpers.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Request</data>
     </edge>
     <edge source="symbol:debughelpers.py:DebugFilesKeyError:23" target="symbol:debughelpers.py:__init__:28" id="0">
       <data key="d8">contains</data>
@@ -4392,9 +4544,21 @@
     <edge source="file:globals.py" target="symbol:globals.py:__getattr__:65" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:globals.py" target="file:typing.py" id="0">
+    <edge source="file:globals.py" target="file:app.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .app import Flask</data>
+    </edge>
+    <edge source="file:globals.py" target="file:ctx.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .ctx import _AppCtxGlobals</data>
+    </edge>
+    <edge source="file:globals.py" target="file:sessions.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sessions import SessionMixin</data>
+    </edge>
+    <edge source="file:globals.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Request</data>
     </edge>
     <edge source="symbol:globals.py:ProxyMixin:17" target="symbol:globals.py:_get_current_object:18" id="0">
       <data key="d8">contains</data>
@@ -4480,9 +4644,17 @@
     <edge source="file:helpers.py" target="symbol:helpers.py:raise_any:676" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:helpers.py" target="file:typing.py" id="0">
+    <edge source="file:helpers.py" target="file:globals.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .globals import _cv_app</data>
+    </edge>
+    <edge source="file:helpers.py" target="file:signals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .signals import message_flashed</data>
+    </edge>
+    <edge source="file:helpers.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Response</data>
     </edge>
     <edge source="symbol:helpers.py:stream_with_context:63" target="symbol:helpers.py:stream_with_context:52" id="0">
       <data key="d8">calls</data>
@@ -4523,13 +4695,17 @@
     <edge source="file:json/__init__.py" target="symbol:json/__init__.py:jsonify:138" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:json/__init__.py" target="file:json/__init__.py" id="0">
+    <edge source="file:json/__init__.py" target="file:globals.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import json as _json</data>
+      <data key="d9">from ..globals import current_app</data>
     </edge>
-    <edge source="file:json/__init__.py" target="file:typing.py" id="0">
+    <edge source="file:json/__init__.py" target="file:json/provider.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .provider import _default</data>
+    </edge>
+    <edge source="file:json/__init__.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..wrappers import Response</data>
     </edge>
     <edge source="file:json/provider.py" target="symbol:json/provider.py:JSONProvider:19" id="0">
       <data key="d8">contains</data>
@@ -4570,13 +4746,9 @@
     <edge source="file:json/provider.py" target="symbol:json/provider.py:response:189" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:json/provider.py" target="file:json/__init__.py" id="0">
+    <edge source="file:json/provider.py" target="file:sansio/app.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import json</data>
-    </edge>
-    <edge source="file:json/provider.py" target="file:typing.py" id="0">
-      <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from ..sansio.app import App</data>
     </edge>
     <edge source="symbol:json/provider.py:JSONProvider:19" target="symbol:json/provider.py:__init__:38" id="0">
       <data key="d8">contains</data>
@@ -4743,9 +4915,9 @@
     <edge source="file:json/tag.py" target="symbol:json/tag.py:loads:325" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:json/tag.py" target="file:typing.py" id="0">
+    <edge source="file:json/tag.py" target="file:json/__init__.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from ..json import dumps</data>
     </edge>
     <edge source="symbol:json/tag.py:JSONTag:60" target="symbol:json/tag.py:__init__:69" id="0">
       <data key="d8">contains</data>
@@ -4888,13 +5060,13 @@
     <edge source="file:logging.py" target="symbol:logging.py:create_logger:58" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:logging.py" target="file:logging.py" id="0">
+    <edge source="file:logging.py" target="file:globals.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import logging</data>
+      <data key="d9">from .globals import request</data>
     </edge>
-    <edge source="file:logging.py" target="file:typing.py" id="0">
+    <edge source="file:logging.py" target="file:sansio/app.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .sansio.app import App</data>
     </edge>
     <edge source="symbol:logging.py:create_logger:58" target="symbol:logging.py:has_level_handler:31" id="0">
       <data key="d8">calls</data>
@@ -5010,13 +5182,45 @@
     <edge source="file:sansio/app.py" target="symbol:sansio/app.py:handle_url_build_error:981" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:sansio/app.py" target="file:logging.py" id="0">
-      <data key="d8">imports</data>
-      <data key="d9">import logging</data>
-    </edge>
     <edge source="file:sansio/app.py" target="file:typing.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .. import typing as ft</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:config.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..config import Config</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:ctx.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..ctx import _AppCtxGlobals</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..helpers import _split_blueprint_path</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:json/provider.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..json.provider import DefaultJSONProvider</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:logging.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..logging import create_logger</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:templating.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..templating import DispatchingJinjaLoader</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:sansio/scaffold.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .scaffold import _endpoint_from_view_func</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:testing.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..testing import FlaskClient</data>
+    </edge>
+    <edge source="file:sansio/app.py" target="file:sansio/blueprints.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .blueprints import Blueprint</data>
     </edge>
     <edge source="symbol:sansio/app.py:App:59" target="symbol:sansio/app.py:__init__:279" id="0">
       <data key="d8">contains</data>
@@ -5242,7 +5446,15 @@
     </edge>
     <edge source="file:sansio/blueprints.py" target="file:typing.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .. import typing as ft</data>
+    </edge>
+    <edge source="file:sansio/blueprints.py" target="file:sansio/scaffold.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .scaffold import _endpoint_from_view_func</data>
+    </edge>
+    <edge source="file:sansio/blueprints.py" target="file:sansio/app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .app import App</data>
     </edge>
     <edge source="symbol:sansio/blueprints.py:BlueprintSetupState:34" target="symbol:sansio/blueprints.py:__init__:41" id="0">
       <data key="d8">contains</data>
@@ -5444,7 +5656,15 @@
     </edge>
     <edge source="file:sansio/scaffold.py" target="file:typing.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .. import typing as ft</data>
+    </edge>
+    <edge source="file:sansio/scaffold.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..helpers import get_root_path</data>
+    </edge>
+    <edge source="file:sansio/scaffold.py" target="file:templating.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from ..templating import _default_template_ctx_processor</data>
     </edge>
     <edge source="symbol:sansio/scaffold.py:Scaffold:52" target="symbol:sansio/scaffold.py:__init__:75" id="0">
       <data key="d8">contains</data>
@@ -5614,9 +5834,17 @@
     <edge source="file:sessions.py" target="symbol:sessions.py:save_session:337" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:sessions.py" target="file:typing.py" id="0">
+    <edge source="file:sessions.py" target="file:json/tag.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .json.tag import TaggedJSONSerializer</data>
+    </edge>
+    <edge source="file:sessions.py" target="file:app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .app import Flask</data>
+    </edge>
+    <edge source="file:sessions.py" target="file:wrappers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .wrappers import Request</data>
     </edge>
     <edge source="symbol:sessions.py:SessionMixin:24" target="symbol:sessions.py:permanent:28" id="0">
       <data key="d8">contains</data>
@@ -5735,9 +5963,33 @@
     <edge source="file:templating.py" target="symbol:templating.py:stream_template_string:200" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:templating.py" target="file:typing.py" id="0">
+    <edge source="file:templating.py" target="file:ctx.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .ctx import AppContext</data>
+    </edge>
+    <edge source="file:templating.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import app_ctx</data>
+    </edge>
+    <edge source="file:templating.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import stream_with_context</data>
+    </edge>
+    <edge source="file:templating.py" target="file:signals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .signals import before_render_template</data>
+    </edge>
+    <edge source="file:templating.py" target="file:sansio/app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.app import App</data>
+    </edge>
+    <edge source="file:templating.py" target="file:sansio/scaffold.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sansio.scaffold import Scaffold</data>
+    </edge>
+    <edge source="file:templating.py" target="file:debughelpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .debughelpers import explain_template_loading_attempts</data>
     </edge>
     <edge source="symbol:templating.py:Environment:36" target="symbol:templating.py:__init__:42" id="0">
       <data key="d8">contains</data>
@@ -5823,9 +6075,17 @@
     <edge source="file:testing.py" target="symbol:testing.py:invoke:275" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:testing.py" target="file:typing.py" id="0">
+    <edge source="file:testing.py" target="file:cli.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from .cli import ScriptInfo</data>
+    </edge>
+    <edge source="file:testing.py" target="file:sessions.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .sessions import SessionMixin</data>
+    </edge>
+    <edge source="file:testing.py" target="file:app.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .app import Flask</data>
     </edge>
     <edge source="symbol:testing.py:EnvironBuilder:27" target="symbol:testing.py:__init__:49" id="0">
       <data key="d8">contains</data>
@@ -5875,10 +6135,6 @@
     <edge source="symbol:testing.py:invoke:275" target="symbol:cli.py:ScriptInfo:293" id="0">
       <data key="d8">calls</data>
     </edge>
-    <edge source="file:typing.py" target="file:typing.py" id="0">
-      <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
-    </edge>
     <edge source="file:views.py" target="symbol:views.py:View:16" id="0">
       <data key="d8">contains</data>
     </edge>
@@ -5899,7 +6155,11 @@
     </edge>
     <edge source="file:views.py" target="file:typing.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from . import typing as ft</data>
+    </edge>
+    <edge source="file:views.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import current_app</data>
     </edge>
     <edge source="symbol:views.py:View:16" target="symbol:views.py:dispatch_request:78" id="0">
       <data key="d8">contains</data>
@@ -5958,9 +6218,21 @@
     <edge source="file:wrappers.py" target="symbol:wrappers.py:max_cookie_size:247" id="0">
       <data key="d8">contains</data>
     </edge>
-    <edge source="file:wrappers.py" target="file:typing.py" id="0">
+    <edge source="file:wrappers.py" target="file:json/__init__.py" id="0">
       <data key="d8">imports</data>
-      <data key="d9">import typing as t</data>
+      <data key="d9">from . import json</data>
+    </edge>
+    <edge source="file:wrappers.py" target="file:globals.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .globals import current_app</data>
+    </edge>
+    <edge source="file:wrappers.py" target="file:helpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .helpers import _split_blueprint_path</data>
+    </edge>
+    <edge source="file:wrappers.py" target="file:debughelpers.py" id="0">
+      <data key="d8">imports</data>
+      <data key="d9">from .debughelpers import attach_enctype_error_multidict</data>
     </edge>
     <edge source="symbol:wrappers.py:Request:18" target="symbol:wrappers.py:max_content_length:60" id="0">
       <data key="d8">contains</data>

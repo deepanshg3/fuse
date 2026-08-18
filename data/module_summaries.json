@@ -1,0 +1,11 @@
+{
+  "flask": {
+    "module_summary": "The Flask framework provides a comprehensive WSGI-based toolkit for building web applications, featuring modular routing, session management, template rendering, request-response handling, configuration management, and integrated command-line utilities for development and testing."
+  },
+  "json": {
+    "module_summary": "This module provides a robust framework for JSON serialization and deserialization, including extensible support for custom Python types and integrated HTTP response handling within the application."
+  },
+  "sansio": {
+    "module_summary": "This module provides a framework-agnostic foundation for building modular web applications through core routing, configuration, and request-handling mechanisms, complemented by blueprints for organizing reusable components and application state."
+  }
+}
