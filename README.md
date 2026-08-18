@@ -1,28 +1,22 @@
 # FUSE
 
-**FUSE** is a codebase intelligence and retrieval system that represents
-a Python repository as a hierarchical knowledge graph and uses LLMs to
-retrieve the most relevant parts of the codebase for a user's problem.
+**FUSE (File Understanding & Semantic Exploration)** is a codebase intelligence and retrieval system that represents a Python repository as a hierarchical knowledge graph, enriches that graph with compact LLM-generated semantic metadata, and performs hierarchical retrieval to identify the most relevant modules, files, and symbols for a user's problem.
 
-The project was built as an exploration of a different approach to
-repository context: instead of sending large amounts of source code
-directly to an LLM, FUSE first builds a structured representation of the
-repository, enriches it with compact semantic descriptions, and then
-performs hierarchical retrieval.
+> **Core idea:** don't send the entire repository to an LLM and ask it to figure everything out. Build a deterministic structural representation first, enrich it semantically, then progressively narrow the search space.
 
-------------------------------------------------------------------------
+---
 
-## What FUSE Does
+## 1. What FUSE Does
 
-Given a question such as:
+Given a query such as:
 
-``` text
+```text
 Why is login failing?
 ```
 
 FUSE progressively narrows the repository:
 
-``` text
+```text
 User Query
     │
     ▼
@@ -41,21 +35,25 @@ Symbol Retrieval
 Relevant Code Context
 ```
 
-The goal is to return the files and symbols that are useful for
-investigating the problem without requiring the LLM to reason over the
-entire repository at once.
+The result is a compact, structured representation of the part of the repository that is most relevant to the problem.
 
-------------------------------------------------------------------------
+For the included Flask repository, a query such as `why login is failing` can return:
 
-## Core Idea
+- relevant module(s)
+- relevant file(s)
+- relevant classes/functions/methods
+- exact source locations for the selected symbols
 
-The repository is represented at three semantic levels:
+---
 
-``` text
+# 2. Core Architecture
+
+FUSE represents the repository at three semantic levels:
+
+```text
 Module
   │
   ├── File
-  │     │
   │     ├── Class
   │     ├── Function
   │     └── Method
@@ -63,103 +61,111 @@ Module
   └── File dependencies
 ```
 
-FUSE combines two types of information:
+It combines two different kinds of knowledge.
 
 ### Structural knowledge
 
-Generated deterministically from the source code using Tree-sitter.
+Generated deterministically from the source code using **Tree-sitter**.
 
 This includes:
 
--   modules
--   files
--   classes
--   functions
--   methods
--   containment relationships
--   import/dependency relationships
--   source locations
+- modules
+- files
+- classes
+- functions
+- methods
+- containment relationships
+- import/dependency relationships
+- source locations
 
 ### Semantic knowledge
 
-Generated using Gemini.
+Generated using **Gemini**.
 
-Each module, file, and symbol receives a compact natural-language
-description.
+Each module, file, and symbol receives a compact natural-language description.
 
-This allows retrieval to reason over both:
+This gives FUSE two complementary views of the repository:
 
-``` text
+```text
 "What structurally exists?"
-```
-
-and:
-
-``` text
+            +
 "What does it mean?"
 ```
 
-------------------------------------------------------------------------
+The LLM provides semantic relevance, while the graph remains the structural source of truth.
 
-# Architecture
+---
 
-## 1. Structural Graph Construction
+# 3. Knowledge Graph Construction
 
-Tree-sitter parses every Python file and extracts the repository
-structure.
+FUSE first discovers all Python files in the target repository and builds a structural graph.
 
 For the current Flask test repository:
 
-``` text
+```text
 24 Python files
 438 nodes
 909 edges
 ```
 
-Node types:
+### Node types
 
-``` text
-3   modules
-24  files
-72  functions
-52  classes
-287 methods
+```text
+3    modules
+24   files
+72   functions
+52   classes
+287  methods
 ```
 
-The parser also resolves internal Python imports.
+The graph also represents internal Python imports/dependencies.
 
 For example:
 
-``` text
+```text
 app.py
- ├──imports──> ctx.py
- ├──imports──> globals.py
- ├──imports──> sessions.py
- ├──imports──> wrappers.py
- └──imports──> ...
+ ├── imports → ctx.py
+ ├── imports → globals.py
+ ├── imports → sessions.py
+ ├── imports → wrappers.py
+ └── imports → ...
 ```
 
-The resulting graph is stored in:
+Generated structural artifacts:
 
-``` text
+```text
 data/code_graph.json
 data/code_graph.graphml
 ```
 
-------------------------------------------------------------------------
+---
 
-## 2. Level 3 --- Symbol Semantic Enrichment
+# 4. Three-Level Semantic Enrichment
 
-Tree-sitter already knows exactly which classes, functions, and methods
-exist.
+FUSE enriches the structural graph at three levels.
 
-FUSE sends those symbols to Gemini together with the source file.
+```text
+Level 1
+Module summary
+     ↓
+Level 2
+File summary
+     ↓
+Level 3
+Symbol descriptions
+```
 
-Gemini is asked to provide one concise description for every symbol.
+## Level 3 — Symbol Semantic Enrichment
 
-For example:
+Tree-sitter identifies the exact classes, functions, and methods present in each file.
 
-``` json
+Those exact symbols are sent to Gemini together with the source file.
+
+Gemini is instructed to describe **only those symbols**.
+
+Example:
+
+```json
 {
   "name": "open_session",
   "parent": "SecureCookieSessionInterface",
@@ -168,52 +174,55 @@ For example:
 }
 ```
 
-The important design decision is that Gemini does **not** decide which
-symbols exist.
+The important design decision is:
 
-Tree-sitter provides the authoritative symbol list.
+> **Tree-sitter decides what symbols exist. Gemini only describes them.**
 
-This prevents the LLM from inventing or omitting code entities.
+Symbol identity is validated using:
 
-------------------------------------------------------------------------
+```text
+name
+parent
+line
+```
 
-## 3. Level 2 --- File Semantic Enrichment
+This allows duplicate method names in different classes to remain distinguishable.
 
-Every source file also receives a compact description.
+---
+
+## Level 2 — File Semantic Enrichment
+
+Every Python source file receives a concise semantic description.
 
 For example:
 
-``` text
+```text
 sessions.py
 ```
 
-might be described as the part of Flask responsible for session
-interfaces and session handling.
+is represented not only by its classes and methods, but also by a higher-level description of the file's overall responsibility.
 
-The file description provides a higher-level semantic representation
-than individual symbols.
+This gives the retriever a lightweight semantic representation of each file without requiring full source-code reasoning at the file-selection stage.
 
-------------------------------------------------------------------------
+---
 
-## 4. Level 1 --- Module Semantic Enrichment
+## Level 1 — Module Semantic Enrichment
 
-Files are grouped into modules and their file summaries are given to
-Gemini.
+Files are grouped into modules.
 
-Gemini produces one summary describing the responsibility of the
-complete module.
+FUSE takes the already-generated file summaries belonging to a module and asks Gemini for one concise description of the module's overall responsibility.
 
 The current graph contains:
 
-``` text
+```text
 flask
 json
 sansio
 ```
 
-This gives FUSE three semantic levels:
+This creates the hierarchy:
 
-``` text
+```text
 Module summary
       ↓
 File summary
@@ -221,24 +230,51 @@ File summary
 Symbol summary
 ```
 
-All 438 graph nodes in the current generated graph have semantic
-descriptions.
+The final generated graph contains semantic descriptions for all **438 nodes**.
 
-------------------------------------------------------------------------
+---
 
-# Hierarchical Retrieval
+# 5. Hierarchical Retrieval
 
-FUSE uses three LLM calls.
+Once the graph is built and enriched, FUSE performs hierarchical retrieval.
 
-## Call 1 --- Module Retrieval
+The retrieval pipeline uses three LLM decisions combined with deterministic graph traversal.
 
-Gemini receives the available module descriptions and the user's query.
+```text
+All Modules
+    │
+    ▼
+Relevant Modules
+    │
+    ▼
+Candidate Files
+    │
+    ├── dependency expansion
+    │
+    ▼
+Relevant Files
+    │
+    ▼
+Relevant Symbols
+    │
+    ▼
+Final Code Context
+```
+
+## Call 1 — Module Retrieval
+
+Gemini receives:
+
+- user query
+- available module descriptions
+
+It selects the relevant modules.
 
 Example:
 
-``` text
+```text
 User:
-"Why is login failing?"
+Why is login failing?
 
 Gemini:
 {
@@ -246,70 +282,63 @@ Gemini:
 }
 ```
 
-Only modules present in the graph can be selected.
+Only modules present in the structural graph can be selected.
 
-------------------------------------------------------------------------
-
-## Call 2 --- File Retrieval
-
-FUSE loads the files belonging to the selected modules.
-
-Gemini receives:
-
--   the user's problem
--   selected modules
--   file descriptions
-
-It selects the most relevant files.
-
-Example:
-
-``` text
-sessions.py
-globals.py
-ctx.py
-wrappers.py
-logging.py
-debughelpers.py
-```
-
-------------------------------------------------------------------------
+---
 
 ## Dependency Expansion
 
-LLM retrieval alone is not sufficient.
+LLM selection alone is not sufficient.
 
-A selected file may depend on another file that the LLM did not
-explicitly select.
+Suppose the model selects:
 
-FUSE therefore uses the structural graph to expand the candidate context
-through internal file dependencies.
-
-For example:
-
-``` text
+```text
 app.py
-   │
-   ├──imports──> ctx.py
-   ├──imports──> sessions.py
-   └──imports──> wrappers.py
 ```
 
-This means retrieval can preserve important code relationships instead
-of treating every file as an isolated document.
+but `app.py` internally imports:
 
-------------------------------------------------------------------------
+```text
+ctx.py
+sessions.py
+wrappers.py
+```
 
-## Call 3 --- Symbol Retrieval
+FUSE uses the structural graph to expand the candidate context through those internal dependencies.
 
-After the final candidate files are known, FUSE collects the classes,
-functions, and methods belonging to those files.
+```text
+app.py
+   │
+   ├── imports → ctx.py
+   ├── imports → sessions.py
+   └── imports → wrappers.py
+```
 
-Gemini then selects the most relevant symbols.
+This keeps retrieval structurally aware rather than treating every file as an isolated document.
 
-The output contains the exact symbol identity from the graph:
+---
 
-``` json
+## Call 2 — File Retrieval
+
+Gemini receives:
+
+- the user's query
+- selected modules
+- candidate file descriptions
+
+It selects the most relevant files.
+
+---
+
+## Call 3 — Symbol Retrieval
+
+After the final candidate files are known, FUSE collects their classes, functions, and methods.
+
+Gemini selects the most relevant symbols.
+
+A returned symbol contains graph identity such as:
+
+```json
 {
   "file": "sessions.py",
   "name": "open_session",
@@ -319,87 +348,146 @@ The output contains the exact symbol identity from the graph:
 }
 ```
 
-The retriever validates every returned symbol against the graph before
-returning it.
+The retriever validates every returned symbol against the graph before returning it.
 
-------------------------------------------------------------------------
+---
 
-# Retrieval Example
+# 6. Retrieval Example
 
 For:
 
-``` text
+```text
 why login is failing
 ```
 
-the retrieval process can produce:
+the deployed API can return a result similar to:
 
-``` json
+```json
 {
   "query": "why login is failing",
   "modules": [
     "flask"
   ],
   "files": [
-    "sessions.py",
-    "globals.py",
+    "app.py",
     "ctx.py",
-    "wrappers.py",
     "debughelpers.py",
-    "logging.py"
+    "helpers.py",
+    "logging.py",
+    "sessions.py",
+    "wrappers.py"
   ],
   "symbols": [
     {
+      "file": "app.py",
+      "type": "method",
+      "name": "dispatch_request",
+      "parent": "Flask",
+      "line": 969
+    },
+    {
+      "file": "app.py",
+      "type": "method",
+      "name": "full_dispatch_request",
+      "parent": "Flask",
+      "line": 995
+    },
+    {
       "file": "sessions.py",
+      "type": "method",
       "name": "open_session",
-      "type": "method"
-    },
-    {
-      "file": "sessions.py",
-      "name": "save_session",
-      "type": "method"
-    },
-    {
-      "file": "ctx.py",
-      "name": "_get_session",
-      "type": "method"
+      "parent": "SecureCookieSessionInterface",
+      "line": 323
     }
   ]
 }
 ```
 
-The result is a compact, structured representation of the relevant part
-of the repository.
+The important property is progressive narrowing:
 
-------------------------------------------------------------------------
+```text
+Repository
+   ↓
+Module
+   ↓
+Files
+   ↓
+Dependencies
+   ↓
+Symbols
+```
 
-# API
+---
 
-FUSE exposes the retrieval system through an API.
+# 7. API
 
-The main endpoint is:
+FUSE exposes the retrieval system through **FastAPI**.
 
-``` text
+## Health endpoint
+
+```http
+GET /
+```
+
+Response:
+
+```json
+{
+  "name": "Fuse",
+  "status": "running"
+}
+```
+
+## Retrieval endpoint
+
+```http
 POST /ask
 ```
 
-Example request:
+Request:
 
-``` json
+```json
 {
   "query": "why login is failing"
 }
 ```
 
-The endpoint runs the hierarchical retrieval pipeline and returns the
-relevant modules, files, and symbols.
+Response:
 
-------------------------------------------------------------------------
+```json
+{
+  "query": "...",
+  "modules": [...],
+  "files": [...],
+  "symbols": [...]
+}
+```
 
-# Project Structure
+---
 
-``` text
+# 8. Live Deployment
+
+FUSE is deployed on Vercel.
+
+**Production API:**
+
+https://fuse-swart.vercel.app/
+
+**Swagger API documentation:**
+
+https://fuse-swart.vercel.app/docs
+
+The deployed Swagger interface can be used to execute `/ask` directly from the browser.
+
+---
+
+# 9. Project Structure
+
+```text
 fuse/
+│
+├── api/
+│   └── index.py
 │
 ├── data/
 │   ├── code_graph.json
@@ -412,6 +500,7 @@ fuse/
 ├── src/
 │   ├── api.py
 │   ├── fuse.py
+│   ├── test.py
 │   │
 │   ├── parser/
 │   │   └── build_graph.py
@@ -421,9 +510,11 @@ fuse/
 │   │
 │   ├── retrieval/
 │   │   ├── hierarchical_retriever.py
-│   │   └── llm.py
+│   │   ├── llm.py
+│   │   └── __init__.py
 │   │
 │   └── summarizer/
+│       ├── summarize_file.py
 │       └── summarize_module.py
 │
 ├── test_repo/
@@ -433,13 +524,27 @@ fuse/
 └── README.md
 ```
 
-------------------------------------------------------------------------
+### Important components
 
-# Pipeline
+| Component | Responsibility |
+|---|---|
+| `src/fuse.py` | Main graph-building and semantic-enrichment pipeline |
+| `src/parser/build_graph.py` | Tree-sitter parsing and structural graph construction |
+| `src/graph/enrich_graph.py` | Inserts semantic descriptions into graph nodes |
+| `src/summarizer/summarize_file.py` | Level 2 file + Level 3 symbol semantic summaries |
+| `src/summarizer/summarize_module.py` | Level 1 module summaries |
+| `src/retrieval/hierarchical_retriever.py` | Hierarchical retrieval orchestration |
+| `src/retrieval/llm.py` | LLM retrieval calls |
+| `src/api.py` | FastAPI application |
+| `api/index.py` | Vercel deployment entry point |
+
+---
+
+# 10. Complete Pipeline
 
 The complete FUSE pipeline is:
 
-``` text
+```text
 Python Repository
        │
        ▼
@@ -451,195 +556,122 @@ Tree-sitter Parsing
        ▼
 Structural Knowledge Graph
        │
-       ├───────────────┐
-       │               │
-       ▼               ▼
-File/Symbol          Import
-Extraction           Graph
-       │               │
-       └───────┬───────┘
-               ▼
+       ├──────────────────┐
+       │                  │
+       ▼                  ▼
+File/Symbol           Import Graph
+Extraction
+       │                  │
+       └────────┬─────────┘
+                ▼
        Semantic Enrichment
-               │
-       ┌───────┼────────┐
-       ▼       ▼        ▼
-    Module    File    Symbol
-    Level 1  Level 2  Level 3
-       │       │        │
-       └───────┼────────┘
-               ▼
+                │
+        ┌───────┼────────┐
+        ▼       ▼        ▼
+     Module    File    Symbol
+     Level 1  Level 2  Level 3
+        │       │        │
+        └───────┼────────┘
+                ▼
        Enriched Graph
-               │
-               ▼
-       Hierarchical Retrieval
-               │
-       ┌───────┼────────┐
-       ▼       ▼        ▼
-    Modules  Files   Symbols
-               │
-               ▼
+                │
+                ▼
+     Hierarchical Retrieval
+                │
+        ┌───────┼────────┐
+        ▼       ▼        ▼
+     Modules  Files   Symbols
+                │
+                ▼
        Relevant Code Context
-               │
-               ▼
-             /ask
+                │
+                ▼
+              /ask
 ```
 
-------------------------------------------------------------------------
+---
 
-# Running Locally
-
-## 1. Create the environment
-
-``` bash
-python -m venv .venv
-source .venv/bin/activate
-```
-
-## 2. Install dependencies
-
-``` bash
-pip install -r requirements.txt
-```
-
-## 3. Configure Gemini
-
-Create a `.env` file:
-
-``` env
-GEMINI_API_KEY=your_api_key
-```
-
-Do not commit `.env` or expose the API key.
-
-------------------------------------------------------------------------
-
-## 4. Build the complete graph
-
-Run:
-
-``` bash
-python src/fuse.py
-```
-
-This performs:
-
-1.  Repository discovery
-2.  Tree-sitter graph construction
-3.  File and symbol semantic enrichment
-4.  Module semantic enrichment
-5.  Enriched graph generation
-
-Generated artifacts:
-
-``` text
-data/code_graph.json
-data/code_graph.graphml
-data/enriched_code_graph.json
-data/summaries.json
-data/module_summaries.json
-data/enrichment_report.json
-```
-
-------------------------------------------------------------------------
-
-# Run the API
-
-``` bash
-uvicorn src.api:app --reload
-```
-
-The API will be available locally at:
-
-``` text
-http://127.0.0.1:8000
-```
-
-Then send a request to:
-
-``` text
-POST /ask
-```
-
-------------------------------------------------------------------------
-
-# Reliability and Validation
+# 11. Reliability & Validation
 
 FUSE does not blindly trust LLM output.
 
-### Symbol validation
+## Symbol validation
 
-Every symbol returned by Gemini is checked against the symbols extracted
-by Tree-sitter.
+Every symbol returned by Gemini is checked against the Tree-sitter-generated symbol inventory.
 
 The identity is matched using:
 
-``` text
+```text
 name
 parent
 line
 ```
 
-This is important because methods can have the same name in different
-classes.
+This prevents:
 
-### File validation
+- invented symbols
+- omitted symbols
+- ambiguous duplicate names
+
+## File validation
 
 Retrieved files must exist in the candidate file set.
 
-### Module validation
+## Module validation
 
 Retrieved modules must exist in the structural graph.
 
-### Semantic enrichment validation
+## Semantic enrichment validation
 
 FUSE verifies that:
 
--   every expected symbol receives a description
--   no unexpected symbols are added
--   descriptions are not empty
--   graph nodes receive the correct descriptions
+- every expected symbol receives a description
+- no unexpected symbols are added
+- descriptions are not empty
+- graph nodes receive the correct descriptions
 
-### Failure recovery
+## Failure recovery
 
 Gemini calls are retried when an external API failure occurs.
 
-During development, one file received a Gemini `503 UNAVAILABLE`
-response. The file was successfully recovered separately without
-rebuilding the entire project.
+During the final build, `sansio/scaffold.py` temporarily received a Gemini `503 UNAVAILABLE` response. It was recovered separately without rebuilding the entire project.
 
-------------------------------------------------------------------------
+Final validation confirmed:
 
-# Design Decisions
+```text
+438 / 438 nodes described
+0 missing descriptions
+```
+
+---
+
+# 12. Design Decisions
 
 ## Why Tree-sitter?
 
-Tree-sitter gives FUSE a deterministic representation of the source
-code.
+Structural facts should be deterministic.
 
-The LLM should not be responsible for deciding whether a function or
-class exists. Structural facts come from the parser.
+The LLM should not be responsible for deciding whether a function, class, or method exists. Tree-sitter provides the authoritative structural inventory.
 
-------------------------------------------------------------------------
+---
 
 ## Why a knowledge graph?
 
-A repository is not just a collection of independent files.
+A repository is not just a collection of independent documents.
 
-Files import other files, classes contain methods, and symbols belong to
-files and modules.
+Files import other files, classes contain methods, and symbols belong to files and modules.
 
-The graph preserves those relationships so retrieval can traverse them.
+The graph preserves these relationships so retrieval can traverse them.
 
-------------------------------------------------------------------------
+---
 
 ## Why three LLM calls?
 
-A single retrieval prompt over the entire repository would make the
-model reason over too much information.
+A single retrieval prompt over the entire repository would require the model to reason over too much information.
 
-The hierarchical approach progressively reduces the search space:
+FUSE progressively reduces the search space:
 
-``` text
+```text
 All modules
     ↓
 Relevant modules
@@ -648,39 +680,137 @@ Files inside those modules
     ↓
 Dependency-aware candidate files
     ↓
-Symbols inside those files
+Relevant symbols
 ```
 
-Each stage has a narrower decision to make.
+Each stage therefore has a narrower decision to make.
 
-------------------------------------------------------------------------
+---
 
 ## Why semantic summaries?
 
-Sending complete source files for every retrieval decision is expensive
-and noisy.
+Sending complete source files for every retrieval decision is noisy and expensive.
 
-Compact descriptions provide a lightweight semantic index while the
-structural graph preserves the actual relationships.
+Compact descriptions provide a lightweight semantic index while the structural graph preserves the actual repository relationships.
 
-------------------------------------------------------------------------
+---
 
-## Why keep graph traversal deterministic?
+## Why deterministic dependency expansion?
 
 The LLM decides what appears semantically relevant.
 
 The graph decides what is structurally connected.
 
-This separation reduces the chance that the LLM will miss an important
-dependency simply because it did not select that file directly.
+This separation reduces the chance that retrieval misses an important dependency simply because the model did not explicitly select it.
 
-------------------------------------------------------------------------
+---
 
-# Current Results
+# 13. Generated Artifacts
 
-The current generated Flask graph contains:
+After running the indexing pipeline, FUSE generates:
 
-``` text
+```text
+data/code_graph.json
+```
+
+The raw structural knowledge graph.
+
+```text
+data/code_graph.graphml
+```
+
+Graph representation suitable for graph inspection/tools.
+
+```text
+data/enriched_code_graph.json
+```
+
+The structural graph with semantic descriptions attached to nodes.
+
+```text
+data/summaries.json
+```
+
+Level 2 file summaries and Level 3 symbol descriptions.
+
+```text
+data/module_summaries.json
+```
+
+Level 1 module summaries.
+
+```text
+data/enrichment_report.json
+```
+
+Semantic enrichment and recovery report.
+
+---
+
+# 14. Running Locally
+
+## 1. Create a virtual environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+## 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## 3. Configure Gemini
+
+Create a `.env` file:
+
+```env
+GEMINI_API_KEY=your_api_key
+```
+
+Do not commit `.env` or expose the API key.
+
+## 4. Build the graph
+
+```bash
+python src/fuse.py
+```
+
+This performs:
+
+1. Repository discovery
+2. Tree-sitter graph construction
+3. File and symbol semantic enrichment
+4. Module semantic enrichment
+5. Enriched graph generation
+
+## 5. Run the API
+
+```bash
+uvicorn src.api:app --reload
+```
+
+The local API will be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+Swagger UI:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+# 15. Current Results
+
+The final generated Flask graph contains:
+
+```text
 24 Python files
 438 total nodes
 909 structural edges
@@ -692,61 +822,73 @@ The current generated Flask graph contains:
 287 methods
 ```
 
-Semantic enrichment status:
+Semantic enrichment:
 
-``` text
+```text
 438 / 438 nodes described
 0 missed
 ```
 
-------------------------------------------------------------------------
+The complete indexing and enrichment pipeline is operational for the included Flask repository.
 
-# Limitations
+The hierarchical retriever is exposed through the deployed `/ask` API.
+
+---
+
+# 16. Limitations
 
 FUSE is currently an experimental codebase intelligence system.
 
-Some current limitations include:
+Current limitations include:
 
--   Retrieval quality depends partly on the quality of semantic
-    summaries.
--   Import resolution is currently focused on the analyzed Python
-    repository.
--   Dependency expansion is based on relationships represented in the
-    structural graph.
--   The current API returns retrieval context rather than automatically
-    fixing the underlying issue.
--   The current implementation has been evaluated on the included Flask
-    repository rather than a large range of production repositories.
+- Retrieval quality depends partly on the quality of semantic summaries.
+- Import resolution is focused on the analyzed Python repository.
+- Dependency expansion is based on relationships represented in the structural graph.
+- The current API returns retrieval context rather than automatically fixing the underlying issue.
+- The current implementation has been evaluated on the included Flask repository rather than a broad production-repository benchmark.
 
-These are deliberate boundaries for the current version rather than
-claims of complete repository understanding.
+These are deliberate boundaries of the current version rather than claims of complete repository understanding.
 
-------------------------------------------------------------------------
+---
 
-# What I Would Build Next
+# 17. Future Work
 
-Possible next steps include:
+Potential next steps include:
 
--   code-aware reranking of retrieved symbols
--   call-graph relationships in addition to imports
--   better cross-module dependency resolution
--   repository-wide incremental indexing
--   caching semantic summaries
--   retrieval evaluation benchmarks
--   token/latency measurements against full-context baselines
--   using retrieved symbols as context for an actual debugging/fixing
-    agent
+- Code-aware reranking of retrieved symbols
+- Call-graph relationships in addition to imports
+- Better cross-module dependency resolution
+- Repository-wide incremental indexing
+- Caching semantic summaries
+- Retrieval evaluation benchmarks
+- Token and latency measurements against full-context baselines
+- Using retrieved symbols as context for an actual debugging/fixing agent
 
-------------------------------------------------------------------------
+---
 
-# Status
+# 18. Status
 
-FUSE's current graph construction and semantic enrichment pipeline is
-complete for the included Flask repository.
+**FUSE is complete for the included Flask repository.**
 
-The generated graph contains semantic descriptions for all 438 graph
-nodes, and the hierarchical retriever is ready to serve queries through
-`/ask`.
+The final graph contains:
 
-The remaining work for the assignment is deployment and submission
-documentation.
+```text
+438 nodes
+909 structural edges
+438 / 438 semantic descriptions
+0 missed descriptions
+```
+
+The system is deployed and accessible through:
+
+```text
+https://fuse-swart.vercel.app/
+```
+
+Interactive API documentation:
+
+```text
+https://fuse-swart.vercel.app/docs
+```
+
+The current system's responsibility is **codebase retrieval and context selection**. Automatic issue fixing is intentionally outside the current scope.
